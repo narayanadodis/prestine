@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <customizeshirt_adminhtml_customizeshirt_index>
+        <reference name="content">
+            <block type="customizeshirt/adminhtml_customizeshirt" name="customizeshirt" />
+        </reference>
+    </customizeshirt_adminhtml_customizeshirt_index>
+	<customizeshirt_adminhtml_collar_index>
+        <reference name="content">
+            <block type="customizeshirt/adminhtml_collar" name="collar" />
+        </reference>
+    </customizeshirt_adminhtml_collar_index>
+	<customizeshirt_adminhtml_cuff_index>
+        <reference name="content">
+            <block type="customizeshirt/adminhtml_cuff" name="collar" />
+        </reference>
+    </customizeshirt_adminhtml_cuff_index>
+	
+</layout>

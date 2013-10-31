@@ -1,0 +1,21 @@
+<?php
+$storeId = Mage::app()->getStore()->getId();
+$faqcollection = Mage::getModel('faq/faq')->getCollection()->addStoreFilter($storeId)->addIsActiveFilter();
+ ?>
+<div class="faq-skin">
+<ul id="mymenu">
+<?php foreach ($faqcollection as $faq) { ?>
+	<li>
+		<p><?php echo $faq->getQuestion(); ?></p>
+		<div>
+			<div class="padded clearfix">
+				<?php echo $faq->getAnswer(); ?>
+			</div>
+		</div>
+	</li>
+<?php } ?>
+</ul>
+</div>
+<script type="text/javascript">
+	var menu1 = new YAHOO.widget.AccordionView('mymenu', {collapsible: true, width: 'auto', expandItem: 0, animationSpeed: '0.5', animate: true, effect: YAHOO.util.Easing.easeBothStrong});
+</script>

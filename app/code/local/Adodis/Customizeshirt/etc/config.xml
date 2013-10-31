@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Adodis_Customizeshirt>
+            <version>0.1.0</version>
+        </Adodis_Customizeshirt>
+    </modules>
+    <frontend>
+        <routers>
+            <customizeshirt>
+                <use>standard</use>
+                <args>
+                    <module>Adodis_Customizeshirt</module>
+                    <frontName>customizeshirt</frontName>
+                </args>
+            </customizeshirt>
+        </routers>
+        <layout>
+            <updates>
+                <customizeshirt>
+                    <file>customizeshirt.xml</file>
+                </customizeshirt>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<customizeshirt>
+				<use>admin</use>
+				<args>
+					<module>Adodis_Customizeshirt</module>
+					<frontName>customizeshirt</frontName>
+				</args>
+			</customizeshirt>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<customizeshirt module="customizeshirt">
+				<title>Customizeshirt</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<items module="customizeshirt">
+						<title>Manage Items</title>
+						<sort_order>0</sort_order>
+						<action>customizeshirt/adminhtml_customizeshirt</action>
+					</items>
+					<managecollar module="slideshow">
+						<title>Manage Collar</title>
+						<sort_order>1</sort_order>
+						<action>customizeshirt/adminhtml_collar</action>
+					</managecollar>
+					<managecuff module="slideshow">
+						<title>Manage Cuff</title>
+						<sort_order>2</sort_order>
+						<action>customizeshirt/adminhtml_cuff</action>
+					</managecuff>	
+				</children>
+			</customizeshirt>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<!--<Adodis_Customizeshirt>
+							<title>Customizeshirt Module</title>
+							<sort_order>10</sort_order>
+						</Adodis_Customizeshirt>-->
+						<customizeshirt module="customizeshirt">
+						<title>Customizeshirt</title>
+						<sort_order>71</sort_order>               
+						<children>
+							<items module="customizeshirt">
+								<title>Manage Items</title>
+								<sort_order>0</sort_order>
+							</items>
+							<managecollar module="slideshow">
+								<title>Manage Collar</title>
+								<sort_order>10</sort_order>
+							</managecollar>
+							<managecuff module="slideshow">
+								<title>Manage Cuff</title>
+								<sort_order>20</sort_order>
+							</managecuff>	
+						</children>
+					</customizeshirt>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<customizeshirt>
+					<file>customizeshirt.xml</file>
+				</customizeshirt>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <customizeshirt>
+                <class>Adodis_Customizeshirt_Model</class>
+                <resourceModel>customizeshirt_mysql4</resourceModel>
+            </customizeshirt>
+            <customizeshirt_mysql4>
+                <class>Adodis_Customizeshirt_Model_Mysql4</class>
+                <entities>
+                    <customizeshirt>
+                        <table>customizeshirt</table>
+                    </customizeshirt>
+					<collar>
+                        <table>customizeshirt_collar</table>
+                    </collar>
+					<cuff>
+                        <table>customizeshirt_cuff</table>
+                    </cuff>
+                </entities>
+            </customizeshirt_mysql4>
+        </models>
+        <resources>
+            <customizeshirt_setup>
+                <setup>
+                    <module>Adodis_Customizeshirt</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </customizeshirt_setup>
+            <customizeshirt_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </customizeshirt_write>
+            <customizeshirt_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </customizeshirt_read>
+        </resources>
+        <blocks>
+            <customizeshirt>
+                <class>Adodis_Customizeshirt_Block</class>
+            </customizeshirt>
+        </blocks>
+        <helpers>
+            <customizeshirt>
+                <class>Adodis_Customizeshirt_Helper</class>
+            </customizeshirt>
+        </helpers>
+    </global>
+</config>

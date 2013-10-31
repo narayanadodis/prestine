@@ -1,0 +1,14 @@
+.customize-container {width:100%;}
+.left-cont {float:left; width:48%;}
+#accordion h3 {cursor:pointer;}
+.fabrics ul.items-list {height: 200px; width:270px; float: left;}
+.fabrics ul.items-list li {margin:4px; float:left;}
+.right-cont {float:right; width:50%; min-height:600px;}
+.right-cont #shirt {position:relative;}
+#accordion div#fabricslideimg {float: left;}
+#fabricslideimg .zoomfabric {bottom: 0; font-size: 14px; font-weight: bold; position: absolute; right: 0; text-decoration: none;}
+.shirt-style .tab_container ul { width: 270px; float:left;}
+.shirt-style .tab_container ul li {width:85px; float:left; min-height:98px;}
+.shirt-style .tab_container li a{cursor:pointer;}
+.shirt-style .shirt-collar-style #collarslideimg {float: left;}
+.shirt-style .shirt-cuff-style #cuffslideimg {float: left;}

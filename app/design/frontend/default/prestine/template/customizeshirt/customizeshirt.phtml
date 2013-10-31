@@ -1,0 +1,289 @@
+<link rel="stylesheet" href="<?php echo $this->getSkinurl('css/customshirt.css'); ?>" />
+
+<script src="<?php echo $this->getSkinurl('js/jquery-ui.js'); ?>"></script>
+<script src="<?php echo $this->getSkinurl('js/custom-script.js'); ?>"></script>
+
+
+<form class="inner" method="post" action="">
+<fieldset id="partShirt">
+
+<div class="customize-container">
+<div class="left-cont">
+<div id="accordion">
+  <h3>SELECT FABRIC</h3>
+  <div class="fabrics">
+  <ul class="items-list">
+    <?php
+		$category_id = '6';
+		$products = Mage::getModel('catalog/category')->load($category_id)
+		 ->getProductCollection()
+		 ->addAttributeToSelect('*')
+		 ->addAttributeToFilter('status', 1)
+		 ->addAttributeToFilter('visibility', 4)
+		 ->setOrder('price', 'ASC');
+		foreach($products as $product) { ?>
+		<li onclick="GetFabric('<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail'); ?>','<?php echo $product->getShortDescription(); ?>','<?php echo $product->getName(); ?>');">
+		<!--<span class="PriceShirt"><?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?></span>-->
+		<img width="75" height="75" onclick="fabricClick('<?php echo $product->getId(); ?>', '<?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?>','<?php echo $product->getName(); ?>','<?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?>','<?php echo $product->getShortDescription(); ?>');" style="cursor:pointer" alt="" src="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(75); ?>"/>
+		</li>
+		<?php } ?>
+		</ul>
+		<div id="fabricslideimg"></div>
+		<div style="clear:both;"></div>
+  </div>
+  <h3>SELECT STYLE</h3>
+  <div class="shirt-style">
+   <ul class="tabs">
+     <li class="plus1"><a href="#tab1">Collar</a></li>
+	 <li class="plus1"><a href="#tab2">Cuff</a></li>
+   </ul>
+  <div class="tab_container">
+    <div id="tab1" class="tab_content shirt-collar-style">
+    <ul class="items-list collar-style">
+    <?php $collection = Mage::getModel('customizeshirt/collar')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('collar_id', 'ASC');
+	foreach($collection as $collar) { ?>
+		<li collar="<?php echo $collar->getSwitchno(); ?>" onclick="GetCollar('<?php echo $collar->getCollarTitle(); ?>','<?php echo Mage::getBaseUrl('media').$collar->getCollarImage(); ?>');" class="">
+		<a onclick="CollarClick(<?php echo $collar->getSwitchno(); ?>)"><img width="80" alt="" src="<?php echo Mage::getBaseUrl('media').$collar->getCollarImage(); ?>"><strong><?php echo $collar->getCollarTitle(); ?></strong></a>
+		</li>
+	<?php } ?>
+	</ul>
+	<div id="collarslideimg"></div>
+	</div>
+	
+	<div id="tab2" class="tab_content shirt-cuff-style">
+    <ul class="items-list cuff-style">
+    <?php $collection = Mage::getModel('customizeshirt/cuff')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('cuff_id', 'ASC');
+	foreach($collection as $cuff) { ?>
+		<li onclick="GetCuff('<?php echo $cuff->getCuffTitle(); ?>','<?php echo Mage::getBaseUrl('media').$cuff->getCuffImage(); ?>');" class="">
+		<a onclick="CuffClick(<?php echo $cuff->getSwitchno(); ?>)"><img width="80" alt="" src="<?php echo Mage::getBaseUrl('media').$cuff->getCuffImage(); ?>"><strong><?php echo $cuff->getCuffTitle(); ?></strong></a>
+		</li>
+	<?php } ?>
+	</ul>
+	<div id="cuffslideimg"></div>
+	</div>
+	
+   </div>
+	
+	<div style="clear:both;"></div>
+  </div>
+  <h3>SELECT COLOR CONTRAST</h3>
+  <div>
+    <p>
+    Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+    Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+    ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+    lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+    </p>
+    <ul>
+      <li>List item one</li>
+      <li>List item two</li>
+      <li>List item three</li>
+    </ul>
+  </div>
+  <h3>PERSONALIZE / MONOGRAM</h3>
+  <div>
+    <p>
+    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+    mauris vel est.
+    </p>
+    
+  </div>
+  <h3>MEASUREMENTS</h3>
+  <div>
+    <p>
+    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+    mauris vel est.
+    </p>
+  </div>
+</div>
+
+<script>
+  jQuery(function() {
+    jQuery( "#accordion" ).accordion({
+      heightStyle: "content"
+    });
+  });
+  </script>
+  
+  </div>
+ 
+<div class="right-cont">
+<div id="shirt">
+<div id="sba5" style="position: absolute; top: 0px; left: 0px;">
+<img id="sba5img" src="http://c4233705.r5.cf2.rackcdn.com/StandardSleeve_WhiteLineIssueSolver.png" alt="">
+</div>
+<div id="sba" style="position: absolute; top: 0px; left: 0px;">
+<img id="sbaimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/883_main_set2_0003.png">
+</div>
+<div id="ssl" style="position: absolute; top: 0px; left: 0px;">
+<img id="sslimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/883_main_set2_0000.png">
+</div>
+<div id="scu" style="position: absolute; top: 0px; left: 0px;">
+<img id="scuimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/883_main_set1_0006.png">
+</div>
+<div id="sba1" style="position: absolute; top: 0px; left: 0px;">
+<img id="sba1img" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+</div>
+<div id="spl" style="position: absolute; top: 0px; left: 0px;">
+<img id="splimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/883_main_set3_0012.png">
+</div>
+<div id="sco_neru" style="position: absolute; top: 0px; left: 0px;">
+<img id="scoimg_neru" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+</div>
+<div id="sco" style="position: absolute; top: 0px; left: 0px;">
+<img id="scoimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/883_main_set3_0002.png">
+</div>
+<div id="scob" style="position: absolute; top: 0px; left: 0px;">
+<img id="scobimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/1_main_button_0002.png">
+</div>
+<div id="scobd" style="position: absolute; top: 0px; left: 0px;">
+<img id="scobdimg" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+</div>
+<div id="spo" style="position: absolute; top: 0px; left: 0px;">
+<img id="spoimg" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+</div>
+<div id="ssh" style="position: absolute; top: 0px; left: 0px;">
+<img id="sshimg" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+</div>
+<div id="sshb" style="position: absolute; top: 0px; left: 0px;">
+<img id="sshbimg" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+</div>
+<div id="scol" style="position: absolute; top: 0px; left: 0px;">
+<img id="scolimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/883_main_set3_0004.png">
+</div>
+<div id="scsic" style="position: absolute; top: 0px; left: 0px;">
+<img id="scsicimg" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+</div>
+<div id="scui" style="position: absolute; top: 0px; left: 0px;">
+<img id="scuiimg" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+</div>
+<div id="sba3" style="position: absolute; top: 0px; left: 0px;">
+<img id="sba3img" alt="" src="http://c4233705.r5.cf2.rackcdn.com/1_main_button_0004.png">
+</div>
+<div id="sba4" style="position: absolute; top: 0px; left: 0px;">
+<img id="sba4img" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+</div>
+<!--<div id="zoomcuff" onmouseout="zoomHide()" onmouseover="zoomShow(2)">
+<img id="zoomcuffimg" width="32" height="32" src="http://c12743256.r56.cf2.rackcdn.com/Images/zoom_in.png" alt="">
+</div>
+<div id="zoomcollar" onmouseout="zoomHide()" onmouseover="zoomShow(1)">
+<img id="zoomcollarimg" width="32" height="32" src="http://c12743256.r56.cf2.rackcdn.com/Images/zoom_in.png" alt="">
+</div>
+<div id="zoomshoulder" onmouseout="zoomHide()" onmouseover="zoomShow(3)">
+<img id="zoomshoulderimg" width="32" height="32" src="http://c12743256.r56.cf2.rackcdn.com/Images/zoom_in.png" alt="">
+</div>
+<div id="zoompocket" onmouseout="zoomHide()" onmouseover="zoomShow(4)">
+<img id="zoompocketimg" width="32" height="32" src="http://c12743256.r56.cf2.rackcdn.com/Images/zoom_in.png" alt="">
+</div>
+<div id="zoomcuffinner" onmouseout="zoomHide()" onmouseover="zoomShow(5)">
+<img id="zoomcuffinnerimg" width="32" height="32" src="http://c12743256.r56.cf2.rackcdn.com/Images/zoom_in.png" alt="">
+</div>-->
+</div>
+
+</div>
+</div>
+
+  
+
+<input id="server" type="hidden" value="http://localhost/projects/prestine/" name="server">
+<input id="IsFabrics" type="hidden" value="False" name="IsFabrics" data-val-required="The Boolean field is required." data-val="true">
+<input id="page" type="hidden" value="1" name="page">
+<input id="lookupFabric" type="hidden" value="" name="lookupFabric">
+<input id="fapricType" type="hidden" value="1" name="fapricType">
+<input id="stepHiden" type="hidden" value="0" name="stepHiden">
+<input id="CurrentType" type="hidden" value="" name="CurrentType">
+<input id="SizeType" type="hidden" value="AskOurTailors" name="SizeType" data-val-required="The SizeType field is required." data-val="true">
+<input id="Id" type="hidden" value="-1" name="Id" data-val-required="The Id field is required." data-val-number="The field Id must be a number." data-val="true">
+<input id="SessionKey" type="hidden" value="00000000-0000-0000-0000-000000000000" name="SessionKey" data-val-required="The SessionKey field is required." data-val="true">
+<input id="back" type="hidden" value="" name="back" data-val-number="The field back must be a number." data-val="true">
+<input id="basecolor" type="hidden" value="3" name="basecolor">
+<input id="bodytype" type="hidden" value="" name="bodytype" data-val-number="The field bodytype must be a number." data-val="true">
+<input id="branding" type="hidden" value="" name="branding" data-val-number="The field branding must be a number." data-val="true">
+<input id="brandingcolor" type="hidden" value="" name="brandingcolor">
+<input id="brandingtext" type="hidden" value="" name="brandingtext">
+<input id="buttons" type="hidden" value="1" name="buttons" data-val-number="The field buttons must be a number." data-val="true">
+<input id="collar" type="hidden" value="1" name="collar" data-val-number="The field collar must be a number." data-val="true">
+<input id="collarcolor" type="hidden" value="3" name="collarcolor">
+<input id="collarlabel" type="hidden" value="" name="collarlabel" data-val-number="The field collarlabel must be a number." data-val="true">
+<input id="collarlining" type="hidden" value="0" name="collarlining" data-val-number="The field collarlining must be a number." data-val="true">
+<input id="collarliningcolor" type="hidden" value="3" name="collarliningcolor">
+<input id="collarmono" type="hidden" value="" name="collarmono" data-val-number="The field collarmono must be a number." data-val="true">
+<input id="cuff" type="hidden" value="1" name="cuff" data-val-number="The field cuff must be a number." data-val="true">
+<input id="cuffcolor" type="hidden" value="3" name="cuffcolor">
+<input id="cuffinner" type="hidden" value="0" name="cuffinner" data-val-number="The field cuffinner must be a number." data-val="true">
+<input id="cuffinnercolor" type="hidden" value="977" name="cuffinnercolor">
+<input id="cuffmono" type="hidden" value="" name="cuffmono" data-val-number="The field cuffmono must be a number." data-val="true">
+<input id="cuffsleeve" type="hidden" value="0" name="cuffsleeve" data-val-number="The field cuffsleeve must be a number." data-val="true">
+<input id="cuffsleevecolor" type="hidden" value="977" name="cuffsleevecolor">
+<input id="customcollar" type="hidden" value="False" name="customcollar">
+<input id="customplacket" type="hidden" value="False" name="customplacket">
+<input id="custompocket" type="hidden" value="False" name="custompocket">
+<input id="customstrap" type="hidden" value="False" name="customstrap">
+<input id="cut" type="hidden" value="" name="cut" data-val-number="The field cut must be a number." data-val="true">
+<input id="cutomcuff" type="hidden" value="False" name="cutomcuff">
+<input id="heightft" type="hidden" value="" name="heightft" data-val-number="The field heightft must be a number." data-val="true">
+<input id="heightin" type="hidden" value="" name="heightin" data-val-number="The field heightin must be a number." data-val="true">
+<input id="monocolor" type="hidden" value="" name="monocolor">
+<input id="monotext" type="hidden" value="" name="monotext">
+<input id="placket" type="hidden" value="1" name="placket" data-val-number="The field placket must be a number." data-val="true">
+<input id="placketcolor" type="hidden" value="3" name="placketcolor">
+<input id="placketlabel" type="hidden" value="" name="placketlabel" data-val-number="The field placketlabel must be a number." data-val="true">
+<input id="pocket" type="hidden" value="1" name="pocket" data-val-number="The field pocket must be a number." data-val="true">
+<input id="pocketcolor" type="hidden" value="3" name="pocketcolor">
+<input id="pocketmono" type="hidden" value="" name="pocketmono" data-val-number="The field pocketmono must be a number." data-val="true">
+<input id="pocketstyle" type="hidden" value="1" name="pocketstyle" data-val-number="The field pocketstyle must be a number." data-val="true">
+<input id="shirtarms" type="hidden" value="" name="shirtarms">
+<input id="shirtneck" type="hidden" value="" name="shirtneck">
+<input id="shirtprice" type="hidden" value="125" name="shirtprice" data-val-number="The field shirtprice must be a number." data-val="true">
+<input id="labelcolor" type="hidden" value="" name="labelcolor">
+<input id="labeltext" type="hidden" value="" name="labeltext">
+<input id="sizing" type="hidden" value="" name="sizing" data-val-number="The field sizing must be a number." data-val="true">
+<input id="sizingtext" type="hidden" value="" name="sizingtext">
+<input id="split" type="hidden" value="" name="split">
+<input id="splittext" type="hidden" value="" name="splittext">
+<input id="splittextcolor" type="hidden" value="" name="splittextcolor">
+<input id="strap" type="hidden" value="1" name="strap" data-val-number="The field strap must be a number." data-val="true">
+<input id="strapcolor" type="hidden" value="3" name="strapcolor">
+<input id="tuck" type="hidden" value="" name="tuck" data-val-number="The field tuck must be a number." data-val="true">
+<input id="weight" type="hidden" value="" name="weight" data-val-number="The field weight must be a number." data-val="true">
+<input id="monogramfont" type="hidden" value="0" name="monogramfont" data-val-required="The monogramfont field is required." data-val-number="The field monogramfont must be a number." data-val="true">
+<input id="labelfont" type="hidden" value="0" name="labelfont" data-val-required="The labelfont field is required." data-val-number="The field labelfont must be a number." data-val="true">
+</fieldset>
+</form>
+
+  <script type="text/javascript">
+  jQuery(document).ready(function() {
+  //jQuery('#basecolor').val();
+  //fabricClick('<?php echo $product->getId(); ?>', '<?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?>','<?php echo $product->getName(); ?>','<?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?>','<?php echo $product->getShortDescription(); ?>'); 
+  //GetFabric('<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(175); ?>','<?php echo $product->getShortDescription(); ?>','<?php echo $product->getName(); ?>');
+   // jQuery('#someLinkId').click();
+  });
+  function GetFabric(url, discription, name) {
+        var data = "<div style='position: relative;'><div class='img'>" + "<img src='" + url + "' alt='' width='175' height='175' /></div><a href='#largefabric' class='zoomfabric'>zoom</a></div> <div style='display:none'><div id='largefabric'><img src='" + url + "' alt='' /></div></div>";
+        jQuery('#fabricslideimg').html(data);
+        jQuery('#fabricslideimg').show();
+			jQuery(".zoomfabric").fancybox({
+			'titlePosition'		: 'inside',
+			'transitionIn'		: 'none',
+			'transitionOut'		: 'none'
+			});
+    }
+	function GetCollar(title, url) {
+        var data = "<div style='position: relative;'><div class='img'>" + "<img src='" + url + "' alt='' /></div></div>";
+        jQuery('#collarslideimg').html(data);
+        jQuery('#collarslideimg').show();
+    }
+	function GetCuff(title, url) {
+        var data = "<div style='position: relative;'><div class='img'>" + "<img src='" + url + "' alt='' /></div></div>";
+        jQuery('#cuffslideimg').html(data);
+        jQuery('#cuffslideimg').show();
+    }
+	</script>

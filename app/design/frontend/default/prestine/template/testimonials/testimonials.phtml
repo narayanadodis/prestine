@@ -1,0 +1,17 @@
+<div class="testimonials">
+	<h4><?php echo $this->__('Testimonials') ?></h4>
+	<?php $collection = Mage::getModel('testimonials/testimonials')->getCollection()->addIsActiveFilter(); ?>
+	<?php $cnt = count($collection); ?>
+	<?php if($cnt > 0 ): ?>
+	<?php foreach ($collection as $item): ?>
+	<div class="client" >
+		<p><?php echo '&ldquo;'.$item->getContent().'&rdquo;'; ?></p>
+		<div class="name"><?php   echo $item->getName(); ?></div>
+		<span class="url"><a href="<?php echo $item->getUrl(); ?>"><?php echo $item->getUrl(); ?></a></span>
+	</div>
+	<?php endforeach;  ?>
+	<?php else: ?>
+	<div>There is no testimonials here</div>
+	<?php endif; ?>
+	<div class="submit"><a  href="<?php echo $this->getUrl('testimonials/submit'); ?>"><?php echo $this->__('Submit Your Testimonial') ?></a></div>
+</div>

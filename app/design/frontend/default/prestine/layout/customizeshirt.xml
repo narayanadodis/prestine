@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <customizeshirt_index_index>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="customizeshirt/customizeshirt" name="customizeshirt" template="customizeshirt/customizeshirt.phtml" />
+        </reference>
+    </customizeshirt_index_index>
+</layout> 

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Adodis_Customizeshirt>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Adodis_Customizeshirt>
+    </modules>
+</config> 
