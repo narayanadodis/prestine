@@ -5,7 +5,7 @@ ul.tabs {
     top: 0;
 }
 ul.tabs li.active {
-    background: #dbdbdb;
+    background: #bbb;
 }
 ul.tabs li {
     background: none repeat scroll 0 0 #F3F3F3;
