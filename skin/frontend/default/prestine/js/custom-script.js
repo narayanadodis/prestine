@@ -92,7 +92,7 @@ function CuffClick(plac) {
                 $('#CuffFabric li').eq(1).attr('class', '');
 
                 $('#CuffcolorDisc').html("");
-                $('#cuffcolor').val($('#basecolor').val());
+                //$('#cuffcolor').val($('#basecolor').val());
                 $('#cutomcuff').val(false);
 
 
