@@ -65,7 +65,14 @@ class Adodis_Customizeshirt_Block_Adminhtml_Collar_Edit_Tab_Form extends Mage_Ad
                   'label'     => Mage::helper('customizeshirt')->__('Disabled'),
               ),
           ),
-      ));  
+      ));
+
+	  $fieldset->addField('switchno', 'text', array(
+          'label'     => Mage::helper('customizeshirt')->__('Collar Switch no'),
+          'class'     => 'required-entry',
+          'required'  => true,
+          'name'      => 'switchno',
+      ));	  
       
 	if (!Mage::app()->isSingleStoreMode()) {
 		$fieldset->addField('store_id', 'multiselect', 

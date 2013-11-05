@@ -45,16 +45,26 @@
 						<sort_order>0</sort_order>
 						<action>customizeshirt/adminhtml_customizeshirt</action>
 					</items>
-					<managecollar module="slideshow">
+					<managecollar module="customizeshirt">
 						<title>Manage Collar</title>
 						<sort_order>1</sort_order>
 						<action>customizeshirt/adminhtml_collar</action>
 					</managecollar>
-					<managecuff module="slideshow">
+					<managecuff module="customizeshirt">
 						<title>Manage Cuff</title>
 						<sort_order>2</sort_order>
 						<action>customizeshirt/adminhtml_cuff</action>
 					</managecuff>	
+					<managefront module="customizeshirt">
+						<title>Manage Front</title>
+						<sort_order>3</sort_order>
+						<action>customizeshirt/adminhtml_front</action>
+					</managefront>
+					<manageshoulder module="customizeshirt">
+						<title>Manage Shoulder</title>
+						<sort_order>4</sort_order>
+						<action>customizeshirt/adminhtml_shoulder</action>
+					</manageshoulder>
 				</children>
 			</customizeshirt>
 		</menu>
@@ -77,14 +87,22 @@
 								<title>Manage Items</title>
 								<sort_order>0</sort_order>
 							</items>
-							<managecollar module="slideshow">
+							<managecollar module="customizeshirt">
 								<title>Manage Collar</title>
 								<sort_order>10</sort_order>
 							</managecollar>
-							<managecuff module="slideshow">
+							<managecuff module="customizeshirt">
 								<title>Manage Cuff</title>
 								<sort_order>20</sort_order>
-							</managecuff>	
+							</managecuff>
+							<managefront module="customizeshirt">
+								<title>Manage Front</title>
+								<sort_order>30</sort_order>
+							</managefront>	
+							<manageshoulder module="customizeshirt">
+								<title>Manage Shoulder</title>
+								<sort_order>40</sort_order>
+							</manageshoulder>	
 						</children>
 					</customizeshirt>
 					</children>
@@ -117,6 +135,12 @@
 					<cuff>
                         <table>customizeshirt_cuff</table>
                     </cuff>
+					<front>
+                        <table>customizeshirt_front</table>
+                    </front>
+					<shoulder>
+                        <table>customizeshirt_shoulder</table>
+                    </shoulder>
                 </entities>
             </customizeshirt_mysql4>
         </models>

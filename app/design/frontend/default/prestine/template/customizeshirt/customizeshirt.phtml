@@ -36,6 +36,8 @@
    <ul class="tabs">
      <li class="plus1"><a href="#tab1">Collar</a></li>
 	 <li class="plus1"><a href="#tab2">Cuff</a></li>
+	 <li class="plus1"><a href="#tab3">Front</a></li>
+	 <li class="plus1"><a href="#tab4">Shoulder</a></li>
    </ul>
   <div class="tab_container">
     <div id="tab1" class="tab_content shirt-collar-style">
@@ -64,6 +66,33 @@
 	<?php } ?>
 	</ul>
 	<div id="cuffslideimg"></div>
+	</div>
+	
+	<div id="tab3" class="tab_content shirt-front-style">
+    <ul class="items-list front-style">
+    <?php $collection = Mage::getModel('customizeshirt/front')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('front_id', 'ASC');
+	foreach($collection as $front) { ?>
+		<li onclick="GetFront('<?php echo $front->getFrontTitle(); ?>','<?php echo Mage::getBaseUrl('media').$front->getFrontImage(); ?>');" class="">
+		<a onclick="placketClick(<?php echo $front->getSwitchno(); ?>)"><img width="80" alt="" src="<?php echo Mage::getBaseUrl('media').$front->getFrontImage(); ?>"><strong><?php echo $front->getFrontTitle(); ?></strong></a>
+		</li>
+	<?php } ?>
+	</ul>
+	<div id="frontslideimg"></div>
+	</div>
+	<div id="tab4" class="tab_content shirt-shoulder-style">
+    <ul class="items-list shoulder-style">
+    <?php $collection = Mage::getModel('customizeshirt/shoulder')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('shoulder_id', 'ASC');
+	foreach($collection as $shoulder) { ?>
+		<li onclick="GetShoulder('<?php echo $shoulder->getShoulderTitle(); ?>','<?php echo Mage::getBaseUrl('media').$shoulder->getShoulderImage(); ?>');" class="">
+		<a onclick="ShoulderClick(<?php echo $shoulder->getSwitchno(); ?>)"><img width="80" alt="" src="<?php echo Mage::getBaseUrl('media').$shoulder->getShoulderImage(); ?>"><strong><?php echo $shoulder->getShoulderTitle(); ?></strong></a>
+		</li>
+	<?php } ?>
+	</ul>
+	<div id="shoulderslideimg"></div>
 	</div>
 	
    </div>
@@ -276,6 +305,13 @@
         jQuery('#cuffslideimg').html(data);
         jQuery('#cuffslideimg').show();
     }
+	function GetFront(title, url) {
+        var data = "<div style='position: relative;'><div class='img'>" + "<img src='" + url + "' alt='' /></div></div>";
+        jQuery('#frontslideimg').html(data);
+		//jQuery('.shirt-style .tab_content ul.items-list li').removeClass('active');
+        //jQuery(this).addClass('active');
+    }
+	
 	
 	</script>
 	
