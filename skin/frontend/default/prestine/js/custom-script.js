@@ -1,9 +1,9 @@
-
+var prestine_url = 'http://localhost/projects/prestine/customize/';
 
 function fabricClick(fid, price, name, tailorsprice, description) {
-    var server = 'http://localhost/projects/prestine/customize/';
-    var LargImag = "http://localhost/projects/prestine/customize/" + fid + ".jpg";
-    var UrlImageFabric = "http://localhost/projects/prestine/customize/" + fid + ".jpg";
+    var server = prestine_url;
+    var LargImag = prestine_url + fid + ".jpg";
+    var UrlImageFabric = prestine_url + fid + ".jpg";
 
     $('#LargImagFabric').attr('src', LargImag);
     $('#ImageFabric').attr('src', UrlImageFabric);
@@ -43,7 +43,7 @@ function fabricClick(fid, price, name, tailorsprice, description) {
     $('#fabric_tailorsPrice').text('At your local tailor: ' + tailorsprice + '.00');
     $('#fabric_price').text('At Blank Label: ' + price + '.00');
 
-    $('#scolimg').attr('src', 'http://localhost/projects/prestine/customize/' + $('#collarliningcolor').val() + "_main_set3_0004.png");
+    $('#scolimg').attr('src', prestine_url + $('#collarliningcolor').val() + "_main_set3_0004.png");
     CuffClick(parseInt($('#cuff').val()));
     placketClick(parseInt($('#placket').val()));
     PocketClick(parseInt($('#pocket').val()));
@@ -56,7 +56,7 @@ function fabricClick(fid, price, name, tailorsprice, description) {
 function CuffClick(plac) {
     $('#CuffType li').removeClass();
     $('#CuffType li').eq(plac - 1).addClass("active");
-    var server = 'http://localhost/projects/prestine/customize/';
+    var server = prestine_url;
     /*if (!window.undoflag) {
         window.stack[window.indexUndo] = 'CuffClick(' + $('#cuff').val() + ');';
         window.indexUndo++;
@@ -92,7 +92,7 @@ function CuffClick(plac) {
                 $('#CuffFabric li').eq(1).attr('class', '');
 
                 $('#CuffcolorDisc').html("");
-                $('#cuffcolor').val($('#basecolor').val());
+                //$('#cuffcolor').val($('#basecolor').val());
                 $('#cutomcuff').val(false);
 
 
@@ -131,7 +131,7 @@ function placketClick(plac) {
     $('#PlacketType li').removeClass();
     $('#PlacketType li').eq(plac - 1).addClass("active");
     var fid = $('#placketcolor').val();
-    var server = 'http://localhost/projects/prestine/customize/';
+    var server = prestine_url;
 
    /* if (!window.undoflag) {
         window.stack[window.indexUndo] = 'placketClick(' + $('#placket').val() + ');';
@@ -154,7 +154,7 @@ function placketClick(plac) {
             {
                 var url = server + fid + '_main_set3_0013.png';
                 $('#splimg').attr('src', url);
-                $('#sba3img').attr('src', ('http://localhost/projects/prestine/customize/blank.png'));
+                $('#sba3img').attr('src', (prestine_url + 'blank.png'));
                 $('#PlacketFabric').show();
                 $('#ttlPlacketFabricText').show();
                 break;
@@ -164,7 +164,7 @@ function placketClick(plac) {
                 $('#PlacketFabric li').eq(0).attr('class', '');
                 $('#PlacketcolorDisc').html('');
 
-                $('#splimg').attr('src', ('http://localhost/projects/prestine/customize/blank.png'));
+                $('#splimg').attr('src', (prestine_url + 'blank.png'));
                 $('#sba3img').attr('src', (server + $('#buttons').val() + '_main_button_0004.png'));
                 $('#PlacketFabric').hide();
                 $('#ttlPlacketFabricText').hide();
@@ -183,7 +183,7 @@ function PocketClick(plac) {
     $('#PocketType li').removeClass();
     $('#PocketType li').eq(plac - 1).addClass("active");
     var fid = $('#pocketcolor').val();
-    var server = 'http://localhost/projects/prestine/customize/';
+    var server = prestine_url;
 
     /*if (!window.undoflag) {
         window.stack[window.indexUndo] = 'PocketClick(' + $('#pocket').val() + ');';
@@ -195,8 +195,8 @@ function PocketClick(plac) {
     switch (plac) {
         case 1:
             {
-                $('#spoimg').attr('src', ('http://localhost/projects/prestine/customize/blank.png'));
-                $('#sba4img').attr('src', ('http://localhost/projects/prestine/customize/blank.png'));
+                $('#spoimg').attr('src', (prestine_url + 'blank.png'));
+                $('#sba4img').attr('src', (prestine_url + 'blank.png'));
                 $('#pocketstyle').val(1);
                 break;
             }
@@ -212,7 +212,7 @@ function PocketClick(plac) {
             {
                 var url = server + fid + '_main_set1_0007.png';
                 $('#spoimg').attr('src', url);
-                $('#sba4img').attr('src', ('http://localhost/projects/prestine/customize/blank.png'));
+                $('#sba4img').attr('src', (prestine_url + 'blank.png'));
                 $('#pocketstyle').val(2);
                 break;
             }
@@ -224,12 +224,14 @@ function PocketClick(plac) {
 }
 
 function CollarClick(plac) {
+
     $('#CollarType li').removeClass();
     $('#CollarType').find('li[collar=' + plac + ']').addClass("active");
 
     var fid = $('#collarcolor').val();
     var basecolor = $('#basecolor').val();
-    var server = 'http://localhost/projects/prestine/customize/';
+    var server = prestine_url;
+    var plac = plac;
 
     /*if (!window.undoflag) {
         window.stack[window.indexUndo] = 'CollarClick(' + $('#collar').val() + ');';
@@ -239,18 +241,19 @@ function CollarClick(plac) {
     $('#collar').val(plac);
 
     if (fid != basecolor || plac == 8) {
-        $('#scoimg_neru').attr('src', 'http://localhost/projects/prestine/customize/' + fid + "_main_set3_0016.png");
+        $('#scoimg_neru').attr('src', prestine_url + fid + "_main_set3_0016.png");
     }
     else {
-        $('#scoimg_neru').attr('src', 'http://localhost/projects/prestine/customize/blank.png');
+        $('#scoimg_neru').attr('src', prestine_url + 'blank.png');
     }
-
+    
+    plac = parseInt(plac);
     switch (plac) {
         case 2:
             {
                 $('#scoimg').attr('src', server + fid + '_main_set3_0015.png');
                 $('#sbaimg').attr('src', server + basecolor + '_main_set2_0011.png');
-                $('#scobdimg').attr('src', 'http://localhost/projects/prestine/customize/blank.png');
+                $('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
         case 4:
@@ -264,14 +267,14 @@ function CollarClick(plac) {
             {
                 $('#scoimg').attr('src', server + fid + '_main_set3_0011.png');
                 $('#sbaimg').attr('src', server + basecolor + '_main_set2_0008.png');
-                $('#scobdimg').attr('src', 'http://localhost/projects/prestine/customize/blank.png');
+                $('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
         case 6:
             {
                 $('#scoimg').attr('src', server + fid + '_main_set3_0010.png');
                 $('#sbaimg').attr('src', server + basecolor + '_main_set2_0007.png');
-                $('#scobdimg').attr('src', 'http://localhost/projects/prestine/customize/blank.png');
+                $('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
         case 7:
@@ -283,30 +286,30 @@ function CollarClick(plac) {
             }
         case 8:
             {
-                $('#scoimg').attr('src', 'http://localhost/projects/prestine/customize/blank.png');
+                $('#scoimg').attr('src', prestine_url + 'blank.png');
                 $('#sbaimg').attr('src', server + basecolor + '_main_set2_0009.png');
-                $('#scobdimg').attr('src', 'http://localhost/projects/prestine/customize/blank.png');
+                $('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
         case 9:
             {
                 $('#scoimg').attr('src', server + fid + '_main_set3_0014.png');
                 $('#sbaimg').attr('src', server + basecolor + '_main_set2_0010.png');
-                $('#scobdimg').attr('src', 'http://localhost/projects/prestine/customize/blank.png');
+                $('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
         case 10:
             {
                 $('#scoimg').attr('src', server + fid + '_main_set3_0001.png');
                 $('#sbaimg').attr('src', server + basecolor + '_main_set2_0004.png');
-                $('#scobdimg').attr('src', 'http://localhost/projects/prestine/customize/blank.png');
+                $('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
         default:
             {
                 $('#scoimg').attr('src', server + fid + '_main_set3_0002.png');
                 $('#sbaimg').attr('src', server + basecolor + '_main_set2_0003.png');
-                $('#scobdimg').attr('src', 'http://localhost/projects/prestine/customize/blank.png');
+                $('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
     }
@@ -352,7 +355,7 @@ function ShoulderClick(plac) {
     $('#ShoulderType li').removeClass();
     $('#ShoulderType li').eq(plac - 1).addClass("active");
     var fid = $('#strapcolor').val();
-    var server = 'http://localhost/projects/prestine/customize/';
+    var server = prestine_url;
 
    /* if (!window.undoflag) {
         window.stack[window.indexUndo] = 'ShoulderClick(' + $('#strap').val() + ');';
@@ -364,7 +367,7 @@ function ShoulderClick(plac) {
     switch (plac) {
         case 1:
             {
-                $('#sshimg').attr('src', ('http://localhost/projects/prestine/customize/blank.png'));
+                $('#sshimg').attr('src', (prestine_url + 'blank.png'));
                 break;
             }
         case 3:

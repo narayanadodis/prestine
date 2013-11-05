@@ -1,0 +1,95 @@
+<div class="contrast-area">
+	<ul class="tabs">
+		<li class="plus1"><a href="#tab-contrast-1">Collar</a></li>
+		<li class="plus1"><a href="#tab-contrast-2">Cuff</a></li>
+		<li class="plus1"><a href="#tab-contrast-3">Front</a></li>
+	</ul>
+
+	<div class="tab_container">
+		<div id="tab-contrast-1" class="tab_content">
+			<div class="contrast-collar-outer-lining">
+				<div class="fabrics">
+					<ul class="items-list">
+					    <?php
+						$category_id = '6';
+						$products = Mage::getModel('catalog/category')->load($category_id)
+						 ->getProductCollection()
+						 ->addAttributeToSelect('*')
+						 ->addAttributeToFilter('status', 1)
+						 ->addAttributeToFilter('visibility', 4)
+						 ->setOrder('price', 'ASC');
+						foreach($products as $product) { ?>
+							<li onclick="GetFabric('<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail'); ?>','<?php echo $product->getShortDescription(); ?>','<?php echo $product->getName(); ?>');">
+							<!--<span class="PriceShirt"><?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?></span>-->
+							<img width="50" height="50" onclick="fabricTypeClick(<?php echo $product->getId()?>, 'Collar')" style="cursor:pointer" alt="" src="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(20); ?>"/>
+							</li>
+						<?php } ?>
+					</ul>
+				</div> <!--fabrics -->
+			</div>
+			<div class="contrast-collar-inner-lining">
+				<div class="fabrics">
+					<ul class="items-list">
+					    <?php
+						$category_id = '6';
+						$products = Mage::getModel('catalog/category')->load($category_id)
+						 ->getProductCollection()
+						 ->addAttributeToSelect('*')
+						 ->addAttributeToFilter('status', 1)
+						 ->addAttributeToFilter('visibility', 4)
+						 ->setOrder('price', 'ASC');
+						foreach($products as $product) { ?>
+							<li onclick="GetFabric('<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail'); ?>','<?php echo $product->getShortDescription(); ?>','<?php echo $product->getName(); ?>');">
+							<!--<span class="PriceShirt"><?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?></span>-->
+							<img width="50" height="50" onclick="fabricTypeClick(<?php echo $product->getId()?>, 'CollarInner')" style="cursor:pointer" alt="" src="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(20); ?>"/>
+							</li>
+						<?php } ?>
+					</ul>
+				</div> <!--fabrics -->
+			</div>
+		</div> <!--tab-contrast-1 -->
+		<div id="tab-contrast-2" class="tab_content">
+			<div class="contrast-cuff-outer-lining">
+				<div class="fabrics">
+					<ul class="items-list">
+					    <?php
+						$category_id = '6';
+						$products = Mage::getModel('catalog/category')->load($category_id)
+						 ->getProductCollection()
+						 ->addAttributeToSelect('*')
+						 ->addAttributeToFilter('status', 1)
+						 ->addAttributeToFilter('visibility', 4)
+						 ->setOrder('price', 'ASC');
+						foreach($products as $product) { ?>
+							<li onclick="GetFabric('<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail'); ?>','<?php echo $product->getShortDescription(); ?>','<?php echo $product->getName(); ?>');">
+							<!--<span class="PriceShirt"><?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?></span>-->
+							<img width="50" height="50" onclick="fabricTypeClick(<?php echo $product->getId()?>, 'Cuff')" style="cursor:pointer" alt="" src="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(20); ?>"/>
+							</li>
+						<?php } ?>
+					</ul>
+				</div> <!--fabrics -->
+			</div> <!--contrast-cuff-outer-lining -->
+			<div class="contrast-collar-inner-lining">
+				<div class="fabrics">
+					<ul class="items-list">
+					    <?php
+						$category_id = '6';
+						$products = Mage::getModel('catalog/category')->load($category_id)
+						 ->getProductCollection()
+						 ->addAttributeToSelect('*')
+						 ->addAttributeToFilter('status', 1)
+						 ->addAttributeToFilter('visibility', 4)
+						 ->setOrder('price', 'ASC');
+						foreach($products as $product) { ?>
+							<li onclick="GetFabric('<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail'); ?>','<?php echo $product->getShortDescription(); ?>','<?php echo $product->getName(); ?>');">
+							<!--<span class="PriceShirt"><?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?></span>-->
+							<img width="50" height="50" onclick="fabricTypeClick(<?php echo $product->getId()?>, 'CuffInner')" style="cursor:pointer" alt="" src="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(20); ?>"/>
+							</li>
+						<?php } ?>
+					</ul>
+				</div> <!--fabrics -->
+			</div><!--contrast-cuff-inner-lining -->
+		</div> <!--tab-contrast-2 -->
+	</div> <!--tab_container -->
+</div>
+<div style="clear:both;"></div>
