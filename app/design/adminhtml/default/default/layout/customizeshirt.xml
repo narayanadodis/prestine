@@ -25,5 +25,10 @@
             <block type="customizeshirt/adminhtml_shoulder" name="shoulder" />
         </reference>
     </customizeshirt_adminhtml_shoulder_index>
+	<customizeshirt_adminhtml_monolabel_index>
+        <reference name="content">
+            <block type="customizeshirt/adminhtml_monolabel" name="monolabel" />
+        </reference>
+    </customizeshirt_adminhtml_monolabel_index>
 	
 </layout>

@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Adodis_Customizeshirt>
-            <version>0.1.0</version>
+            <version>0.2.0</version>
         </Adodis_Customizeshirt>
     </modules>
     <frontend>
@@ -65,6 +65,22 @@
 						<sort_order>4</sort_order>
 						<action>customizeshirt/adminhtml_shoulder</action>
 					</manageshoulder>
+					<personalize module="customizeshirt">
+						<title>Personalize</title>
+						<sort_order>5</sort_order>
+						<children>
+							<managemonolabel module="customizeshirt">
+							<title>Manage Monogram / Label</title>
+							<sort_order>1</sort_order>
+							<action>customizeshirt/adminhtml_monolabel</action>
+							</managemonolabel>
+							<manageembroidery module="customizeshirt">
+							<title>Manage Embroidery style</title>
+							<sort_order>2</sort_order>
+							<action>customizeshirt/adminhtml_embroidery</action>
+							</manageembroidery>
+						</children>
+					</personalize>
 				</children>
 			</customizeshirt>
 		</menu>
@@ -102,7 +118,21 @@
 							<manageshoulder module="customizeshirt">
 								<title>Manage Shoulder</title>
 								<sort_order>40</sort_order>
-							</manageshoulder>	
+							</manageshoulder>
+							<personalize module="customizeshirt">
+								<title>Personalize</title>
+								<sort_order>50</sort_order>
+								<children>
+									<managemonolabel module="customizeshirt">
+									<title>Manage Monogram / Label</title>
+									<sort_order>10</sort_order>
+									</managemonolabel>
+									<manageembroidery module="customizeshirt">
+									<title>Manage Embroidery style</title>
+									<sort_order>20</sort_order>
+									</manageembroidery>
+								</children>
+							</personalize>
 						</children>
 					</customizeshirt>
 					</children>
@@ -141,6 +171,12 @@
 					<shoulder>
                         <table>customizeshirt_shoulder</table>
                     </shoulder>
+					<monolabel>
+                        <table>customizeshirt_monolabel</table>
+                    </monolabel>
+					<embroidery>
+                        <table>customizeshirt_embroidery</table>
+                    </embroidery>
                 </entities>
             </customizeshirt_mysql4>
         </models>
