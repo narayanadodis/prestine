@@ -33,11 +33,6 @@ class Adodis_Customizeshirt_Block_Adminhtml_Embroidery_Grid extends Mage_Adminht
           'index'     => 'embroidery_title',
       ));
 	  
-	  $this->addColumn('personalize_type', array(
-          'header'    => Mage::helper('customizeshirt')->__('Personalize Type'),
-          'align'     =>'left',
-          'index'     => 'personalize_type',
-      ));
 	  
 	  $this->addColumn('embroidery_image', array(
             'header'    => Mage::helper('customizeshirt')->__('Image'),

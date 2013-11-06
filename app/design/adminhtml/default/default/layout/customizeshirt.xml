@@ -30,5 +30,10 @@
             <block type="customizeshirt/adminhtml_monolabel" name="monolabel" />
         </reference>
     </customizeshirt_adminhtml_monolabel_index>
+	<customizeshirt_adminhtml_embroidery_index>
+        <reference name="content">
+            <block type="customizeshirt/adminhtml_embroidery" name="embroidery" />
+        </reference>
+    </customizeshirt_adminhtml_embroidery_index>
 	
 </layout>

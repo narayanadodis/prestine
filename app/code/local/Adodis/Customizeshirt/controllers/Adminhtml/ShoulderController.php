@@ -228,7 +228,7 @@ class Adodis_Customizeshirt_Adminhtml_ShoulderController extends Mage_Adminhtml_
 			$baseScmsMediaPath = Mage::getBaseDir('media') . DS .  'customizeshirt/shoulder';
 
 			$uploader = new Varien_File_Uploader( $file_name );
-			$uploader->setAllowedExtensions(array('jpg','jpeg','png'));
+			$uploader->setAllowedExtensions(array('jpg','jpeg','png','gif'));
 			$uploader->setAllowRenameFiles(true);
 			$uploader->setFilesDispersion(true);
 			$result = $uploader->save( $baseScmsMediaPath );

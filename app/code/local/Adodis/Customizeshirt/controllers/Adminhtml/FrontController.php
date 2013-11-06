@@ -228,7 +228,7 @@ class Adodis_Customizeshirt_Adminhtml_FrontController extends Mage_Adminhtml_Con
 			$baseScmsMediaPath = Mage::getBaseDir('media') . DS .  'customizeshirt/front';
 
 			$uploader = new Varien_File_Uploader( $file_name );
-			$uploader->setAllowedExtensions(array('jpg','jpeg','png'));
+			$uploader->setAllowedExtensions(array('jpg','jpeg','png','gif'));
 			$uploader->setAllowRenameFiles(true);
 			$uploader->setFilesDispersion(true);
 			$result = $uploader->save( $baseScmsMediaPath );

@@ -228,7 +228,7 @@ class Adodis_Customizeshirt_Adminhtml_CuffController extends Mage_Adminhtml_Cont
 			$baseScmsMediaPath = Mage::getBaseDir('media') . DS .  'customizeshirt/cuff';
 
 			$uploader = new Varien_File_Uploader( $file_name );
-			$uploader->setAllowedExtensions(array('jpg','jpeg','png'));
+			$uploader->setAllowedExtensions(array('jpg','jpeg','png','gif'));
 			$uploader->setAllowRenameFiles(true);
 			$uploader->setFilesDispersion(true);
 			$result = $uploader->save( $baseScmsMediaPath );

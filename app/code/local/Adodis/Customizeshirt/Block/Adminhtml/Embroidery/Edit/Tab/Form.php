@@ -8,21 +8,7 @@ class Adodis_Customizeshirt_Block_Adminhtml_Embroidery_Edit_Tab_Form extends Mag
       $form = new Varien_Data_Form();
       $this->setForm($form);
       $fieldset = $form->addFieldset('customizeshirt_form', array('legend'=>Mage::helper('customizeshirt')->__('Item information')));
-     
-      $fieldset->addField('personalize_type', 'select', array(
-          'label'     => Mage::helper('customizeshirt')->__('Type'),
-          'name'      => 'personalize_type',
-          'values'    => array(
-			  array(
-                  'value'     => Mage::helper('customizeshirt')->__('monogram'),
-                  'label'     => Mage::helper('customizeshirt')->__('monogram'),
-              ),
-              array(
-                  'value'     => Mage::helper('customizeshirt')->__('label'),
-                  'label'     => Mage::helper('customizeshirt')->__('label'),
-              ),			  
-          ),
-      )); 
+      
 	  
 	  $fieldset->addField('embroidery_title', 'text', array(
           'label'     => Mage::helper('customizeshirt')->__('Embroidery Title'),
