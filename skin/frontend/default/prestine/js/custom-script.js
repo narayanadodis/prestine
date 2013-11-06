@@ -404,7 +404,7 @@ function fabricTypeClick(fid, type) {
                 $('#CollarFabric li').eq(0).addClass("active");
 
                 if (!window.undoflag) {
-                    alert($('#collarcolor').val());
+                    //alert($('#collarcolor').val());
                     // console.log(window.stack);
                     window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#collarcolor').val() + ");";
                     window.indexUndo++;
