@@ -104,14 +104,8 @@
 	<?php echo $this->getLayout()->createBlock('customizeshirt/customizeshirt')->setTemplate('customizeshirt/colorcontrast.phtml')->toHtml(); ?>
   </div>
   <h3>PERSONALIZE / MONOGRAM</h3>
-  <div>
-    <p>
-    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-    mauris vel est.
-    </p>
-    
+  <div class="shirt-personalize">
+   <?php echo $this->getLayout()->createBlock('customizeshirt/customizeshirt')->setTemplate('customizeshirt/personalize.phtml')->toHtml(); ?>
   </div>
   <h3>MEASUREMENTS</h3>
   <div>
@@ -207,10 +201,15 @@
 </div>-->
 </div>
 
+<a onclick="UndoFunction()" style="cursor:pointer">Undo</a>
+
 </div>
 </div>
 
   
+<div id="UndoButton" style="visibility: hidden; width: 0px; height: 0px">
+	<input id="un" type="button" onclick="UndoFabric('Collar',858);">
+</div>
 
 <input id="server" type="hidden" value="http://localhost/projects/prestine/" name="server">
 <input id="IsFabrics" type="hidden" value="False" name="IsFabrics" data-val-required="The Boolean field is required." data-val="true">

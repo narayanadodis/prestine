@@ -1,4 +1,6 @@
 var prestine_url = 'http://localhost/projects/prestine/customize/';
+window.indexUndo = 0;
+window.stack = new Array();
 
 function fabricClick(fid, price, name, tailorsprice, description) {
     var server = prestine_url;
@@ -57,11 +59,11 @@ function CuffClick(plac) {
     $('#CuffType li').removeClass();
     $('#CuffType li').eq(plac - 1).addClass("active");
     var server = prestine_url;
-    /*if (!window.undoflag) {
+    if (!window.undoflag) {
         window.stack[window.indexUndo] = 'CuffClick(' + $('#cuff').val() + ');';
         window.indexUndo++;
         window.undoflag = false;
-    }*/
+    }
     var fid = $('#cuffcolor').val();
     $('#cuff').val(plac);
     var basecolor = $('#basecolor').val();
@@ -133,11 +135,11 @@ function placketClick(plac) {
     var fid = $('#placketcolor').val();
     var server = prestine_url;
 
-   /* if (!window.undoflag) {
+    if (!window.undoflag) {
         window.stack[window.indexUndo] = 'placketClick(' + $('#placket').val() + ');';
         window.indexUndo++;
         window.undoflag = false;
-    }*/
+    }
     $('#placket').val(plac);
 
     switch (plac) {
@@ -185,11 +187,11 @@ function PocketClick(plac) {
     var fid = $('#pocketcolor').val();
     var server = prestine_url;
 
-    /*if (!window.undoflag) {
+    if (!window.undoflag) {
         window.stack[window.indexUndo] = 'PocketClick(' + $('#pocket').val() + ');';
         window.indexUndo++;
         window.undoflag = false;
-    }*/
+    }
     $('#pocket').val(plac);
 
     switch (plac) {
@@ -233,11 +235,11 @@ function CollarClick(plac) {
     var server = prestine_url;
     var plac = plac;
 
-    /*if (!window.undoflag) {
+    if (!window.undoflag) {
         window.stack[window.indexUndo] = 'CollarClick(' + $('#collar').val() + ');';
         window.indexUndo++;
         window.undoflag = false;
-    }*/
+    }
     $('#collar').val(plac);
 
     if (fid != basecolor || plac == 8) {
@@ -357,11 +359,11 @@ function ShoulderClick(plac) {
     var fid = $('#strapcolor').val();
     var server = prestine_url;
 
-   /* if (!window.undoflag) {
+   if (!window.undoflag) {
         window.stack[window.indexUndo] = 'ShoulderClick(' + $('#strap').val() + ');';
         window.indexUndo++;
         window.undoflag = false;
-    }*/
+    }
     $('#strap').val(plac);
 
     switch (plac) {
@@ -387,4 +389,310 @@ function ShoulderClick(plac) {
    /* $.get('/Shirts/GetShoulder/' + plac, function (data) {
         $('#ShoulderDisc').html(data);
     });*/
+}
+
+
+function fabricTypeClick(fid, type) {
+    var server = prestine_url;
+    var id = fid;
+
+    $('#TypeFabric').hide();
+    
+    switch (type) {
+        case "Collar":
+            {
+                $('#CollarFabric li').eq(0).addClass("active");
+
+                if (!window.undoflag) {
+                    alert($('#collarcolor').val());
+                    // console.log(window.stack);
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#collarcolor').val() + ");";
+                    window.indexUndo++;
+                    window.undoflag = false;
+                }
+
+                $('#customcollar').val(true);
+                $('#collarcolor').val(fid);
+
+                window.undoflag = true;
+                CollarClick(parseInt($('#collar').val()));
+                window.undoflag = false;
+
+                break;
+            }
+        case "CollarInner":
+            {
+                $('#CollarFabric li').eq(1).addClass("active");
+
+                if (!window.undoflag) {
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#collarliningcolor').val() + ");";
+                    window.indexUndo++;
+                    window.undoflag = false;
+                }
+                $('#collarlining').val(1);
+                $('#collarliningcolor').val(fid);
+                $('#scolimg').attr('src', prestine_url + fid + "_main_set3_0004.png");
+                break;
+            }
+        case "Cuff":
+            {
+                $('#CuffFabric li').eq(0).addClass("active");
+
+                if (!window.undoflag) {
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#cuffcolor').val() + ");";
+                    window.indexUndo++;
+                    window.undoflag = false;
+                }
+
+                $('#cutomcuff').val(true);
+                $('#cuffcolor').val(fid);
+
+                window.undoflag = true;
+                CuffClick(parseInt($('#cuff').val()));
+
+                window.undoflag = false;
+                break;
+            }
+        case "CuffInner":
+            {
+                $('#CuffFabric li').eq(1).addClass("active");
+
+                if (!window.undoflag) {
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#cuffinnercolor').val() + ");";
+                    window.indexUndo++;
+                    window.undoflag = false;
+                }
+
+                $('#cuffinner').val(1);
+                $('#cuffinnercolor').val(fid);
+                break;
+            }
+        case "Placket":
+            {
+                $('#PlacketFabric li').eq(0).addClass("active");
+
+               if (!window.undoflag) {
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#placketcolor').val() + ");";
+                    window.indexUndo++;
+                    window.undoflag = false;
+                }
+
+                $('#customplacket').val(true);
+                $('#placketcolor').val(fid);
+
+                window.undoflag = true;
+
+                placketClick(parseInt($('#placket').val()));
+                
+                 window.undoflag = false;
+                // $.get('/Shirts/GetPlacketcolor/' + id, function (data) {
+                //     $('#PlacketcolorDisc').html(data);
+                // });
+
+                break;
+            }
+        case "Pocket":
+            {
+                $('#PocketFabric li').eq(0).addClass("active");
+                if (!window.undoflag) {
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#pocketcolor').val() + ");";
+                    window.indexUndo++;
+                    window.undoflag = false;
+                }
+                $('#custompocket').val(true);
+                $('#pocketcolor').val(fid);
+                window.undoflag = true;
+                PocketClick(parseInt($('#pocket').val()));
+                window.undoflag = false;
+                $.get('/Shirts/GetPocketcolor/' + id, function (data) {
+                    $('#PocketcolorDisc').html(data);
+                });
+                break;
+            }
+        case "Shoulder":
+            {
+                $('#ShoulderFabric li').eq(0).addClass("active");
+                if (!window.undoflag) {
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#strapcolor').val() + ");";
+                    window.indexUndo++;
+                    window.undoflag = false;
+                }
+                $('#customstrap').val(true);
+                $('#strapcolor').val(fid);
+                window.undoflag = true;
+                ShoulderClick(parseInt($('#strap').val()));
+                window.undoflag = false;
+                $.get('/Shirts/GetStrapcolor/' + id, function (data) {
+                    $('#StrapcolorDisc').html(data);
+                });
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+
+    $('#CurrentType').val('');
+}
+
+function UndoFabric(type, id) {
+    $('#CurrentType').val(type);
+    fabricTypeClick(id, type);
+}
+
+function UndoFunction() {
+    if (window.indexUndo > 0) {
+        window.indexUndo--;
+        if (window.indexUndo >= 0) {
+            $('#UndoButton').html("<input type='button' id='un' onclick='" + window.stack[window.indexUndo] + "' />");
+
+            window.undoflag = true;
+            $('#un')[0].click();
+            initScript();
+            window.undoflag = false;
+        }
+    }
+}
+
+function initScript() {
+    var placket = $('#placket').val();
+    $('#PlacketType li').removeClass();
+    $('#PlacketType li').eq(placket - 1).addClass("active");
+
+    var pocket = $('#pocket').val();
+    $('#PocketType li').removeClass();
+    $('#PocketType li').eq(pocket - 1).addClass("active");
+
+    var strap = $('#strap').val();
+    $('#ShoulderType li').removeClass();
+    $('#ShoulderType li').eq(strap - 1).addClass("active");
+
+    var cuff = $('#cuff').val();
+    $('#CuffType li').removeClass();
+    $('#CuffType li').eq(cuff - 1).addClass("active");
+
+    var collar = $('#collar').val();
+    $('#CollarType li').removeClass();
+    $('#CollarType').find('li[collar=' + collar + ']').addClass("active");
+
+    var buttons = $('#buttons').val();
+    $('#ButtonColor li').removeClass();
+    $('#ButtonColor li').eq(buttons - 1).addClass("active");
+
+    var basecolor = $('#basecolor').val();
+    if (placket == 2) {
+        $('#PlacketFabric').hide();
+        $('#placketcolor').val($('#basecolor').val());
+        $('#customplacket').val(false);
+        $('#ttlPlacketFabricText').hide();
+    }
+    else {
+        $('#PlacketFabric').show();
+        $('#ttlPlacketFabricText').show();
+    }
+
+    if (basecolor != $('#collarcolor').val()) {
+
+        $('#CollarFabric li').eq(0).addClass("active");
+    }
+    else {
+        $('#CollarFabric li').eq(0).removeClass();
+    }
+
+    if (Number($('#collarlining').val() != 0)/*$('#collarcolor').val() != $('#collarliningcolor').val()*/) {
+        $('#CollarFabric li').eq(1).addClass("active");
+    }
+    else {
+        $('#CollarFabric li').eq(1).removeClass();
+    }
+
+    if (basecolor != $('#cuffcolor').val()) {
+
+        $('#CuffFabric li').eq(0).addClass("active")
+    }
+    else {
+        $('#CuffFabric li').eq(0).removeClass();
+    }
+
+    if ($('#cuffcolor').val() != $('#cuffinnercolor').val()) {
+
+        $('#CuffFabric li').eq(1).addClass("active");
+    }
+    else {
+        $('#CuffFabric li').eq(1).removeClass();
+    }
+
+    if (basecolor != $('#placketcolor').val()) {
+        $('#PlacketFabric li').eq(0).addClass("active")
+    }
+    else {
+        $('#PlacketFabric li').removeClass();
+    }
+
+    if (basecolor != $('#pocketcolor').val()) {
+        $('#PocketFabric li').eq(0).addClass("active")
+    }
+    else {
+        $('#PocketFabric li').removeClass();
+    }
+
+    if (basecolor != $('#strapcolor').val()) {
+        $('#ShoulderFabric li').eq(0).addClass("active")
+    }
+    else {
+        $('#ShoulderFabric li').removeClass();
+    }
+
+    var mono = false;
+    var monoString = "";
+    if ($('#cuffmono').val() == 2) {
+        $('#monogram li').eq(0).addClass("CircleActive");
+        mono = true;
+        monoString = " Cuff,";
+    }
+    if ($('#pocketmono').val() == 2) {
+        $('#monogram li').eq(1).addClass("CircleActive");
+        mono = true;
+        monoString = " Pocket,";
+    }
+    if ($('#collarmono').val() == 2) {
+        $('#monogram li').eq(2).addClass("CircleActive");
+        mono = true;
+        monoString += " Collar,";
+    }
+    if (mono) {
+
+        $('#monotextT').val($('#monotext').val());
+        $('#monocolorT option[value*="' + $('#monocolor').val() + '"]').attr('selected', 'selected')
+        var string = "Monogram '" + $('#monotext').val() + "' on " + monoString + " in " + $('#monocolor').val();
+        $('.monolab').html(string);
+        $('#MonoDisc').html(string);
+    }
+
+    var label = false;
+    var labelString = "";
+    if ($('#placketlabel').val() == 2) {
+        $('#label li').eq(0).addClass("CircleActive");
+        label = true;
+        labelString = " Placket,";
+    }
+
+    if ($('#collarlabel').val() == 2) {
+        $('#label li').eq(1).addClass("CircleActive");
+        label = true;
+        labelString += " Collar,";
+    }
+
+    if (label) {
+        var color = $('#labelcolor').val();
+        var text = $('#labeltext').val();
+        $('#labeltextT').val(text);
+        $('#labelcolorT option[value*="' + $('#labelcolor').val() + '"]').attr('selected', 'selected');
+
+        $('.lablab').html("Label '" + text + "' on " + labelString + " in " + color);
+        $('#LabelDisc').html("Label '" + text + "' on " + labelString + " in " + color);
+    }
+
+
 }

@@ -13,3 +13,10 @@
 .shirt-style .shirt-collar-style #collarslideimg {float: left;}
 .shirt-style .shirt-cuff-style #cuffslideimg {float: left;}
 .shirt-style .shirt-front-style #frontslideimg {float: left;}
+
+.shirt-personalize .tab_container ul { width: 300px; float:left;}
+.shirt-personalize .tab_container ul li {width:100px; float:left; min-height:98px; text-align:left;}
+.shirt-personalize .tab_container li a{cursor:pointer;}
+.shirt-personalize .personalize-right { float: right; text-align: left; width: 150px;}
+.shirt-personalize .personalize-left {float: left; width: 300px;}
+.shirt-personalize .personalize-right #monocolor {width: 130px;}

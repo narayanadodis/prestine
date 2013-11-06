@@ -1,0 +1,77 @@
+
+   <ul class="tabs">
+     <li class="plus1"><a href="#personalize_tab1">Monogram</a></li>
+	 <li class="plus1"><a href="#personalize_tab2">Label</a></li>
+   </ul>
+  <div class="tab_container">
+    <div id="personalize_tab1" class="tab_content shirt-personalize-mono">
+	
+	<div class="personalize-left">
+	<h4 class="ttl01" style="margin-left: 10px; margin-top: 10px;">1. Select Position</h4>
+    <ul id="monogram" class="label-list  items-list">
+    <?php $collection = Mage::getModel('customizeshirt/monolabel')->getCollection()
+			->addFieldToFilter('personalize_type', 'monogram')
+			->addFieldToFilter('status', 1)
+			->setOrder('monolabel_id', 'ASC');
+	foreach($collection as $monogram) { ?>
+		<li class="">
+		<a onclick="MonoClick(<?php echo $monogram->getSwitchno(); ?>)"><img alt="" src="<?php echo Mage::getBaseUrl('media').$monogram->getMonolabelImage(); ?>"></a>
+		</li>
+	<?php } ?>
+	</ul>
+	
+	<h4 class="ttl01" style="margin-left: 10px; margin-top: 10px;">2. Select Style</h4>
+	<ul id="partMonogramFont" class="button-list items-list">
+    <?php $collection = Mage::getModel('customizeshirt/embroidery')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('embroidery_id', 'ASC');
+	foreach($collection as $embroidery) { ?>
+		<li class="">
+		<a onclick="selectMonogramFont(<?php echo $embroidery->getSwitchno(); ?>)"><img alt="" src="<?php echo Mage::getBaseUrl('media').$embroidery->getEmbroideryImage(); ?>"><strong><?php echo $embroidery->getEmbroideryTitle(); ?></strong></a>
+		</li>
+	<?php } ?>
+	</ul>
+	</div>
+	<div class="personalize-right">
+	<h4 class="ttl01" style="margin-left: 10px; margin-top: 10px;">2. Choose Color & Character</h4>
+	<div class="sel01" style="margin-left: 10px;">
+	<select id="monocolor" class="valid" name="monocolor">
+	 <option value="color">color</option>
+	 <option value="White">White</option>
+	 <option value="Red">Red</option>
+	 <option value="Brown">Brown</option>
+	 <option value="Lavender">Lavender</option>
+	 <option value="Black">Black</option>
+	 <option value="Sky Blue">Sky Blue</option>
+	 <option value="Navy Blue">Navy Blue</option>
+	 <option value="Green">Green</option>
+	 <option value="Gray">Gray</option>
+	</select>
+	</div>
+	
+	<div class="inp01" style="margin-left: 10px;">
+	<label> MONOGRAM</label>
+	<input id="monotextT" class="valid" type="text" value="" placeholder="ABC" name="monotextT" maxlength="4">
+	</div>
+
+	</div>
+	
+	</div>
+	
+	
+	<div id="personalize_tab2" class="tab_content shirt-cuff-style">
+	
+    <ul class="items-list cuff-style">
+    <?php $collection = Mage::getModel('customizeshirt/cuff')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('cuff_id', 'ASC');
+	foreach($collection as $cuff) { ?>
+		<li onclick="GetCuff('<?php echo $cuff->getCuffTitle(); ?>','<?php echo Mage::getBaseUrl('media').$cuff->getCuffImage(); ?>');" class="">
+		<a onclick="CuffClick(<?php echo $cuff->getSwitchno(); ?>)"><img width="80" alt="" src="<?php echo Mage::getBaseUrl('media').$cuff->getCuffImage(); ?>"><strong><?php echo $cuff->getCuffTitle(); ?></strong></a>
+		</li>
+	<?php } ?>
+	</ul>
+	</div>
+	</div>
+	
+	<div style="clear:both;"></div>
