@@ -81,19 +81,24 @@ function fabricTypeClick(fid, type) {
         case "Placket":
             {
                 $('#PlacketFabric li').eq(0).addClass("active");
-                if (!window.undoflag) {
+
+               /* if (!window.undoflag) {
                     window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#placketcolor').val() + ");";
                     window.indexUndo++;
                     window.undoflag = false;
-                }
+                }*/
+
                 $('#customplacket').val(true);
                 $('#placketcolor').val(fid);
-                window.undoflag = true;
+
+                // window.undoflag = true;
+
                 placketClick(parseInt($('#placket').val()));
-                window.undoflag = false;
-                $.get('/Shirts/GetPlacketcolor/' + id, function (data) {
-                    $('#PlacketcolorDisc').html(data);
-                });
+                
+                // window.undoflag = false;
+                // $.get('/Shirts/GetPlacketcolor/' + id, function (data) {
+                //     $('#PlacketcolorDisc').html(data);
+                // });
 
                 break;
             }
