@@ -696,3 +696,164 @@ function initScript() {
 
 
 }
+
+function MonoClick(plac) {
+    if ($('#monogram li').eq(plac - 1).attr('class') == "" || $('#monogram li').eq(plac - 1).attr('class') == undefined) {
+        $('#monogram li').eq(plac - 1).addClass("CircleActive");
+    }
+    else {
+        $('#monogram li').eq(plac - 1).removeClass("CircleActive");
+    }
+}
+
+function selectMonogramFont(val) {
+    $('#partMonogramFont li').removeClass('active');
+    $('#partMonogramFont li').eq(val).addClass('active');
+
+    $('#partMonogramFont li a').removeClass('item_selected');
+
+    var el = $('#partMonogramFont li').eq(val);
+    $(el).find('a').addClass('item_selected');
+}
+
+function ApplyMono() {
+    var thereIs = false;
+    var string = "";
+    var Cuff = 1;
+    var Pocket = 1;
+    var Collar = 1;
+    var Font = 0;
+
+    if (!window.undoflag) {
+
+        window.stack[window.indexUndo] = 'monolabel(&#39;' + $('#monotext').val() + '&#39;,&#39;'
+                                                      + $('#monocolor').val() + '&#39;,&#39;'
+                                                      + $('#cuffmono').val() + '&#39;,&#39;'
+                                                      + $('#pocketmono').val() + '&#39;,&#39;' + $('#collarmono').val() + '&#39;,&#39;'
+                                                      + $('#monogramfont').val() + '&#39;,' + true + ');';
+        window.indexUndo++;
+        window.undoflag = false;
+    }
+
+    if (($('#monotextT').val() != '') && ($('#monocolorT').val() != 'color')) {
+
+        if ($('#monogram li').eq(0).attr('class') != "" && $('#monogram li').eq(0).attr('class') != undefined) {
+            string = " Cuff,";
+            Cuff = 2;
+            thereIs = true;
+        }
+        if ($('#monogram li').eq(1).attr('class') != "" && $('#monogram li').eq(1).attr('class') != undefined) {
+            string = string + " Pocket,";
+            Pocket = 2;
+            thereIs = true;
+        }
+        if ($('#monogram li').eq(2).attr('class') != "" && $('#monogram li').eq(2).attr('class') != undefined) {
+            string = string + " Collar,";
+            Collar = 2;
+            thereIs = true;
+        }
+    }
+    if (thereIs) {
+        var text = $('#monotextT').val();
+        var color = $('#monocolorT').val();
+        $('.monolab')[0].innerHTML = "Monogram '" + text + "' on" + string + " in " + color;
+        $('.monolab')[1].innerHTML = "Monogram '" + text + "' on" + string + " in " + color;
+        $('#MonoDisc').html("Monogram '" + text + "' on" + string + " in " + color);
+
+        $('#cuffmono').val(Cuff);
+        $('#pocketmono').val(Pocket);
+        $('#collarmono').val(Collar);
+
+        $('#monotext').val($('#monotextT').val());
+        $('#monocolor').val($('#monocolorT').val());
+
+        Font = $('#partMonogramFont li.active').index();
+
+        $('#monogramfont').val(Font);
+    }
+    else {
+        $('#monotext').val('');
+        $('#monocolor').val('color');
+        $('#pocketmono').val(Pocket);
+        $('#collarmono').val(Collar);
+        $('#cuffmono').val(Cuff);
+        $('.monolab')[0].innerHTML = "No Monograms selected.";
+        $('.monolab')[1].innerHTML = "No Monograms selected.";
+        $('#MonoDisc').html("");
+
+        $('#monogramfont').val(Font);
+    }
+}
+
+function LabelClick(plac) {
+    if ($('#label li').eq(plac - 1).attr('class') == "" || $('#label li').eq(plac - 1).attr('class') == undefined) {
+        $('#label li').eq(plac - 1).addClass("CircleActive");
+    }
+    else {
+        $('#label li').eq(plac - 1).removeClass("CircleActive");
+    }
+}
+
+function selectLabelFont(val) {
+    $('#partLabelFont li').removeClass('active');
+    $('#partLabelFont li').eq(val).addClass('active');
+
+    $('#partLabelFont li a').removeClass('item_selected');
+
+    var el = $('#partLabelFont li').eq(val);
+    $(el).find('a').addClass('item_selected');
+}
+
+function ApplyLabel() {
+    var thereIs = false;
+    var string = "";
+    var Font = 0;
+
+    if (!window.undoflag) {
+
+        window.stack[window.indexUndo] = 'monolabel(&#39;' + $('#labeltext').val() + '&#39;,&#39;'
+                                                      + $('#labelcolor').val() + '&#39;,&#39;'
+                                                      + $('#placketlabel').val() + '&#39;,&#39;'
+                                                      + $('#collarlabel').val() + '&#39;,'
+                                                      + false + ',&#39;' + $('#labelfont').val() + '&#39;,' + false + ');';
+        window.indexUndo++;
+        window.undoflag = false;
+    }
+
+    if (($('#labeltextT').val() != '') && ($('#labelcolorT').val() != 'color')) {
+        if ($('#label li:first').attr('class') != "" && $('#label li:first').attr('class') != undefined) {
+            string = " Placket,";
+            $('#placketlabel').val(2);
+            thereIs = true;
+        }
+        if ($('#label li:last').attr('class') != "" && $('#label li:last').attr('class') != undefined) {
+            string = string + " Collar,";
+            $('#collarlabel').val(2);
+            thereIs = true;
+        }
+    }
+    if (thereIs) {
+        var text = $('#labeltextT').val();
+        var color = $('#labelcolorT').val();
+
+        $('#labeltext').val(text);
+        $('#labelcolor').val(color);
+        $('.lablab')[0].innerHTML = "Label '" + text + "' on " + string + " in " + color;
+        $('.lablab')[1].innerHTML = "Label '" + text + "' on " + string + " in " + color;
+        $('#LabelDisc').html("Label '" + text + "' on " + string + " in " + color);
+
+        Font = $('#partLabelFont li.active').index();
+        $('#labelfont').val(Font);
+    }
+    else {
+        $('#labeltext').val('');
+        $('#labelcolor').val('color');
+        $('#placketlabel').val(1);
+        $('#collarlabel').val(1);
+        $('.lablab')[0].innerHTML = "No Labels selected.";
+        $('.lablab')[1].innerHTML = "No Labels selected.";
+        $('#LabelDisc').html("");
+        $('#labelfont').val(Font);
+    }
+}
+

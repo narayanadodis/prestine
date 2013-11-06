@@ -13,10 +13,19 @@
 .shirt-style .shirt-collar-style #collarslideimg {float: left;}
 .shirt-style .shirt-cuff-style #cuffslideimg {float: left;}
 .shirt-style .shirt-front-style #frontslideimg {float: left;}
+.shirt-style .shirt-shoulder-style #shoulderslideimg {float: left;}
 
 .shirt-personalize .tab_container ul { width: 300px; float:left;}
-.shirt-personalize .tab_container ul li {width:100px; float:left; min-height:98px; text-align:left;}
+.shirt-personalize .tab_container ul li {width:100px; float:left; text-align:left;}
 .shirt-personalize .tab_container li a{cursor:pointer;}
 .shirt-personalize .personalize-right { float: right; text-align: left; width: 150px;}
 .shirt-personalize .personalize-left {float: left; width: 300px;}
-.shirt-personalize .personalize-right #monocolor {width: 130px;}
+.shirt-personalize .personalize-right #monocolorT {width: 130px;}
+.shirt-personalize .personalize-right #labelcolorT {width: 130px;}
+.shirt-personalize .personalize-left .CircleActive a img {border: 2px solid #000 !important;}
+.shirt-personalize .personalize-left .active .item_selected img {border: 2px solid #000 !important;}
+
+
+#shirt div img {width:280px;}
+.personalize-right .apply-box .btn01 {cursor: pointer; background: #7D0609; color: #fff; text-decoration: none; border-radius: 4px; font-size: 15px; font-weight: bold; padding: 5px 10px;}
+
