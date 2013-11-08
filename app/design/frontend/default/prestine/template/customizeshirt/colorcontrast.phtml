@@ -19,7 +19,7 @@
 						 ->addAttributeToFilter('visibility', 4)
 						 ->setOrder('price', 'ASC');
 						foreach($products as $product) { ?>
-							<li onclick="GetFabric('<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail'); ?>','<?php echo $product->getShortDescription(); ?>','<?php echo $product->getName(); ?>');">
+							<li>
 							<!--<span class="PriceShirt"><?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?></span>-->
 							<img width="50" height="50" onclick="fabricTypeClick(<?php echo $product->getId()?>, 'Collar')" style="cursor:pointer" alt="" src="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(20); ?>"/>
 							</li>
@@ -39,7 +39,7 @@
 						 ->addAttributeToFilter('visibility', 4)
 						 ->setOrder('price', 'ASC');
 						foreach($products as $product) { ?>
-							<li onclick="GetFabric('<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail'); ?>','<?php echo $product->getShortDescription(); ?>','<?php echo $product->getName(); ?>');">
+							<li>
 							<!--<span class="PriceShirt"><?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?></span>-->
 							<img width="50" height="50" onclick="fabricTypeClick(<?php echo $product->getId()?>, 'CollarInner')" style="cursor:pointer" alt="" src="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(20); ?>"/>
 							</li>
@@ -61,7 +61,7 @@
 						 ->addAttributeToFilter('visibility', 4)
 						 ->setOrder('price', 'ASC');
 						foreach($products as $product) { ?>
-							<li onclick="GetFabric('<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail'); ?>','<?php echo $product->getShortDescription(); ?>','<?php echo $product->getName(); ?>');">
+							<li>
 							<!--<span class="PriceShirt"><?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?></span>-->
 							<img width="50" height="50" onclick="fabricTypeClick(<?php echo $product->getId()?>, 'Cuff')" style="cursor:pointer" alt="" src="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(20); ?>"/>
 							</li>
@@ -81,7 +81,7 @@
 						 ->addAttributeToFilter('visibility', 4)
 						 ->setOrder('price', 'ASC');
 						foreach($products as $product) { ?>
-							<li onclick="GetFabric('<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail'); ?>','<?php echo $product->getShortDescription(); ?>','<?php echo $product->getName(); ?>');">
+							<li>
 							<!--<span class="PriceShirt"><?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?></span>-->
 							<img width="50" height="50" onclick="fabricTypeClick(<?php echo $product->getId()?>, 'CuffInner')" style="cursor:pointer" alt="" src="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(20); ?>"/>
 							</li>
@@ -102,7 +102,7 @@
 						 ->addAttributeToFilter('visibility', 4)
 						 ->setOrder('price', 'ASC');
 						foreach($products as $product) { ?>
-							<li onclick="GetFabric('<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail'); ?>','<?php echo $product->getShortDescription(); ?>','<?php echo $product->getName(); ?>');">
+							<li>
 							<!--<span class="PriceShirt"><?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?></span>-->
 							<img width="50" height="50" onclick="fabricTypeClick(<?php echo $product->getId()?>, 'Placket')" style="cursor:pointer" alt="" src="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(20); ?>"/>
 							</li>
