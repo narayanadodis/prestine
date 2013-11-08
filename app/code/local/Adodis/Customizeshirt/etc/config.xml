@@ -65,9 +65,14 @@
 						<sort_order>4</sort_order>
 						<action>customizeshirt/adminhtml_shoulder</action>
 					</manageshoulder>
+					<managesleeve module="customizeshirt">
+						<title>Manage Sleeve</title>
+						<sort_order>5</sort_order>
+						<action>customizeshirt/adminhtml_sleeve</action>
+					</managesleeve>
 					<personalize module="customizeshirt">
 						<title>Personalize</title>
-						<sort_order>5</sort_order>
+						<sort_order>6</sort_order>
 						<children>
 							<managemonolabel module="customizeshirt">
 							<title>Manage Monogram / Label</title>
@@ -171,6 +176,9 @@
 					<shoulder>
                         <table>customizeshirt_shoulder</table>
                     </shoulder>
+                    <sleeve>
+                    	<table>customizeshirt_sleeve</table>
+                    </sleeve>
 					<monolabel>
                         <table>customizeshirt_monolabel</table>
                     </monolabel>
