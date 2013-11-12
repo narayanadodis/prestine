@@ -11,6 +11,7 @@
 .shirt-style .tab_container ul { width: 270px; float:left;}
 .shirt-style .tab_container ul li {width:85px; float:left; min-height:98px;}
 .shirt-style .tab_container li a{cursor:pointer;}
+.shirt-style .shirt-sleeve-style #sleeveslideimg {float: left;}
 .shirt-style .shirt-collar-style #collarslideimg {float: left;}
 .shirt-style .shirt-cuff-style #cuffslideimg {float: left;}
 .shirt-style .shirt-front-style #frontslideimg {float: left;}
