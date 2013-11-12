@@ -55,6 +55,26 @@ function fabricClick(fid, price, name, tailorsprice, description) {
     ShoulderClick(parseInt($('#strap').val()));
 }
 
+function SleeveClick(plac) 
+{
+    var plac = parseInt(plac);
+
+    switch (plac) {
+        case 1 :
+        {
+            $("#sleeve").val(" ");
+            CuffClick($('#cuff').val());
+            break;
+        }
+
+        case 2 :
+        {
+            $("#sleeve").val("rolled");
+            CuffClick($('#cuff').val());
+            break;
+        }
+    }
+}
 
 function CuffClick(plac) {
     $('#CuffType li').removeClass();
@@ -72,15 +92,27 @@ function CuffClick(plac) {
     switch (plac) {
         case 2:
             {
-                $('#sslimg').attr('src', server + basecolor + '_main_set2_0000.png');
-                $('#scuimg').attr('src', server + fid + '_main_set1_0006.png');
+                if($("#sleeve").val() != "rolled") {
+                    $('#sslimg').attr('src', server + basecolor + '_main_set2_0000.png');
+                    $('#scuimg').attr('src', server + fid + '_main_set1_0006.png');
+                } else {
+                    $('#sslimg').attr('src', server + basecolor + '_main_set2_rolled.png');
+                    $('#scuimg').attr('src', server + fid + '_main_set1_0006_1.png');   
+                }
+
                 $('#sba5img').attr('src', server + 'StandardSleeve_WhiteLineIssueSolver.png');
                 break;
             }
         case 3:
             {
-                $('#sslimg').attr('src', server + basecolor + '_main_set2_0001.png');
-                $('#scuimg').attr('src', server + fid + '_main_set1_0005.png');
+                if($("#sleeve").val() != "rolled") {
+                    $('#sslimg').attr('src', server + basecolor + '_main_set2_0001.png');
+                    $('#scuimg').attr('src', server + fid + '_main_set1_0005.png');
+                } else {
+                    $('#sslimg').attr('src', server + basecolor + '_main_set2_rolled.png');
+                    $('#scuimg').attr('src', server + fid + '_main_set1_0005_1.png');
+                }
+
                 $('#sba5img').attr('src', server + 'FrenchSleeve_WhiteLineIssueSolver.png');
 
                 break;
@@ -107,8 +139,14 @@ function CuffClick(plac) {
             }
         default:
             {
-                $('#sslimg').attr('src', server + basecolor + '_main_set2_0000.png');
-                $('#scuimg').attr('src', server + fid + '_main_set1_0006.png');
+                if($("#sleeve").val() != "rolled") {
+                    $('#sslimg').attr('src', server + basecolor + '_main_set2_0000.png');
+                    $('#scuimg').attr('src', server + fid + '_main_set1_0006.png');
+                } else {
+                    $('#sslimg').attr('src', server + basecolor + '_main_set2_rolled.png');
+                    $('#scuimg').attr('src', server + fid + '_main_set1_0006_1.png');
+                }
+
                 $('#sba5img').attr('src', server + 'StandardSleeve_WhiteLineIssueSolver.png');
                 break;
             }
@@ -251,7 +289,8 @@ function PocketClick(plac) {
 	});
 }
 
-function CollarClick(plac) {
+function CollarClick(plac) 
+{
 
     $('#CollarType li').removeClass();
     $('#CollarType').find('li[collar=' + plac + ']').addClass("active");
