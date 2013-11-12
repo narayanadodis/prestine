@@ -2,7 +2,8 @@
 
 <script src="<?php echo $this->getSkinurl('js/jquery-ui.js'); ?>"></script>
 <script src="<?php echo $this->getSkinurl('js/custom-script.js'); ?>"></script>
-
+<script src="<?php echo $this->getSkinurl('js/html2canvas.js'); ?>"></script>
+<!--<script src="<?php echo $this->getSkinurl('js/jquery.plugin.html2canvas.js'); ?>"></script>-->
 
 <form class="inner" method="post" action="">
 <fieldset id="partShirt">
@@ -10,7 +11,7 @@
 <div class="customize-container">
 <div class="left-cont">
 <div id="accordion">
-  <h3>SELECT FABRIC</h3>
+  <h3 class="fabric_tab">SELECT FABRIC</h3>
   <div class="fabrics">
   <ul class="items-list">
     <?php
@@ -31,7 +32,7 @@
 		<div id="fabricslideimg"></div>
 		<div style="clear:both;"></div>
   </div>
-  <h3>SELECT STYLE</h3>
+  <h3  class="style_tab">SELECT STYLE</h3>
   <div class="shirt-style">
    <ul class="tabs">
      <li class="plus1"><a href="#tab1">Collar</a></li>
@@ -99,15 +100,15 @@
 	
 	<div style="clear:both;"></div>
   </div>
-  <h3>SELECT COLOR CONTRAST</h3>
+  <h3 class="contrast_tab">SELECT COLOR CONTRAST</h3>
   <div class="shirt-color-contrast">
 	<?php echo $this->getLayout()->createBlock('customizeshirt/customizeshirt')->setTemplate('customizeshirt/colorcontrast.phtml')->toHtml(); ?>
   </div>
-  <h3>PERSONALIZE / MONOGRAM</h3>
+  <h3 class="monogram_tab">PERSONALIZE / MONOGRAM</h3>
   <div class="shirt-personalize">
    <?php echo $this->getLayout()->createBlock('customizeshirt/customizeshirt')->setTemplate('customizeshirt/personalize.phtml')->toHtml(); ?>
   </div>
-  <h3>MEASUREMENTS</h3>
+  <h3 class="measure_tab">MEASUREMENTS</h3>
   <div class="shirt-measurements">
     <?php echo $this->getLayout()->createBlock('customizeshirt/customizeshirt')->setTemplate('customizeshirt/measurements.phtml')->toHtml(); ?>
   </div>
@@ -126,77 +127,101 @@
 <div class="right-cont">
 <div id="shirt">
 <div id="sba5" style="position: absolute; top: 0px; right: 0px;">
-<img id="sba5img" src="http://c4233705.r5.cf2.rackcdn.com/StandardSleeve_WhiteLineIssueSolver.png" alt="">
+<img id="sba5img" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/StandardSleeve_WhiteLineIssueSolver.png" alt="">
 </div>
 <div id="sba" style="position: absolute; top: 0px; right: 0px;">
-<img id="sbaimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/883_main_set2_0003.png">
+<img id="sbaimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/3_main_set2_0003.png">
 </div>
 <div id="ssl" style="position: absolute; top: 0px; right: 0px;">
-<img id="sslimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/883_main_set2_0000.png">
+<img id="sslimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/3_main_set2_0000.png">
 </div>
 <div id="scu" style="position: absolute; top: 0px; right: 0px;">
-<img id="scuimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/883_main_set1_0006.png">
+<img id="scuimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/3_main_set1_0006.png">
 </div>
 <div id="sba1" style="position: absolute; top: 0px; right: 0px;">
-<img id="sba1img" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+<img id="sba1img" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/blank.png">
 </div>
 <div id="spl" style="position: absolute; top: 0px; right: 0px;">
-<img id="splimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/883_main_set3_0012.png">
+<img id="splimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/3_main_set3_0012.png">
 </div>
 <div id="sco_neru" style="position: absolute; top: 0px; right: 0px;">
-<img id="scoimg_neru" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+<img id="scoimg_neru" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/blank.png">
 </div>
 <div id="sco" style="position: absolute; top: 0px; right: 0px;">
-<img id="scoimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/883_main_set3_0002.png">
+<img id="scoimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/3_main_set3_0002.png">
 </div>
 <div id="scob" style="position: absolute; top: 0px; right: 0px;">
-<img id="scobimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/1_main_button_0002.png">
+<img id="scobimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/1_main_button_0002.png">
 </div>
 <div id="scobd" style="position: absolute; top: 0px; right: 0px;">
-<img id="scobdimg" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+<img id="scobdimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/blank.png">
 </div>
 <div id="spo" style="position: absolute; top: 0px; right: 0px;">
-<img id="spoimg" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+<img id="spoimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/blank.png">
 </div>
 <div id="ssh" style="position: absolute; top: 0px; right: 0px;">
-<img id="sshimg" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+<img id="sshimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/blank.png">
 </div>
 <div id="sshb" style="position: absolute; top: 0px; right: 0px;">
-<img id="sshbimg" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+<img id="sshbimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/blank.png">
 </div>
 <div id="scol" style="position: absolute; top: 0px; right: 0px;">
-<img id="scolimg" alt="" src="http://c4233705.r5.cf2.rackcdn.com/883_main_set3_0004.png">
+<img id="scolimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/3_main_set3_0004.png">
 </div>
 <div id="scsic" style="position: absolute; top: 0px; right: 0px;">
-<img id="scsicimg" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+<img id="scsicimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/blank.png">
 </div>
 <div id="scui" style="position: absolute; top: 0px; right: 0px;">
-<img id="scuiimg" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+<img id="scuiimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/blank.png">
 </div>
 <div id="sba3" style="position: absolute; top: 0px; right: 0px;">
-<img id="sba3img" alt="" src="http://c4233705.r5.cf2.rackcdn.com/1_main_button_0004.png">
+<img id="sba3img" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/1_main_button_0004.png">
 </div>
 <div id="sba4" style="position: absolute; top: 0px; right: 0px;">
-<img id="sba4img" alt="" src="http://c12743256.r56.cf2.rackcdn.com/Images/blank.png">
+<img id="sba4img" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/blank.png">
 </div>
 <!--<div id="zoomcuff" onmouseout="zoomHide()" onmouseover="zoomShow(2)">
-<img id="zoomcuffimg" width="32" height="32" src="http://c12743256.r56.cf2.rackcdn.com/Images/zoom_in.png" alt="">
+<img id="zoomcuffimg" width="32" height="32" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/zoom_in.png" alt="">
 </div>
 <div id="zoomcollar" onmouseout="zoomHide()" onmouseover="zoomShow(1)">
-<img id="zoomcollarimg" width="32" height="32" src="http://c12743256.r56.cf2.rackcdn.com/Images/zoom_in.png" alt="">
+<img id="zoomcollarimg" width="32" height="32" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/zoom_in.png" alt="">
 </div>
 <div id="zoomshoulder" onmouseout="zoomHide()" onmouseover="zoomShow(3)">
-<img id="zoomshoulderimg" width="32" height="32" src="http://c12743256.r56.cf2.rackcdn.com/Images/zoom_in.png" alt="">
+<img id="zoomshoulderimg" width="32" height="32" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/zoom_in.png" alt="">
 </div>
 <div id="zoompocket" onmouseout="zoomHide()" onmouseover="zoomShow(4)">
-<img id="zoompocketimg" width="32" height="32" src="http://c12743256.r56.cf2.rackcdn.com/Images/zoom_in.png" alt="">
+<img id="zoompocketimg" width="32" height="32" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/zoom_in.png" alt="">
 </div>
 <div id="zoomcuffinner" onmouseout="zoomHide()" onmouseover="zoomShow(5)">
-<img id="zoomcuffinnerimg" width="32" height="32" src="http://c12743256.r56.cf2.rackcdn.com/Images/zoom_in.png" alt="">
+<img id="zoomcuffinnerimg" width="32" height="32" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/zoom_in.png" alt="">
 </div>-->
 </div>
 
 <a onclick="UndoFunction()" style="cursor:pointer">Undo</a>
+
+<div class="col">
+<h4>Shirt Summary</h4>
+<ul>
+<li>
+<span id="TitleFabric"></span>
+</li>
+<li id="CollarDisc"></li>
+<li id="CuffDisc"></li>
+<li id="PlacketDisc"></li>
+<li id="PocketDisc"></li>
+<li id="ShoulderDisc"></li>
+<li id="ButtonsDisc"></li>
+<li id="CollarcolorDisc"></li>
+<li id="CollarliningcolorDisc"></li>
+<li id="CuffinnercolorDisc"></li>
+<li id="CuffcolorDisc"></li>
+<li id="PlacketcolorDisc"></li>
+<li id="PocketcolorDisc"></li>
+<li id="StrapcolorDisc"></li>
+<li id="MonoDisc"></li>
+<li id="LabelDisc"></li>
+</ul>
+</div>
 
 </div>
 </div>
@@ -311,7 +336,65 @@
 		//jQuery('.shirt-style .tab_content ul.items-list li').removeClass('active');
         //jQuery(this).addClass('active');
     }
+	</script>
+	<script type="text/javascript">
+	jQuery(document).ready(function() {
+	//On hover Event
+	jQuery("h3.style_tab").hover(function() {
+	if(jQuery(".style_tab").hasClass("ui-corner-all")) {
+	//When accordion clicks...
+	jQuery(".shirt-style .tab_content").hide(); //Hide all content
+	jQuery(".shirt-style ul.tabs li").removeClass("active");
+	jQuery(".shirt-style ul.tabs li:first").addClass("active").show(); //Activate first tab
+	jQuery(".shirt-style .tab_content:first").show(); //Show first tab content
+	}
+	});
 	
+	jQuery("h3.contrast_tab").hover(function() {
+	if(jQuery(".contrast_tab").hasClass("ui-corner-all")) {
+	//When accordion clicks...
+	jQuery(".shirt-color-contrast .tab_content").hide(); //Hide all content
+	jQuery(".shirt-color-contrast ul.tabs li").removeClass("active");
+	jQuery(".shirt-color-contrast ul.tabs li:first").addClass("active").show(); //Activate first tab
+	jQuery(".shirt-color-contrast .tab_content:first").show(); //Show first tab content
+	}
+	});
 	
+	jQuery("h3.monogram_tab").hover(function() {
+	if(jQuery(".monogram_tab").hasClass("ui-corner-all")) {
+	//When accordion clicks...
+	jQuery(".shirt-personalize .tab_content").hide(); //Hide all content
+	jQuery(".shirt-personalize ul.tabs li").removeClass("active");
+	jQuery(".shirt-personalize ul.tabs li:first").addClass("active").show(); //Activate first tab
+	jQuery(".shirt-personalize .tab_content:first").show(); //Show first tab content
+	}
+	});
+	
+	jQuery("h3.measure_tab").hover(function() {
+	if(jQuery(".measure_tab").hasClass("ui-corner-all")) {
+	//When accordion clicks...
+	jQuery(".shirt-measurements .tab_content").hide(); //Hide all content
+	jQuery(".shirt-measurements ul.tabs li").removeClass("active");
+	jQuery(".shirt-measurements ul.tabs li:first").addClass("active").show(); //Activate first tab
+	jQuery(".shirt-measurements .tab_content:first").show(); //Show first tab content
+	}
+	});
+	});
 	</script>
 	
+	
+	<input type="submit" value="Take Screenshot Of Div Below" onclick="capture();" />
+<form method="POST" enctype="multipart/form-data" action="http://localhost/projects/prestine/save.php/" id="myForm">
+    <input type="hidden" name="img_val" id="img_val" value="" />
+</form>
+	<script type="text/javascript">
+	   function capture() {
+			html2canvas(jQuery("#shirt"), {
+				onrendered: function (canvas) {
+					jQuery('#img_val').val(canvas.toDataURL("image/png"));
+					document.getElementById("myForm").submit();
+				}
+			});
+		}
+	</script>
+
