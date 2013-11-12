@@ -194,15 +194,15 @@
 
 	position: absolute;
 
-	top:7px;
+	top:2px;
 
-	right: 4px;
+	right: -2px;
 
 	width: 15px;
 
 	height: 15px;
 
-	background: transparent url('../images/fancybox/fancy_close.gif') no-repeat center center;
+	background: transparent url('../images/fancybox/fancy_close.png') no-repeat -8px -5px;
 
 	cursor: pointer;
 
