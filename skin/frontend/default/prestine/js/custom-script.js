@@ -1,3 +1,4 @@
+var base_url = 'http://localhost/projects/prestine/';
 var prestine_url = 'http://localhost/projects/prestine/customize/';
 window.indexUndo = 0;
 window.stack = new Array();
@@ -124,9 +125,18 @@ function CuffClick(plac) {
         }
     }
 
-    $.get('/Shirts/GetCuff/' + plac, function (data) {
+    $.get(base_url + 'customizeshirt/index/cuff?switchno=' + plac, function (data) {
         $('#CuffDisc').html(data);
     });*/
+	jQuery.ajax({   
+		url : base_url + 'customizeshirt/index/cuff',
+		type : 'get',
+		data : 'switchno=' + plac,
+		success : function(data) {
+		jQuery('#CuffDisc').html(data);
+		}
+	});
+				
 }
 
 function placketClick(plac) {
@@ -179,6 +189,14 @@ function placketClick(plac) {
     /*$.get('/Shirts/GetPlacket/' + plac, function (data) {
         $('#PlacketDisc').html(data);
     });*/
+	jQuery.ajax({   
+		url : base_url + 'customizeshirt/index/front',
+		type : 'get',
+		data : 'switchno=' + plac,
+		success : function(data) {
+		jQuery('#PlacketDisc').html(data);
+		}
+	});
 }
 
 function PocketClick(plac) {
@@ -223,6 +241,14 @@ function PocketClick(plac) {
     /*$.get('/Shirts/GetPocket/' + plac, function (data) {
         $('#PocketDisc').html(data);
     });*/
+	jQuery.ajax({   
+		url : base_url + 'customizeshirt/index/pocket',
+		type : 'get',
+		data : 'switchno=' + plac,
+		success : function(data) {
+		jQuery('#PocketDisc').html(data);
+		}
+	});
 }
 
 function CollarClick(plac) {
@@ -350,6 +376,14 @@ function CollarClick(plac) {
     $.get('/Shirts/GetCollar/' + plac, function (data) {
         $('#CollarDisc').html(data);
     });*/
+	jQuery.ajax({   
+		url : base_url + 'customizeshirt/index/collar',
+		type : 'get',
+		data : 'switchno=' + plac,
+		success : function(data) {
+		jQuery('#CollarDisc').html(data);
+		}
+	});
 }
 
 
@@ -389,6 +423,14 @@ function ShoulderClick(plac) {
    /* $.get('/Shirts/GetShoulder/' + plac, function (data) {
         $('#ShoulderDisc').html(data);
     });*/
+	jQuery.ajax({   
+		url : base_url + 'customizeshirt/index/shoulder',
+		type : 'get',
+		data : 'switchno=' + plac,
+		success : function(data) {
+		jQuery('#ShoulderDisc').html(data);
+		}
+	});
 }
 
 
@@ -402,28 +444,35 @@ function fabricTypeClick(fid, type) {
         case "Collar":
             {
                 $('#CollarFabric li').eq(0).addClass("active");
-
                 if (!window.undoflag) {
-                    //alert($('#collarcolor').val());
-                    // console.log(window.stack);
                     window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#collarcolor').val() + ");";
                     window.indexUndo++;
                     window.undoflag = false;
                 }
-
                 $('#customcollar').val(true);
                 $('#collarcolor').val(fid);
 
                 window.undoflag = true;
                 CollarClick(parseInt($('#collar').val()));
                 window.undoflag = false;
-
+				//$('#scolimg').attr('src', prestine_url + fid + "_main_set3_0004.png");
+                /*$.get('/Shirts/GetCollarcolor/' + fid, function (data) {
+                    $('#CollarcolorDisc').html(data);
+                });*/
+				jQuery.ajax({   
+					url : base_url + 'customizeshirt/index/collarcolor',
+					type : 'get',
+					data : 'fid=' + fid,
+					success : function(data) {
+					jQuery('#CollarcolorDisc').html(data);
+					}
+				});
+				
                 break;
             }
         case "CollarInner":
             {
                 $('#CollarFabric li').eq(1).addClass("active");
-
                 if (!window.undoflag) {
                     window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#collarliningcolor').val() + ");";
                     window.indexUndo++;
@@ -432,62 +481,95 @@ function fabricTypeClick(fid, type) {
                 $('#collarlining').val(1);
                 $('#collarliningcolor').val(fid);
                 $('#scolimg').attr('src', prestine_url + fid + "_main_set3_0004.png");
+				
+                /*$.get('/Shirts/GetCollarliningcolor/' + id, function (data) {
+                    $('#CollarliningcolorDisc').html(data);
+                });*/
+				jQuery.ajax({   
+					url : base_url + 'customizeshirt/index/collarliningcolor',
+					type : 'get',
+					data : 'fid=' + fid,
+					success : function(data) {
+					jQuery('#CollarliningcolorDisc').html(data);
+					}
+				});
                 break;
             }
         case "Cuff":
             {
                 $('#CuffFabric li').eq(0).addClass("active");
-
                 if (!window.undoflag) {
                     window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#cuffcolor').val() + ");";
                     window.indexUndo++;
                     window.undoflag = false;
                 }
-
                 $('#cutomcuff').val(true);
                 $('#cuffcolor').val(fid);
-
                 window.undoflag = true;
                 CuffClick(parseInt($('#cuff').val()));
-
                 window.undoflag = false;
+				/*$.get('/Shirts/GetCuffcolor/' + id, function (data) {
+                    $('#CuffcolorDisc').html(data);
+                });*/
+				jQuery.ajax({   
+					url : base_url + 'customizeshirt/index/cuffcolor',
+					type : 'get',
+					data : 'fid=' + fid,
+					success : function(data) {
+					jQuery('#CuffcolorDisc').html(data);
+					}
+				});
                 break;
             }
         case "CuffInner":
             {
                 $('#CuffFabric li').eq(1).addClass("active");
-
                 if (!window.undoflag) {
                     window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#cuffinnercolor').val() + ");";
                     window.indexUndo++;
                     window.undoflag = false;
                 }
-
                 $('#cuffinner').val(1);
                 $('#cuffinnercolor').val(fid);
+				
+				/*$.get('/Shirts/GetCuffinnercolor/' + id, function (data) {
+                    $('#CuffinnercolorDisc').html(data);
+                });*/
+				jQuery.ajax({   
+					url : base_url + 'customizeshirt/index/cuffinnercolor',
+					type : 'get',
+					data : 'fid=' + fid,
+					success : function(data) {
+					jQuery('#CuffinnercolorDisc').html(data);
+					}
+				});
                 break;
+				
             }
         case "Placket":
             {
                 $('#PlacketFabric li').eq(0).addClass("active");
-
-               if (!window.undoflag) {
+                if (!window.undoflag) {
                     window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#placketcolor').val() + ");";
                     window.indexUndo++;
                     window.undoflag = false;
                 }
-
                 $('#customplacket').val(true);
                 $('#placketcolor').val(fid);
-
                 window.undoflag = true;
-
                 placketClick(parseInt($('#placket').val()));
-                
-                 window.undoflag = false;
-                // $.get('/Shirts/GetPlacketcolor/' + id, function (data) {
-                //     $('#PlacketcolorDisc').html(data);
-                // });
+                window.undoflag = false;
+                 /*$.get('/Shirts/GetPlacketcolor/' + id, function (data) {
+                     $('#PlacketcolorDisc').html(data);
+                 });*/
+				 jQuery.ajax({   
+					url : base_url + 'customizeshirt/index/placketcolor',
+					type : 'get',
+					data : 'fid=' + fid,
+					success : function(data) {
+					jQuery('#PlacketcolorDisc').html(data);
+					}
+				});
 
                 break;
             }
