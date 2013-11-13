@@ -1,6 +1,8 @@
 .customize-container {width:100%;}
 .left-cont {float:left; width:48%;}
-#accordion h3 {cursor:pointer;}
+#accordion h3 {cursor:pointer;  background: #3F3F3F; border-radius: 9px; margin: 0 0 2px; padding: 4px 10px;}
+h3.ui-state-active {margin-bottom: 0 !important;}
+#accordion .ui-accordion-content {padding:5px 0;}
 .fabrics ul.items-list {height: 200px; width:270px; float: left;}
 .contrast-collar-outer-lining .fabrics ul.items-list, .contrast-cuff-outer-lining .fabrics ul.items-list {height: auto; width:auto; float: left;}
 .fabrics ul.items-list li {margin:4px; float:left;}
