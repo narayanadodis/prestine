@@ -39,6 +39,7 @@ class Adodis_Customizeshirt_IndexController extends Mage_Core_Controller_Front_A
 		}
 		Mage::register('customizeshirt', $customizeshirt);
 		*/
+		Mage::getSingleton('core/session')->setDefaultShirtid('3');
 
 			
 		$this->loadLayout();     
