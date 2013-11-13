@@ -35,7 +35,38 @@
 <?php if($_menu): ?>
 <div class="nav-container">
     <ul id="nav">
-        <?php echo $_menu ?>
+        <?php //echo $_menu ?>
+		<li class="level0 nav-1 first level-top">
+		<a class="level-top" href="http://localhost/projects/prestine/index.php/about.html">
+		<span>About</span>
+		</a>
+		</li>
+		<li class="level0 nav-2 level-top">
+		<a class="level-top" href="<?php echo $this->getUrl('customizeshirt'); ?>">
+		<span>Customize</span>
+		</a>
+		</li>
+		<li class="level0 nav-3 level-top">
+		<a class="level-top" href="http://localhost/projects/prestine/index.php/how-it-works.html">
+		<span>How it Works</span>
+		</a>
+		</li>
+		<li class="level0 nav-4 level-top">
+		<a class="level-top" href="http://localhost/projects/prestine/index.php/contact.html">
+		<span>Contact</span>
+		</a>
+		</li>
+		<li class="level0 nav-5 level-top">
+		<a class="level-top" href="http://localhost/projects/prestine/index.php/testimonial.html">
+		<span>Testimonials</span>
+		</a>
+		</li>
+		<li class="level0 nav-6 last level-top">
+		<a class="level-top" href="http://localhost/projects/prestine/index.php/help-faq-s.html">
+		<span>Help & FAQ's</span>
+		</a>
+		</li>
+
     </ul>
 </div>
 <?php endif ?>
