@@ -58,26 +58,26 @@ function fabricClick(fid, price, name, tailorsprice, description) {
 function SleeveClick(plac) 
 {
     var plac = parseInt(plac);
-    
-    if (!window.undoflag) {
-        window.stack[window.indexUndo] = 'SleeveClick('+ $('#sleeve_case').val() +');';
-        window.indexUndo++;
-        window.undoflag = false;
-    }
 
-    $('#sleeve_case').val(plac);
+    // if (!window.undoflag) {
+    //     window.stack[window.indexUndo] = 'SleeveClick('+ $('#sleeve_case').val() +');';
+    //     window.indexUndo++;
+    //     window.undoflag = false;
+    // }
+
+    //$('#sleeve_case').val(plac);
 
     switch (plac) {
         case 1 :
         {
-            $("#sleeve").val(" ");
+            $("#sleeve_case").val("1");
             CuffClick($('#cuff').val());
             break;
         }
 
         case 2 :
         {
-            $("#sleeve").val("rolled");
+            $("#sleeve_case").val("2");
             CuffClick($('#cuff').val());
             break;
         }
@@ -94,12 +94,37 @@ function SleeveClick(plac)
 function CuffClick(plac) {
     $('#CuffType li').removeClass();
     $('#CuffType li').eq(plac - 1).addClass("active");
+
     var server = prestine_url;
+
     if (!window.undoflag) {
         window.stack[window.indexUndo] = 'CuffClick(' + $('#cuff').val() + ');';
+        window.stack['sleeve'] = $("#sleeve").val();
         window.indexUndo++;
         window.undoflag = false;
     }
+
+    switch ($("#sleeve_case").val()) {
+        case "1" :
+        {
+            $("#sleeve").val("");
+            $("#sleeve_case").val(" ");
+            break;
+        }
+
+        case "2" :
+        {
+            $("#sleeve").val("rolled");
+            $("#sleeve_case").val(" ");
+            break;
+        }
+
+        default :
+        {
+            break;
+        }
+    }
+
     var fid = $('#cuffcolor').val();
     $('#cuff').val(plac);
     var basecolor = $('#basecolor').val();
@@ -681,8 +706,11 @@ function UndoFunction() {
     if (window.indexUndo > 0) {
         window.indexUndo--;
         if (window.indexUndo >= 0) {
+            //alert(window.stack['sleeve']);
+            $('#sleeve').val(window.stack['sleeve']);
+            //alert($('#sleeve').val());
             $('#UndoButton').html("<input type='button' id='un' onclick='" + window.stack[window.indexUndo] + "' />");
-
+        
             window.undoflag = true;
             $('#un')[0].click();
             initScript();
