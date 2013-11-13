@@ -58,10 +58,20 @@ function fabricClick(fid, price, name, tailorsprice, description) {
 function SleeveClick(plac) 
 {
     var plac = parseInt(plac);
+    
+    if (!window.undoflag) {
+        alert("sleeve");
+        window.stack[window.indexUndo] = 'SleeveClick('+ $('#sleeve_case').val() +');';
+        window.indexUndo++;
+        window.undoflag = false;
+    }
+
+    $('#sleeve_case').val(plac);
 
     switch (plac) {
         case 1 :
         {
+            alert("1");
             $("#sleeve").val(" ");
             CuffClick($('#cuff').val());
             break;
@@ -69,8 +79,16 @@ function SleeveClick(plac)
 
         case 2 :
         {
+            alert("2");
             $("#sleeve").val("rolled");
             CuffClick($('#cuff').val());
+            break;
+        }
+
+        case 3 :
+        {
+            $('#cuff').val('4');
+            CuffClick(parseInt($('#cuff').val()));
             break;
         }
     }
@@ -139,6 +157,7 @@ function CuffClick(plac) {
             }
         default:
             {
+                alert("hello");
                 if($("#sleeve").val() != "rolled") {
                     $('#sslimg').attr('src', server + basecolor + '_main_set2_0000.png');
                     $('#scuimg').attr('src', server + fid + '_main_set1_0006.png');
