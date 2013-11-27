@@ -15,7 +15,7 @@
 			->setOrder('monolabel_id', 'ASC');
 	foreach($collection as $monogram) { ?>
 		<li class="">
-		<a onclick="MonoClick(<?php echo $monogram->getSwitchno(); ?>)"><img alt="" style="border:2px solid transparent" src="<?php echo Mage::getBaseUrl('media').$monogram->getMonolabelImage(); ?>"></a>
+		<a onclick="MonoClick(<?php echo $monogram->getSwitchno(); ?>)"><img alt="" width="80" style="border:2px solid transparent" src="<?php echo Mage::getBaseUrl('media').$monogram->getMonolabelImage(); ?>"></a>
 		</li>
 	<?php } ?>
 	</ul>
@@ -27,13 +27,13 @@
 			->setOrder('embroidery_id', 'ASC');
 	foreach($collection as $embroidery) { ?>
 		<li class="">
-		<a onclick="selectMonogramFont(<?php echo $embroidery->getSwitchno(); ?>)"><img alt="" style="border:2px solid transparent" src="<?php echo Mage::getBaseUrl('media').$embroidery->getEmbroideryImage(); ?>"><strong><?php echo $embroidery->getEmbroideryTitle(); ?></strong></a>
+		<a onclick="selectMonogramFont(<?php echo $embroidery->getSwitchno(); ?>)"><img alt="" width="80" style="border:2px solid transparent" src="<?php echo Mage::getBaseUrl('media').$embroidery->getEmbroideryImage(); ?>"><strong><?php echo $embroidery->getEmbroideryTitle(); ?></strong></a>
 		</li>
 	<?php } ?>
 	</ul>
 	</div>
 	<div class="personalize-right">
-	<h4 class="ttl01" style="margin-left: 10px; margin-top: 10px;">2. Choose Color & Character</h4>
+	<h4 class="ttl01" style="margin-left: 10px; margin-top: 10px;">3. Choose Color & Character</h4>
 	<div class="sel01" style="margin-left: 10px;">
 	<select id="monocolorT" class="valid" name="monocolorT">
 	 <option value="color">color</option>
@@ -78,7 +78,7 @@
 			->setOrder('monolabel_id', 'ASC');
 	foreach($collection as $label) { ?>
 		<li class="">
-		<a onclick="LabelClick(<?php echo $label->getSwitchno(); ?>)"><img alt="" style="background: #fff; border:2px solid transparent" src="<?php echo Mage::getBaseUrl('media').$label->getMonolabelImage(); ?>"></a>
+		<a onclick="LabelClick(<?php echo $label->getSwitchno(); ?>)"><img alt="" width="80" style="background: #fff; border:2px solid transparent" src="<?php echo Mage::getBaseUrl('media').$label->getMonolabelImage(); ?>"></a>
 		</li>
 	<?php } ?>
 	</ul>
@@ -90,13 +90,13 @@
 			->setOrder('embroidery_id', 'ASC');
 	foreach($collection as $embroidery) { ?>
 		<li class="">
-		<a onclick="selectLabelFont(<?php echo $embroidery->getSwitchno(); ?>)"><img alt="" style="border:2px solid transparent" src="<?php echo Mage::getBaseUrl('media').$embroidery->getEmbroideryImage(); ?>"><strong><?php echo $embroidery->getEmbroideryTitle(); ?></strong></a>
+		<a onclick="selectLabelFont(<?php echo $embroidery->getSwitchno(); ?>)"><img alt="" width="80" style="border:2px solid transparent" src="<?php echo Mage::getBaseUrl('media').$embroidery->getEmbroideryImage(); ?>"><strong><?php echo $embroidery->getEmbroideryTitle(); ?></strong></a>
 		</li>
 	<?php } ?>
 	</ul>
 	</div>
 	<div class="personalize-right">
-	<h4 class="ttl01" style="margin-left: 10px; margin-top: 10px;">2. Choose Color & Character</h4>
+	<h4 class="ttl01" style="margin-left: 10px; margin-top: 10px;">3. Choose Color & Character</h4>
 	<div class="sel01" style="margin-left: 10px;">
 	<select id="labelcolorT" class="valid" name="labelcolorT">
 	 <option value="color">color</option>

@@ -1,37 +1,31 @@
 ul.tabs {
     float: left;
     padding-left: 5px;
-    padding-top: 5px;
     top: 0;
 }
 ul.tabs li.active {
-    background: #bbb;
+     padding-top: 4px;
+    background: url("../images/customshirt/arrowdow1.png") no-repeat center -3px;
 }
 ul.tabs li {
-    background: none repeat scroll 0 0 #F3F3F3;
+    /*background: none repeat scroll 0 0 #F3F3F3;*/
     font-size: 13px;
     font-weight: bold;
-    height: 40px;
-    line-height: 40px;
-    padding-left: 13px;
-    padding-right: 13px;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 6px;
+    padding-right: 6px;
+    cursor: pointer;float: left;margin-right: 5px; padding-top: 3px;
 }
-ul.tabs li.active {
-    margin-top: 1px;
-}
-
-ul.tabs li {
-    float: left;
-    margin-right: 5px;
-}
-.tab_content{padding:10px 0; text-align: justify;}
+.tab_content{padding: 0; text-align: justify;}
 .tab_container {
+    width: 99%;
 	clear: both;
-    float: left;
+    padding: 0 0 0 5px;
 	}
 
-ul.tabs li a {color:#8c8c8c;}
-ul.tabs li.active a{color:#8c8c8c;}
+ul.tabs li a {color:#000; text-decoration: none;}
+ul.tabs li.active a{color:#9A181A;}
 
 /* home page Tabs */
 .cms-home .tab_content{background:#fff;padding:8px;padding-top:0px;padding-bottom:4px;}

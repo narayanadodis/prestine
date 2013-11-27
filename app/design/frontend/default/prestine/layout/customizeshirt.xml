@@ -10,4 +10,26 @@
             <block type="customizeshirt/customizeshirt" name="customizeshirt" template="customizeshirt/customizeshirt.phtml" />
         </reference>
     </customizeshirt_index_index>
+	
+	<checkout_cart_index translate="label">
+	<reference name="content">
+	<reference name="checkout.cart">
+	   <action method="setCartTemplate"><value>customizeshirt/cart/cart.phtml</value></action>
+	   <action method="chooseTemplate"/>
+	   <action method="addItemRender">
+		  <type>simple</type><block>checkout/cart_item_renderer</block><template>customizeshirt/cart/item/default.phtml</template>
+	   </action>
+	</reference>
+	</reference>
+	</checkout_cart_index>
+	
+	
+	<!--<adminhtml_sales_order_view>
+		
+             <block type="adminhtml/sales_order_view_items" name="order_items" template="customizeshirt/order/view/items.phtml">
+                 <action method="addItemRender"><type>default</type><block>adminhtml/sales_order_view_items_renderer_default</block><template>customizeshirt/order/view/items/renderer/default.phtml</template></action>
+              </block>
+		
+    </adminhtml_sales_order_view>-->
+	
 </layout> 

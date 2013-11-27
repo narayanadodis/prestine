@@ -8,203 +8,263 @@ function fabricClick(fid, price, name, tailorsprice, description) {
     var LargImag = prestine_url + fid + ".jpg";
     var UrlImageFabric = prestine_url + fid + ".jpg";
 
-    $('#LargImagFabric').attr('src', LargImag);
-    $('#ImageFabric').attr('src', UrlImageFabric);
-    $('#ImageFabric').val(price)
+    jQuery('#LargImagFabric').attr('src', LargImag);
+    jQuery('#ImageFabric').attr('src', UrlImageFabric);
+    jQuery('#ImageFabric').val(price)
 
-    $('#TitleFabric').html('Base of ' + name);
+    jQuery('#TitleFabric').html('Base of ' + name);
 
-    $('.price').text(price + '.00');
-    $('#shirtprice').val(Number(price.replace(/[^0-9\.]+/g, "")));
+    jQuery('.price').text(price + '.00');
+    jQuery('#shirtprice').val(Number(price.replace(/[^0-9\.]+/g, "")));
 
-    if ($('#collarcolor').val() == $('#basecolor').val()) {
-        $('#collarcolor').val(fid);
+    if (jQuery('#collarcolor').val() == jQuery('#basecolor').val()) {
+        jQuery('#collarcolor').val(fid);
     }
-    if ($('#collarliningcolor').val() == $('#basecolor').val()) {
-        $('#collarliningcolor').val(fid);
-    }
-
-    if ($('#cuffcolor').val() == $('#basecolor').val()) {
-        $('#cuffcolor').val(fid);
-    }
-    if ($('#placketcolor').val() == $('#basecolor').val()) {
-        $('#placketcolor').val(fid);
-    }
-    if ($('#pocketcolor').val() == $('#basecolor').val()) {
-        $('#pocketcolor').val(fid);
-    }
-    if ($('#strapcolor').val() == $('#basecolor').val()) {
-        $('#strapcolor').val(fid);
+    if (jQuery('#collarliningcolor').val() == jQuery('#basecolor').val()) {
+        jQuery('#collarliningcolor').val(fid);
     }
 
-    $('#sbaimg').attr('src', (server + fid + '_main_set2_0005.png'));
+    if (jQuery('#cuffcolor').val() == jQuery('#basecolor').val()) {
+        jQuery('#cuffcolor').val(fid);
+    }
+    if (jQuery('#placketcolor').val() == jQuery('#basecolor').val()) {
+        jQuery('#placketcolor').val(fid);
+    }
+    if (jQuery('#pocketcolor').val() == jQuery('#basecolor').val()) {
+        jQuery('#pocketcolor').val(fid);
+    }
+    if (jQuery('#strapcolor').val() == jQuery('#basecolor').val()) {
+        jQuery('#strapcolor').val(fid);
+    }
 
-    $('#basecolor').val(fid);
+    jQuery('#sbaimg').attr('src', (server + fid + '_main_set2_0005.png'));
 
-    $('#fabric_title').text(name + ':');
-    $('#fabric_description').text(description);
-    $('#fabric_tailorsPrice').text('At your local tailor: ' + tailorsprice + '.00');
-    $('#fabric_price').text('At Blank Label: ' + price + '.00');
+    jQuery('#basecolor').val(fid);
 
-    $('#scolimg').attr('src', prestine_url + $('#collarliningcolor').val() + "_main_set3_0004.png");
-    CuffClick(parseInt($('#cuff').val()));
-    placketClick(parseInt($('#placket').val()));
-    PocketClick(parseInt($('#pocket').val()));
+    jQuery('#fabric_title').text(name + ':');
+    jQuery('#fabric_description').text(description);
+    jQuery('#fabric_tailorsPrice').text('At your local tailor: ' + tailorsprice + '.00');
+    jQuery('#fabric_price').text('At Blank Label: ' + price + '.00');
 
-    CollarClick(parseInt($('#collar').val()));
-    ShoulderClick(parseInt($('#strap').val()));
+    jQuery('#scolimg').attr('src', prestine_url + jQuery('#collarliningcolor').val() + "_main_set3_0004.png");
+    CuffClick(parseInt(jQuery('#cuff').val()));
+    placketClick(parseInt(jQuery('#placket').val()));
+    PocketClick(parseInt(jQuery('#pocket').val()));
+
+    CollarClick(parseInt(jQuery('#collar').val()));
+    ShoulderClick(parseInt(jQuery('#strap').val()));
+    SleeveClick(parseInt(jQuery('#sleeve').val()));
+    BackClick(parseInt(jQuery('#back').val()))
 }
 
 function SleeveClick(plac) 
 {
     var plac = parseInt(plac);
 
-    // if (!window.undoflag) {
-    //     window.stack[window.indexUndo] = 'SleeveClick('+ $('#sleeve_case').val() +');';
-    //     window.indexUndo++;
-    //     window.undoflag = false;
-    // }
+    var server = prestine_url;
+     if (!window.undoflag) {
+         window.stack[window.indexUndo] = 'SleeveClick('+ jQuery('#sleeve').val() +');';
+         window.indexUndo++;
+         window.undoflag = false;
+     }
 
-    //$('#sleeve_case').val(plac);
+    //jQuery('#sleeve_case').val(plac);
+    var fid = jQuery('#cuffcolor').val();
+    jQuery('#sleeve').val(plac);
+    var basecolor = jQuery('#basecolor').val();
 
     switch (plac) {
-        case 1 :
+        case 1:
         {
-            $("#sleeve_case").val("1");
-            CuffClick($('#cuff').val());
-            break;
+            if(jQuery('#cuff').val() == 3)
+            {
+                jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_0001.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0005.png');
+                jQuery('#sba5img').attr('src', server + 'FrenchSleeve_WhiteLineIssueSolver.png');
+                break;
+            }
+            else if(jQuery('#cuff').val() == 1 || jQuery('#cuff').val() == 2)
+            {
+                jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_0000.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0006.png');
+                jQuery('#sba5img').attr('src', server + 'StandardSleeve_WhiteLineIssueSolver.png');
+                break;
+            }
+            else
+            {
+                jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_0000.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0006.png');
+                jQuery('#sba5img').attr('src', server + 'StandardSleeve_WhiteLineIssueSolver.png');
+                break;
+            }
         }
 
-        case 2 :
+        case 2:
         {
-            $("#sleeve_case").val("2");
-            CuffClick($('#cuff').val());
-            break;
+            if(jQuery('#cuff').val() == 3)
+            {
+                jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_french_rolled.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0005_1.png');
+                jQuery('#sba5img').attr('src', '');
+                break;
+            }
+            else if(jQuery('#cuff').val() == 1 || jQuery('#cuff').val() == 2)
+            {
+                jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_rolled.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0006_1.png');
+                jQuery('#sba5img').attr('src', '');
+                break;
+            }
+            else
+            {
+                jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_rolled.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0006_1.png');
+                jQuery('#sba5img').attr('src', '');
+                break;
+            }
         }
 
-        case 3 :
+        case 3:
         {
-            $('#cuff').val('4');
-            CuffClick(parseInt($('#cuff').val()));
-            break;
+            jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_0002.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0008.png');
+                jQuery('#sba5img').attr('src', server + 'ShortSleeve_WhiteLineIssueSolver.png');
+
+                jQuery('#CuffFabric li').eq(0).attr('class', '');
+                jQuery('#CuffFabric li').eq(1).attr('class', '');
+
+                jQuery('#CuffcolorDisc').html("");
+                jQuery('#cuffcolor').val(jQuery('#basecolor').val());
+                jQuery('#cutomcuff').val(false);
+
+
+                jQuery('#cuffinnercolor').val(jQuery('#basecolor').val());
+                jQuery('#cuffinner').val(0);
+                jQuery('#CuffinnercolorDisc').html('');
+
+                break;
+            // jQuery('#cuff').val('4');
+            // CuffClick(parseInt(jQuery('#cuff').val()));
+            // break;
         }
     }
+
+    jQuery.ajax({   
+        url : base_url + 'customizeshirt/index/sleeve',
+        type : 'get',
+        data : 'switchno=' + plac,
+        success : function(data) {
+        jQuery('#SleeveDisc').html(data);
+        }
+    });
+
 }
 
 function CuffClick(plac) {
-    $('#CuffType li').removeClass();
-    $('#CuffType li').eq(plac - 1).addClass("active");
+    jQuery('#CuffType li').removeClass();
+    jQuery('#CuffType li').eq(plac - 1).addClass("active");
 
     var server = prestine_url;
 
     if (!window.undoflag) {
-        window.stack[window.indexUndo] = 'CuffClick(' + $('#cuff').val() + ');';
-        window.stack['sleeve'] = $("#sleeve").val();
+        window.stack[window.indexUndo] = 'CuffClick(' + jQuery('#cuff').val() + ');';
         window.indexUndo++;
         window.undoflag = false;
     }
 
-    switch ($("#sleeve_case").val()) {
-        case "1" :
-        {
-            $("#sleeve").val("");
-            $("#sleeve_case").val(" ");
-            break;
-        }
+   
 
-        case "2" :
-        {
-            $("#sleeve").val("rolled");
-            $("#sleeve_case").val(" ");
-            break;
-        }
-
-        default :
-        {
-            break;
-        }
-    }
-
-    var fid = $('#cuffcolor').val();
-    $('#cuff').val(plac);
-    var basecolor = $('#basecolor').val();
+    var fid = jQuery('#cuffcolor').val();
+    jQuery('#cuff').val(plac);
+    var basecolor = jQuery('#basecolor').val();
 
     switch (plac) {
         case 2:
             {
-                if($("#sleeve").val() != "rolled") {
-                    $('#sslimg').attr('src', server + basecolor + '_main_set2_0000.png');
-                    $('#scuimg').attr('src', server + fid + '_main_set1_0006.png');
-                } else {
-                    $('#sslimg').attr('src', server + basecolor + '_main_set2_rolled.png');
-                    $('#scuimg').attr('src', server + fid + '_main_set1_0006_1.png');   
-                }
-
-                $('#sba5img').attr('src', server + 'StandardSleeve_WhiteLineIssueSolver.png');
+                if(jQuery('#sleeve').val() == 1)
+                {
+                jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_0000.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0006.png');
+                jQuery('#sba5img').attr('src', server + 'StandardSleeve_WhiteLineIssueSolver.png');
                 break;
+                }
+                if(jQuery('#sleeve').val() == 2)
+                {
+                jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_rolled.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0006_1.png');
+                jQuery('#sba5img').attr('src', '');
+                break;
+                }
             }
         case 3:
             {
-                if($("#sleeve").val() != "rolled") {
-                    $('#sslimg').attr('src', server + basecolor + '_main_set2_0001.png');
-                    $('#scuimg').attr('src', server + fid + '_main_set1_0005.png');
-                } else {
-                    $('#sslimg').attr('src', server + basecolor + '_main_set2_rolled.png');
-                    $('#scuimg').attr('src', server + fid + '_main_set1_0005_1.png');
-                }
-
-                $('#sba5img').attr('src', server + 'FrenchSleeve_WhiteLineIssueSolver.png');
-
+                if(jQuery('#sleeve').val() == 1)
+                {
+                jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_0001.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0005.png');
+                jQuery('#sba5img').attr('src', server + 'FrenchSleeve_WhiteLineIssueSolver.png');
                 break;
+                }
+                if(jQuery('#sleeve').val() == 2)
+                {
+                jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_french_rolled.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0005_1.png');
+                jQuery('#sba5img').attr('src', '');
+                break;
+                }
             }
         case 4:
             {
-                $('#sslimg').attr('src', server + basecolor + '_main_set2_0002.png');
-                $('#scuimg').attr('src', server + fid + '_main_set1_0008.png');
-                $('#sba5img').attr('src', server + 'ShortSleeve_WhiteLineIssueSolver.png');
+                jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_0002.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0008.png');
+                jQuery('#sba5img').attr('src', server + 'ShortSleeve_WhiteLineIssueSolver.png');
 
-                $('#CuffFabric li').eq(0).attr('class', '');
-                $('#CuffFabric li').eq(1).attr('class', '');
+                jQuery('#CuffFabric li').eq(0).attr('class', '');
+                jQuery('#CuffFabric li').eq(1).attr('class', '');
 
-                $('#CuffcolorDisc').html("");
-                //$('#cuffcolor').val($('#basecolor').val());
-                $('#cutomcuff').val(false);
+                jQuery('#CuffcolorDisc').html("");
+                jQuery('#cuffcolor').val(jQuery('#basecolor').val());
+                jQuery('#cutomcuff').val(false);
 
 
-                $('#cuffinnercolor').val($('#basecolor').val());
-                $('#cuffinner').val(0);
-                $('#CuffinnercolorDisc').html('');
+                jQuery('#cuffinnercolor').val(jQuery('#basecolor').val());
+                jQuery('#cuffinner').val(0);
+                jQuery('#CuffinnercolorDisc').html('');
 
                 break;
             }
         default:
             {
-                if($("#sleeve").val() != "rolled") {
-                    $('#sslimg').attr('src', server + basecolor + '_main_set2_0000.png');
-                    $('#scuimg').attr('src', server + fid + '_main_set1_0006.png');
-                } else {
-                    $('#sslimg').attr('src', server + basecolor + '_main_set2_rolled.png');
-                    $('#scuimg').attr('src', server + fid + '_main_set1_0006_1.png');
-                }
-
-                $('#sba5img').attr('src', server + 'StandardSleeve_WhiteLineIssueSolver.png');
+               if(jQuery('#sleeve').val() == 1)
+                {
+                jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_0000.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0006.png');
+                jQuery('#sba5img').attr('src', server + 'StandardSleeve_WhiteLineIssueSolver.png');
                 break;
+                }
+                if(jQuery('#sleeve').val() == 2)
+                {
+                jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_rolled.png');
+                jQuery('#scuimg').attr('src', server + fid + '_main_set1_0006_1.png');
+                jQuery('#sba5img').attr('src', '');
+                break;
+                }
             }
     }
 
     /*if (plac == 4) {
-        if ($('#zoomcuff').css('visibility') == 'visible') {
-            $('#zoomcuffinner').css('visibility', 'hidden');
+        if (jQuery('#zoomcuff').css('visibility') == 'visible') {
+            jQuery('#zoomcuffinner').css('visibility', 'hidden');
         }
     }
     else {
-        if ($('#zoomcuff').css('visibility') == 'visible') {
-            $('#zoomcuffinner').css('visibility', 'visible');
+        if (jQuery('#zoomcuff').css('visibility') == 'visible') {
+            jQuery('#zoomcuffinner').css('visibility', 'visible');
         }
     }
 
-    $.get(base_url + 'customizeshirt/index/cuff?switchno=' + plac, function (data) {
-        $('#CuffDisc').html(data);
+    jQuery.get(base_url + 'customizeshirt/index/cuff?switchno=' + plac, function (data) {
+        jQuery('#CuffDisc').html(data);
     });*/
 	jQuery.ajax({   
 		url : base_url + 'customizeshirt/index/cuff',
@@ -218,54 +278,54 @@ function CuffClick(plac) {
 }
 
 function placketClick(plac) {
-    $('#PlacketType li').removeClass();
-    $('#PlacketType li').eq(plac - 1).addClass("active");
-    var fid = $('#placketcolor').val();
+    jQuery('#PlacketType li').removeClass();
+    jQuery('#PlacketType li').eq(plac - 1).addClass("active");
+    var fid = jQuery('#placketcolor').val();
     var server = prestine_url;
 
     if (!window.undoflag) {
-        window.stack[window.indexUndo] = 'placketClick(' + $('#placket').val() + ');';
+        window.stack[window.indexUndo] = 'placketClick(' + jQuery('#placket').val() + ');';
         window.indexUndo++;
         window.undoflag = false;
     }
-    $('#placket').val(plac);
+    jQuery('#placket').val(plac);
 
     switch (plac) {
         case 1:
             {
                 var url = server + fid + '_main_set3_0012.png';
-                $('#splimg').attr('src', url);
-                $('#sba3img').attr('src', (server + $('#buttons').val() + '_main_button_0004.png'));
-                $('#PlacketFabric').show();
-                $('#ttlPlacketFabricText').show();
+                jQuery('#splimg').attr('src', url);
+                jQuery('#sba3img').attr('src', (server + jQuery('#buttons').val() + '_main_button_0004.png'));
+                jQuery('#PlacketFabric').show();
+                jQuery('#ttlPlacketFabricText').show();
                 break;
             }
         case 3:
             {
                 var url = server + fid + '_main_set3_0013.png';
-                $('#splimg').attr('src', url);
-                $('#sba3img').attr('src', (prestine_url + 'blank.png'));
-                $('#PlacketFabric').show();
-                $('#ttlPlacketFabricText').show();
+                jQuery('#splimg').attr('src', url);
+                jQuery('#sba3img').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#PlacketFabric').show();
+                jQuery('#ttlPlacketFabricText').show();
                 break;
             }
         default:
             {
-                $('#PlacketFabric li').eq(0).attr('class', '');
-                $('#PlacketcolorDisc').html('');
+                jQuery('#PlacketFabric li').eq(0).attr('class', '');
+                jQuery('#PlacketcolorDisc').html('');
 
-                $('#splimg').attr('src', (prestine_url + 'blank.png'));
-                $('#sba3img').attr('src', (server + $('#buttons').val() + '_main_button_0004.png'));
-                $('#PlacketFabric').hide();
-                $('#ttlPlacketFabricText').hide();
-                $('#placketcolor').val($('#basecolor').val());
-                $('#customplacket').val(false);
+                jQuery('#splimg').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#sba3img').attr('src', (server + jQuery('#buttons').val() + '_main_button_0004.png'));
+                jQuery('#PlacketFabric').hide();
+                jQuery('#ttlPlacketFabricText').hide();
+                jQuery('#placketcolor').val(jQuery('#basecolor').val());
+                jQuery('#customplacket').val(false);
                 break;
             }
     }
 
-    /*$.get('/Shirts/GetPlacket/' + plac, function (data) {
-        $('#PlacketDisc').html(data);
+    /*jQuery.get('/Shirts/GetPlacket/' + plac, function (data) {
+        jQuery('#PlacketDisc').html(data);
     });*/
 	jQuery.ajax({   
 		url : base_url + 'customizeshirt/index/front',
@@ -277,47 +337,245 @@ function placketClick(plac) {
 	});
 }
 
-function PocketClick(plac) {
-    $('#PocketType li').removeClass();
-    $('#PocketType li').eq(plac - 1).addClass("active");
-    var fid = $('#pocketcolor').val();
+function NoofPocketClick(plac) {
+    //jQuery('#PocketType li').removeClass();
+   // jQuery('#PocketType li').eq(plac - 1).addClass("active");
+    //var fid = jQuery('#pocketcolor').val();
     var server = prestine_url;
 
     if (!window.undoflag) {
-        window.stack[window.indexUndo] = 'PocketClick(' + $('#pocket').val() + ');';
+        window.stack[window.indexUndo] = 'NoofPocketClick(' + jQuery('#noofpocket').val() + ');';
         window.indexUndo++;
         window.undoflag = false;
     }
-    $('#pocket').val(plac);
-
+    var plac = parseInt(plac);
+    
+    jQuery('#noofpocket').val(plac);
+    //alert(plac);
+    
     switch (plac) {
         case 1:
             {
-                $('#spoimg').attr('src', (prestine_url + 'blank.png'));
-                $('#sba4img').attr('src', (prestine_url + 'blank.png'));
-                $('#pocketstyle').val(1);
+                //alert('1');
+                //PocketClick(parseInt(jQuery('#pocket').val()));
+                PocketClick(parseInt(jQuery('#pocket').val()));
                 break;
             }
-        case 3:
+
+        case 2:
             {
-                var url = server + fid + '_main_set3_0000.png';
-                $('#spoimg').attr('src', url);
-                $('#sba4img').attr('src', (server + $('#buttons').val() + '_main_button_0001.png'));
-                $('#pocketstyle').val(1);
+                //alert('2');
+                PocketClick(parseInt(jQuery('#pocket').val()));
                 break;
             }
         default:
             {
-                var url = server + fid + '_main_set1_0007.png';
-                $('#spoimg').attr('src', url);
-                $('#sba4img').attr('src', (prestine_url + 'blank.png'));
-                $('#pocketstyle').val(2);
-                break;
+               //alert('def');
+
             }
     }
 
-    /*$.get('/Shirts/GetPocket/' + plac, function (data) {
-        $('#PocketDisc').html(data);
+   
+}
+
+function PocketClick(plac) {
+    jQuery('#PocketType li').removeClass();
+    jQuery('#PocketType li').eq(plac - 1).addClass("active");
+    var fid = jQuery('#pocketcolor').val();
+    var server = prestine_url;
+
+    if (!window.undoflag) {
+        window.stack[window.indexUndo] = 'PocketClick(' + jQuery('#pocket').val() + ');';
+        window.indexUndo++;
+        window.undoflag = false;
+    }
+    jQuery('#pocket').val(plac);
+
+    if(jQuery('#pocket').val() == 1)
+    {
+        jQuery('.noofpocket_cont').hide();
+    }
+    else
+    {
+        jQuery('.noofpocket_cont').show();
+    }
+
+    var noofpockets = jQuery('#noofpocket').val();
+
+    if(noofpockets == 1) {
+        switch (plac) {
+        case 1:
+            {
+                jQuery('#spoimg').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#sba4img').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+
+        case 2:
+            {
+                var url = server + fid + '_main_1poc_round.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        case 3:
+            {
+                var url = server + fid + '_main_1poc_angle.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        case 4:
+            {
+                var url = server + fid + '_main_1poc_diamond.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        case 5:
+            {
+                var url = server + fid + '_main_1poc_square.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        case 6:
+            {
+                var url = server + fid + '_main_1poc_flap_round.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (server + jQuery('#buttons').val() + '_main_button_0001_1.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        case 7:
+            {
+                var url = server + fid + '_main_1poc_flap_angle.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (server + jQuery('#buttons').val() + '_main_button_0001_1.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        case 8:
+            {
+                var url = server + fid + '_main_1poc_flap_diamond.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (server + jQuery('#buttons').val() + '_main_button_0001_1.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        /*case 3:
+            {
+                var url = server + fid + '_main_set3_0000.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (server + jQuery('#buttons').val() + '_main_button_0001.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }*/
+        default:
+            {
+                var url = server + fid + '_main_1poc_angle.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        }
+    }
+
+    if(noofpockets == 2) {
+        switch (plac) {
+        case 1:
+            {
+                jQuery('#spoimg').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#sba4img').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+
+        case 2:
+            {
+                var url = server + fid + '_main_2poc_round.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        case 3:
+            {
+                var url = server + fid + '_main_2poc_angle.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        case 4:
+            {
+                var url = server + fid + '_main_2poc_diamond.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        case 5:
+            {
+                var url = server + fid + '_main_2poc_square.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        case 6:
+            {
+                var url = server + fid + '_main_2poc_flap_round.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (server + jQuery('#buttons').val() + '_main_button_0001.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        case 7:
+            {
+                var url = server + fid + '_main_2poc_flap_angle.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (server + jQuery('#buttons').val() + '_main_button_0001.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        case 8:
+            {
+                var url = server + fid + '_main_2poc_flap_diamond.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (server + jQuery('#buttons').val() + '_main_button_0001.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        /*case 3:
+            {
+                var url = server + fid + '_main_set3_0000.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (server + jQuery('#buttons').val() + '_main_button_0001.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }*/
+        default:
+            {
+                var url = server + fid + '_main_2poc_angle.png';
+                jQuery('#spoimg').attr('src', url);
+                jQuery('#sba4img').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#pocketstyle').val(1);
+                break;
+            }
+        }
+    }
+
+    
+
+    /*jQuery.get('/Shirts/GetPocket/' + plac, function (data) {
+        jQuery('#PocketDisc').html(data);
     });*/
 	jQuery.ajax({   
 		url : base_url + 'customizeshirt/index/pocket',
@@ -332,128 +590,128 @@ function PocketClick(plac) {
 function CollarClick(plac) 
 {
 
-    $('#CollarType li').removeClass();
-    $('#CollarType').find('li[collar=' + plac + ']').addClass("active");
+    jQuery('#CollarType li').removeClass();
+    jQuery('#CollarType').find('li[collar=' + plac + ']').addClass("active");
 
-    var fid = $('#collarcolor').val();
-    var basecolor = $('#basecolor').val();
+    var fid = jQuery('#collarcolor').val();
+    var basecolor = jQuery('#basecolor').val();
     var server = prestine_url;
     var plac = plac;
 
     if (!window.undoflag) {
-        window.stack[window.indexUndo] = 'CollarClick(' + $('#collar').val() + ');';
+        window.stack[window.indexUndo] = 'CollarClick(' + jQuery('#collar').val() + ');';
         window.indexUndo++;
         window.undoflag = false;
     }
-    $('#collar').val(plac);
+    jQuery('#collar').val(plac);
 
     if (fid != basecolor || plac == 8) {
-        $('#scoimg_neru').attr('src', prestine_url + fid + "_main_set3_0016.png");
+        jQuery('#scoimg_neru').attr('src', prestine_url + fid + "_main_set3_0016.png");
     }
     else {
-        $('#scoimg_neru').attr('src', prestine_url + 'blank.png');
+        jQuery('#scoimg_neru').attr('src', prestine_url + 'blank.png');
     }
     
     plac = parseInt(plac);
     switch (plac) {
         case 2:
             {
-                $('#scoimg').attr('src', server + fid + '_main_set3_0015.png');
-                $('#sbaimg').attr('src', server + basecolor + '_main_set2_0011.png');
-                $('#scobdimg').attr('src', prestine_url + 'blank.png');
+                jQuery('#scoimg').attr('src', server + fid + '_main_set3_0015.png');
+                jQuery('#sbaimg').attr('src', server + basecolor + '_main_set2_0011.png');
+                jQuery('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
         case 4:
             {
-                $('#scoimg').attr('src', server + fid + '_main_set3_0003.png');
-                $('#sbaimg').attr('src', server + basecolor + '_main_set2_0005.png');
-                $('#scobdimg').attr('src', server + $('#buttons').val() + '_main_button_0003.png');
+                jQuery('#scoimg').attr('src', server + fid + '_main_set3_0003.png');
+                jQuery('#sbaimg').attr('src', server + basecolor + '_main_set2_0005.png');
+                jQuery('#scobdimg').attr('src', server + jQuery('#buttons').val() + '_main_button_0003.png');
                 break;
             }
         case 5:
             {
-                $('#scoimg').attr('src', server + fid + '_main_set3_0011.png');
-                $('#sbaimg').attr('src', server + basecolor + '_main_set2_0008.png');
-                $('#scobdimg').attr('src', prestine_url + 'blank.png');
+                jQuery('#scoimg').attr('src', server + fid + '_main_set3_0011.png');
+                jQuery('#sbaimg').attr('src', server + basecolor + '_main_set2_0008.png');
+                jQuery('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
         case 6:
             {
-                $('#scoimg').attr('src', server + fid + '_main_set3_0010.png');
-                $('#sbaimg').attr('src', server + basecolor + '_main_set2_0007.png');
-                $('#scobdimg').attr('src', prestine_url + 'blank.png');
+                jQuery('#scoimg').attr('src', server + fid + '_main_set3_0010.png');
+                jQuery('#sbaimg').attr('src', server + basecolor + '_main_set2_0007.png');
+                jQuery('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
         case 7:
             {
-                $('#scoimg').attr('src', server + fid + '_main_set3_0009.png');
-                $('#sbaimg').attr('src', server + basecolor + '_main_set2_0006.png');
-                $('#scobdimg').attr('src', server + $('#buttons').val() + '_main_button_0009.png');
+                jQuery('#scoimg').attr('src', server + fid + '_main_set3_0009.png');
+                jQuery('#sbaimg').attr('src', server + basecolor + '_main_set2_0006.png');
+                jQuery('#scobdimg').attr('src', server + jQuery('#buttons').val() + '_main_button_0009.png');
                 break;
             }
         case 8:
             {
-                $('#scoimg').attr('src', prestine_url + 'blank.png');
-                $('#sbaimg').attr('src', server + basecolor + '_main_set2_0009.png');
-                $('#scobdimg').attr('src', prestine_url + 'blank.png');
+                jQuery('#scoimg').attr('src', prestine_url + 'blank.png');
+                jQuery('#sbaimg').attr('src', server + basecolor + '_main_set2_0009.png');
+                jQuery('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
         case 9:
             {
-                $('#scoimg').attr('src', server + fid + '_main_set3_0014.png');
-                $('#sbaimg').attr('src', server + basecolor + '_main_set2_0010.png');
-                $('#scobdimg').attr('src', prestine_url + 'blank.png');
+                jQuery('#scoimg').attr('src', server + fid + '_main_set3_0014.png');
+                jQuery('#sbaimg').attr('src', server + basecolor + '_main_set2_0010.png');
+                jQuery('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
         case 10:
             {
-                $('#scoimg').attr('src', server + fid + '_main_set3_0001.png');
-                $('#sbaimg').attr('src', server + basecolor + '_main_set2_0004.png');
-                $('#scobdimg').attr('src', prestine_url + 'blank.png');
+                jQuery('#scoimg').attr('src', server + fid + '_main_set3_0001.png');
+                jQuery('#sbaimg').attr('src', server + basecolor + '_main_set2_0004.png');
+                jQuery('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
         default:
             {
-                $('#scoimg').attr('src', server + fid + '_main_set3_0002.png');
-                $('#sbaimg').attr('src', server + basecolor + '_main_set2_0003.png');
-                $('#scobdimg').attr('src', prestine_url + 'blank.png');
+                jQuery('#scoimg').attr('src', server + fid + '_main_set3_0002.png');
+                jQuery('#sbaimg').attr('src', server + basecolor + '_main_set2_0003.png');
+                jQuery('#scobdimg').attr('src', prestine_url + 'blank.png');
                 break;
             }
     }
 
-    var pl = $('#placket').val();
-    fid = $('#placketcolor').val();
+    var pl = jQuery('#placket').val();
+    fid = jQuery('#placketcolor').val();
 
     if (pl == "3") { //covered
         if (plac == 2 || plac == 5 || plac == 6 || plac == 7 || plac == 8 || plac == 9 || plac == 10) {
             var url = server + fid + '_main_set3_0006.png';
-            $('#splimg').attr('src', url);
+            jQuery('#splimg').attr('src', url);
         }
         else {
             var url = server + fid + '_main_set3_0013.png';
-            $('#splimg').attr('src', url);
+            jQuery('#splimg').attr('src', url);
         }
-        $('#sba3img').attr('src', 'http://c12743256.r56.cf2.rackcdn.com/Images/blank.png');
+        jQuery('#sba3img').attr('src', 'http://c12743256.r56.cf2.rackcdn.com/Images/blank.png');
     }
     else if (pl == "2") { //french
-        $('#splimg').attr('src', 'http://c12743256.r56.cf2.rackcdn.com/Images/blank.png');
-        $('#sba3img').attr('src', (server + $('#buttons').val() + '_main_button_0004.png'));
+        jQuery('#splimg').attr('src', 'http://c12743256.r56.cf2.rackcdn.com/Images/blank.png');
+        jQuery('#sba3img').attr('src', (server + jQuery('#buttons').val() + '_main_button_0004.png'));
     }
     else { //normal
         if (plac == 2 || plac == 5 || plac == 6 || plac == 7 || plac == 8 || plac == 9 || plac == 10) {
             var url = server + fid + '_main_set3_0005.png';
-            $('#splimg').attr('src', url);
+            jQuery('#splimg').attr('src', url);
         }
         else {
             var url = server + fid + '_main_set3_0012.png';
-            $('#splimg').attr('src', url);
+            jQuery('#splimg').attr('src', url);
         }
-        $('#sba3img').attr('src', (server + $('#buttons').val() + '_main_button_0004.png'));
+        jQuery('#sba3img').attr('src', (server + jQuery('#buttons').val() + '_main_button_0004.png'));
     }
 
 /*
-    $.get('/Shirts/GetCollar/' + plac, function (data) {
-        $('#CollarDisc').html(data);
+    jQuery.get('/Shirts/GetCollar/' + plac, function (data) {
+        jQuery('#CollarDisc').html(data);
     });*/
 	jQuery.ajax({   
 		url : base_url + 'customizeshirt/index/collar',
@@ -467,40 +725,40 @@ function CollarClick(plac)
 
 
 function ShoulderClick(plac) {
-    $('#ShoulderType li').removeClass();
-    $('#ShoulderType li').eq(plac - 1).addClass("active");
-    var fid = $('#strapcolor').val();
+    jQuery('#ShoulderType li').removeClass();
+    jQuery('#ShoulderType li').eq(plac - 1).addClass("active");
+    var fid = jQuery('#strapcolor').val();
     var server = prestine_url;
 
    if (!window.undoflag) {
-        window.stack[window.indexUndo] = 'ShoulderClick(' + $('#strap').val() + ');';
+        window.stack[window.indexUndo] = 'ShoulderClick(' + jQuery('#strap').val() + ');';
         window.indexUndo++;
         window.undoflag = false;
     }
-    $('#strap').val(plac);
+    jQuery('#strap').val(plac);
 
     switch (plac) {
         case 1:
             {
-                $('#sshimg').attr('src', (prestine_url + 'blank.png'));
+                jQuery('#sshimg').attr('src', (prestine_url + 'blank.png'));
                 break;
             }
         case 3:
             {
                 var url = server + fid + '_main_set3_0008.png';
-                $('#sshimg').attr('src', url);
+                jQuery('#sshimg').attr('src', url);
                 break;
             }
         default:
             {
                 var url = server + fid + '_main_set3_0007.png';
-                $('#sshimg').attr('src', url);
+                jQuery('#sshimg').attr('src', url);
                 break;
             }
     }
 
-   /* $.get('/Shirts/GetShoulder/' + plac, function (data) {
-        $('#ShoulderDisc').html(data);
+   /* jQuery.get('/Shirts/GetShoulder/' + plac, function (data) {
+        jQuery('#ShoulderDisc').html(data);
     });*/
 	jQuery.ajax({   
 		url : base_url + 'customizeshirt/index/shoulder',
@@ -512,31 +770,119 @@ function ShoulderClick(plac) {
 	});
 }
 
+function BackClick(plac) {
+    jQuery('#BackType li').removeClass();
+    jQuery('#BackType li').eq(plac - 1).addClass("active");
+    var coid = jQuery('#collarcolor').val();
+    var cuid = jQuery('#cuffcolor').val();
+    var fid = jQuery('#basecolor').val();
+
+    var server = prestine_url;
+
+   if (!window.undoflag) {
+        window.stack[window.indexUndo] = 'BackClick(' + jQuery('#back').val() + ');';
+        window.indexUndo++;
+        window.undoflag = false;
+    }
+    jQuery('#back').val(plac);
+
+    switch (plac) {
+        case 1:
+            {
+                jQuery('#bbimg').attr('src', (server + fid + '_main_back_body.png'));
+                jQuery('#bcoimg').attr('src', (server + coid + '_main_back_collar.png'));
+                jQuery('#bcuimg').attr('src', (server + cuid + '_main_back_cuff.png'));
+                jQuery('#bstimg').attr('src', (prestine_url + 'blank.png'));
+                break;
+            }
+        case 2:
+            {
+                jQuery('#bbimg').attr('src', (server + fid + '_main_back_body.png'));
+                jQuery('#bcoimg').attr('src', (server + coid + '_main_back_collar.png'));
+                jQuery('#bcuimg').attr('src', (server + cuid + '_main_back_cuff.png'));
+                jQuery('#bstimg').attr('src', (prestine_url + 'shirt_box_pleat.png'));
+                break;
+            }   
+        case 3:
+            {
+                jQuery('#bbimg').attr('src', (server + fid + '_main_back_body.png'));
+                jQuery('#bcoimg').attr('src', (server + coid + '_main_back_collar.png'));
+                jQuery('#bcuimg').attr('src', (server + cuid + '_main_back_cuff.png'));
+                jQuery('#bstimg').attr('src', (prestine_url + 'shirt_side_pleat.png'));
+                break;
+            }
+        case 4:
+            {
+                jQuery('#bbimg').attr('src', (server + fid + '_main_back_body.png'));
+                jQuery('#bcoimg').attr('src', (server + coid + '_main_back_collar.png'));
+                jQuery('#bcuimg').attr('src', (server + cuid + '_main_back_cuff.png'));
+                jQuery('#bstimg').attr('src', (prestine_url + 'shirt_center_pleat.png'));
+                break;
+            }    
+        default:
+            {
+               jQuery('#bbimg').attr('src', (server + fid + '_main_back_body.png'));
+                jQuery('#bcoimg').attr('src', (server + coid + '_main_back_collar.png'));
+                jQuery('#bcuimg').attr('src', (server + cuid + '_main_back_cuff.png'));
+                jQuery('#bstimg').attr('src', (prestine_url + 'blank.png'));
+                break;
+            }
+    }
+
+   /* jQuery.get('/Shirts/GetBack/' + plac, function (data) {
+        jQuery('#BackDisc').html(data);
+    });*/
+    jQuery.ajax({   
+        url : base_url + 'customizeshirt/index/back',
+        type : 'get',
+        data : 'switchno=' + plac,
+        success : function(data) {
+        jQuery('#BackDisc').html(data);
+        }
+    });
+}
+
+function ViewChangeClick(view) {
+    if(view == 'front') {
+        jQuery('#shirt').css('display', 'block');
+        jQuery('#shirt-back').css('display', 'none');
+        jQuery('.viewfront strong').css('color', '#9A181A');
+        jQuery('.viewback strong').css('color', '#fff');
+    }
+    else if(view == 'back') {
+        jQuery('#shirt-back').css('display', 'block');
+        jQuery('#shirt').css('display', 'none');
+        jQuery('.viewback strong').css('color', '#9A181A');
+        jQuery('.viewfront strong').css('color', '#fff');
+    }
+}
+
 
 function fabricTypeClick(fid, type) {
     var server = prestine_url;
     var id = fid;
 
-    $('#TypeFabric').hide();
+    jQuery('#TypeFabric').hide();
     
     switch (type) {
         case "Collar":
             {
-                $('#CollarFabric li').eq(0).addClass("active");
+                jQuery('#CollarFabric li').eq(0).addClass("active");
                 if (!window.undoflag) {
-                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#collarcolor').val() + ");";
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + jQuery('#collarcolor').val() + ");";
                     window.indexUndo++;
                     window.undoflag = false;
                 }
-                $('#customcollar').val(true);
-                $('#collarcolor').val(fid);
+                jQuery('#customcollar').val(true);
+                jQuery('#collarcolor').val(fid);
 
                 window.undoflag = true;
-                CollarClick(parseInt($('#collar').val()));
+                CollarClick(parseInt(jQuery('#collar').val()));
+                BackClick(parseInt(jQuery('#back').val()));
                 window.undoflag = false;
-				//$('#scolimg').attr('src', prestine_url + fid + "_main_set3_0004.png");
-                /*$.get('/Shirts/GetCollarcolor/' + fid, function (data) {
-                    $('#CollarcolorDisc').html(data);
+				//jQuery('#scolimg').attr('src', prestine_url + fid + "_main_set3_0004.png");
+                /*jQuery.get('/Shirts/GetCollarcolor/' + fid, function (data) {
+                    jQuery('#CollarcolorDisc').html(data);
                 });*/
 				jQuery.ajax({   
 					url : base_url + 'customizeshirt/index/collarcolor',
@@ -551,18 +897,18 @@ function fabricTypeClick(fid, type) {
             }
         case "CollarInner":
             {
-                $('#CollarFabric li').eq(1).addClass("active");
+                jQuery('#CollarFabric li').eq(1).addClass("active");
                 if (!window.undoflag) {
-                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#collarliningcolor').val() + ");";
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + jQuery('#collarliningcolor').val() + ");";
                     window.indexUndo++;
                     window.undoflag = false;
                 }
-                $('#collarlining').val(1);
-                $('#collarliningcolor').val(fid);
-                $('#scolimg').attr('src', prestine_url + fid + "_main_set3_0004.png");
+                jQuery('#collarlining').val(1);
+                jQuery('#collarliningcolor').val(fid);
+                jQuery('#scolimg').attr('src', prestine_url + fid + "_main_set3_0004.png");
 				
-                /*$.get('/Shirts/GetCollarliningcolor/' + id, function (data) {
-                    $('#CollarliningcolorDisc').html(data);
+                /*jQuery.get('/Shirts/GetCollarliningcolor/' + id, function (data) {
+                    jQuery('#CollarliningcolorDisc').html(data);
                 });*/
 				jQuery.ajax({   
 					url : base_url + 'customizeshirt/index/collarliningcolor',
@@ -576,19 +922,20 @@ function fabricTypeClick(fid, type) {
             }
         case "Cuff":
             {
-                $('#CuffFabric li').eq(0).addClass("active");
+                jQuery('#CuffFabric li').eq(0).addClass("active");
                 if (!window.undoflag) {
-                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#cuffcolor').val() + ");";
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + jQuery('#cuffcolor').val() + ");";
                     window.indexUndo++;
                     window.undoflag = false;
                 }
-                $('#cutomcuff').val(true);
-                $('#cuffcolor').val(fid);
+                jQuery('#cutomcuff').val(true);
+                jQuery('#cuffcolor').val(fid);
                 window.undoflag = true;
-                CuffClick(parseInt($('#cuff').val()));
+                CuffClick(parseInt(jQuery('#cuff').val()));
+                BackClick(parseInt(jQuery('#back').val()));
                 window.undoflag = false;
-				/*$.get('/Shirts/GetCuffcolor/' + id, function (data) {
-                    $('#CuffcolorDisc').html(data);
+				/*jQuery.get('/Shirts/GetCuffcolor/' + id, function (data) {
+                    jQuery('#CuffcolorDisc').html(data);
                 });*/
 				jQuery.ajax({   
 					url : base_url + 'customizeshirt/index/cuffcolor',
@@ -602,17 +949,17 @@ function fabricTypeClick(fid, type) {
             }
         case "CuffInner":
             {
-                $('#CuffFabric li').eq(1).addClass("active");
+                jQuery('#CuffFabric li').eq(1).addClass("active");
                 if (!window.undoflag) {
-                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#cuffinnercolor').val() + ");";
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + jQuery('#cuffinnercolor').val() + ");";
                     window.indexUndo++;
                     window.undoflag = false;
                 }
-                $('#cuffinner').val(1);
-                $('#cuffinnercolor').val(fid);
+                jQuery('#cuffinner').val(1);
+                jQuery('#cuffinnercolor').val(fid);
 				
-				/*$.get('/Shirts/GetCuffinnercolor/' + id, function (data) {
-                    $('#CuffinnercolorDisc').html(data);
+				/*jQuery.get('/Shirts/GetCuffinnercolor/' + id, function (data) {
+                    jQuery('#CuffinnercolorDisc').html(data);
                 });*/
 				jQuery.ajax({   
 					url : base_url + 'customizeshirt/index/cuffinnercolor',
@@ -627,19 +974,19 @@ function fabricTypeClick(fid, type) {
             }
         case "Placket":
             {
-                $('#PlacketFabric li').eq(0).addClass("active");
+                jQuery('#PlacketFabric li').eq(0).addClass("active");
                 if (!window.undoflag) {
-                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#placketcolor').val() + ");";
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + jQuery('#placketcolor').val() + ");";
                     window.indexUndo++;
                     window.undoflag = false;
                 }
-                $('#customplacket').val(true);
-                $('#placketcolor').val(fid);
+                jQuery('#customplacket').val(true);
+                jQuery('#placketcolor').val(fid);
                 window.undoflag = true;
-                placketClick(parseInt($('#placket').val()));
+                placketClick(parseInt(jQuery('#placket').val()));
                 window.undoflag = false;
-                 /*$.get('/Shirts/GetPlacketcolor/' + id, function (data) {
-                     $('#PlacketcolorDisc').html(data);
+                 /*jQuery.get('/Shirts/GetPlacketcolor/' + id, function (data) {
+                     jQuery('#PlacketcolorDisc').html(data);
                  });*/
 				 jQuery.ajax({   
 					url : base_url + 'customizeshirt/index/placketcolor',
@@ -654,37 +1001,37 @@ function fabricTypeClick(fid, type) {
             }
         case "Pocket":
             {
-                $('#PocketFabric li').eq(0).addClass("active");
+                jQuery('#PocketFabric li').eq(0).addClass("active");
                 if (!window.undoflag) {
-                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#pocketcolor').val() + ");";
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + jQuery('#pocketcolor').val() + ");";
                     window.indexUndo++;
                     window.undoflag = false;
                 }
-                $('#custompocket').val(true);
-                $('#pocketcolor').val(fid);
+                jQuery('#custompocket').val(true);
+                jQuery('#pocketcolor').val(fid);
                 window.undoflag = true;
-                PocketClick(parseInt($('#pocket').val()));
+                PocketClick(parseInt(jQuery('#pocket').val()));
                 window.undoflag = false;
-                $.get('/Shirts/GetPocketcolor/' + id, function (data) {
-                    $('#PocketcolorDisc').html(data);
+                jQuery.get('/Shirts/GetPocketcolor/' + id, function (data) {
+                    jQuery('#PocketcolorDisc').html(data);
                 });
                 break;
             }
         case "Shoulder":
             {
-                $('#ShoulderFabric li').eq(0).addClass("active");
+                jQuery('#ShoulderFabric li').eq(0).addClass("active");
                 if (!window.undoflag) {
-                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + $('#strapcolor').val() + ");";
+                    window.stack[window.indexUndo] = "UndoFabric(&#39;" + type + "&#39;," + jQuery('#strapcolor').val() + ");";
                     window.indexUndo++;
                     window.undoflag = false;
                 }
-                $('#customstrap').val(true);
-                $('#strapcolor').val(fid);
+                jQuery('#customstrap').val(true);
+                jQuery('#strapcolor').val(fid);
                 window.undoflag = true;
-                ShoulderClick(parseInt($('#strap').val()));
+                ShoulderClick(parseInt(jQuery('#strap').val()));
                 window.undoflag = false;
-                $.get('/Shirts/GetStrapcolor/' + id, function (data) {
-                    $('#StrapcolorDisc').html(data);
+                jQuery.get('/Shirts/GetStrapcolor/' + id, function (data) {
+                    jQuery('#StrapcolorDisc').html(data);
                 });
                 break;
             }
@@ -694,11 +1041,11 @@ function fabricTypeClick(fid, type) {
             }
     }
 
-    $('#CurrentType').val('');
+    jQuery('#CurrentType').val('');
 }
 
 function UndoFabric(type, id) {
-    $('#CurrentType').val(type);
+    jQuery('#CurrentType').val(type);
     fabricTypeClick(id, type);
 }
 
@@ -706,13 +1053,10 @@ function UndoFunction() {
     if (window.indexUndo > 0) {
         window.indexUndo--;
         if (window.indexUndo >= 0) {
-            //alert(window.stack['sleeve']);
-            $('#sleeve').val(window.stack['sleeve']);
-            //alert($('#sleeve').val());
-            $('#UndoButton').html("<input type='button' id='un' onclick='" + window.stack[window.indexUndo] + "' />");
+            jQuery('#UndoButton').html("<input type='button' id='un' onclick='" + window.stack[window.indexUndo] + "' />");
         
             window.undoflag = true;
-            $('#un')[0].click();
+            jQuery('#un')[0].click();
             initScript();
             window.undoflag = false;
         }
@@ -720,164 +1064,164 @@ function UndoFunction() {
 }
 
 function initScript() {
-    var placket = $('#placket').val();
-    $('#PlacketType li').removeClass();
-    $('#PlacketType li').eq(placket - 1).addClass("active");
+    var placket = jQuery('#placket').val();
+    jQuery('#PlacketType li').removeClass();
+    jQuery('#PlacketType li').eq(placket - 1).addClass("active");
 
-    var pocket = $('#pocket').val();
-    $('#PocketType li').removeClass();
-    $('#PocketType li').eq(pocket - 1).addClass("active");
+    var pocket = jQuery('#pocket').val();
+    jQuery('#PocketType li').removeClass();
+    jQuery('#PocketType li').eq(pocket - 1).addClass("active");
 
-    var strap = $('#strap').val();
-    $('#ShoulderType li').removeClass();
-    $('#ShoulderType li').eq(strap - 1).addClass("active");
+    var strap = jQuery('#strap').val();
+    jQuery('#ShoulderType li').removeClass();
+    jQuery('#ShoulderType li').eq(strap - 1).addClass("active");
 
-    var cuff = $('#cuff').val();
-    $('#CuffType li').removeClass();
-    $('#CuffType li').eq(cuff - 1).addClass("active");
+    var cuff = jQuery('#cuff').val();
+    jQuery('#CuffType li').removeClass();
+    jQuery('#CuffType li').eq(cuff - 1).addClass("active");
 
-    var collar = $('#collar').val();
-    $('#CollarType li').removeClass();
-    $('#CollarType').find('li[collar=' + collar + ']').addClass("active");
+    var collar = jQuery('#collar').val();
+    jQuery('#CollarType li').removeClass();
+    jQuery('#CollarType').find('li[collar=' + collar + ']').addClass("active");
 
-    var buttons = $('#buttons').val();
-    $('#ButtonColor li').removeClass();
-    $('#ButtonColor li').eq(buttons - 1).addClass("active");
+    var buttons = jQuery('#buttons').val();
+    jQuery('#ButtonColor li').removeClass();
+    jQuery('#ButtonColor li').eq(buttons - 1).addClass("active");
 
-    var basecolor = $('#basecolor').val();
+    var basecolor = jQuery('#basecolor').val();
     if (placket == 2) {
-        $('#PlacketFabric').hide();
-        $('#placketcolor').val($('#basecolor').val());
-        $('#customplacket').val(false);
-        $('#ttlPlacketFabricText').hide();
+        jQuery('#PlacketFabric').hide();
+        jQuery('#placketcolor').val(jQuery('#basecolor').val());
+        jQuery('#customplacket').val(false);
+        jQuery('#ttlPlacketFabricText').hide();
     }
     else {
-        $('#PlacketFabric').show();
-        $('#ttlPlacketFabricText').show();
+        jQuery('#PlacketFabric').show();
+        jQuery('#ttlPlacketFabricText').show();
     }
 
-    if (basecolor != $('#collarcolor').val()) {
+    if (basecolor != jQuery('#collarcolor').val()) {
 
-        $('#CollarFabric li').eq(0).addClass("active");
+        jQuery('#CollarFabric li').eq(0).addClass("active");
     }
     else {
-        $('#CollarFabric li').eq(0).removeClass();
+        jQuery('#CollarFabric li').eq(0).removeClass();
     }
 
-    if (Number($('#collarlining').val() != 0)/*$('#collarcolor').val() != $('#collarliningcolor').val()*/) {
-        $('#CollarFabric li').eq(1).addClass("active");
+    if (Number(jQuery('#collarlining').val() != 0)/*jQuery('#collarcolor').val() != jQuery('#collarliningcolor').val()*/) {
+        jQuery('#CollarFabric li').eq(1).addClass("active");
     }
     else {
-        $('#CollarFabric li').eq(1).removeClass();
+        jQuery('#CollarFabric li').eq(1).removeClass();
     }
 
-    if (basecolor != $('#cuffcolor').val()) {
+    if (basecolor != jQuery('#cuffcolor').val()) {
 
-        $('#CuffFabric li').eq(0).addClass("active")
+        jQuery('#CuffFabric li').eq(0).addClass("active")
     }
     else {
-        $('#CuffFabric li').eq(0).removeClass();
+        jQuery('#CuffFabric li').eq(0).removeClass();
     }
 
-    if ($('#cuffcolor').val() != $('#cuffinnercolor').val()) {
+    if (jQuery('#cuffcolor').val() != jQuery('#cuffinnercolor').val()) {
 
-        $('#CuffFabric li').eq(1).addClass("active");
+        jQuery('#CuffFabric li').eq(1).addClass("active");
     }
     else {
-        $('#CuffFabric li').eq(1).removeClass();
+        jQuery('#CuffFabric li').eq(1).removeClass();
     }
 
-    if (basecolor != $('#placketcolor').val()) {
-        $('#PlacketFabric li').eq(0).addClass("active")
+    if (basecolor != jQuery('#placketcolor').val()) {
+        jQuery('#PlacketFabric li').eq(0).addClass("active")
     }
     else {
-        $('#PlacketFabric li').removeClass();
+        jQuery('#PlacketFabric li').removeClass();
     }
 
-    if (basecolor != $('#pocketcolor').val()) {
-        $('#PocketFabric li').eq(0).addClass("active")
+    if (basecolor != jQuery('#pocketcolor').val()) {
+        jQuery('#PocketFabric li').eq(0).addClass("active")
     }
     else {
-        $('#PocketFabric li').removeClass();
+        jQuery('#PocketFabric li').removeClass();
     }
 
-    if (basecolor != $('#strapcolor').val()) {
-        $('#ShoulderFabric li').eq(0).addClass("active")
+    if (basecolor != jQuery('#strapcolor').val()) {
+        jQuery('#ShoulderFabric li').eq(0).addClass("active")
     }
     else {
-        $('#ShoulderFabric li').removeClass();
+        jQuery('#ShoulderFabric li').removeClass();
     }
 
     var mono = false;
     var monoString = "";
-    if ($('#cuffmono').val() == 2) {
-        $('#monogram li').eq(0).addClass("CircleActive");
+    if (jQuery('#cuffmono').val() == 2) {
+        jQuery('#monogram li').eq(0).addClass("CircleActive");
         mono = true;
         monoString = " Cuff,";
     }
-    if ($('#pocketmono').val() == 2) {
-        $('#monogram li').eq(1).addClass("CircleActive");
+    if (jQuery('#pocketmono').val() == 2) {
+        jQuery('#monogram li').eq(1).addClass("CircleActive");
         mono = true;
         monoString = " Pocket,";
     }
-    if ($('#collarmono').val() == 2) {
-        $('#monogram li').eq(2).addClass("CircleActive");
+    if (jQuery('#collarmono').val() == 2) {
+        jQuery('#monogram li').eq(2).addClass("CircleActive");
         mono = true;
         monoString += " Collar,";
     }
     if (mono) {
 
-        $('#monotextT').val($('#monotext').val());
-        $('#monocolorT option[value*="' + $('#monocolor').val() + '"]').attr('selected', 'selected')
-        var string = "Monogram '" + $('#monotext').val() + "' on " + monoString + " in " + $('#monocolor').val();
-        $('.monolab').html(string);
-        $('#MonoDisc').html(string);
+        jQuery('#monotextT').val(jQuery('#monotext').val());
+        jQuery('#monocolorT option[value*="' + jQuery('#monocolor').val() + '"]').attr('selected', 'selected')
+        var string = "Monogram '" + jQuery('#monotext').val() + "' on " + monoString + " in " + jQuery('#monocolor').val();
+        jQuery('.monolab').html(string);
+        jQuery('#MonoDisc').html(string);
     }
 
     var label = false;
     var labelString = "";
-    if ($('#placketlabel').val() == 2) {
-        $('#label li').eq(0).addClass("CircleActive");
+    if (jQuery('#placketlabel').val() == 2) {
+        jQuery('#label li').eq(0).addClass("CircleActive");
         label = true;
         labelString = " Placket,";
     }
 
-    if ($('#collarlabel').val() == 2) {
-        $('#label li').eq(1).addClass("CircleActive");
+    if (jQuery('#collarlabel').val() == 2) {
+        jQuery('#label li').eq(1).addClass("CircleActive");
         label = true;
         labelString += " Collar,";
     }
 
     if (label) {
-        var color = $('#labelcolor').val();
-        var text = $('#labeltext').val();
-        $('#labeltextT').val(text);
-        $('#labelcolorT option[value*="' + $('#labelcolor').val() + '"]').attr('selected', 'selected');
+        var color = jQuery('#labelcolor').val();
+        var text = jQuery('#labeltext').val();
+        jQuery('#labeltextT').val(text);
+        jQuery('#labelcolorT option[value*="' + jQuery('#labelcolor').val() + '"]').attr('selected', 'selected');
 
-        $('.lablab').html("Label '" + text + "' on " + labelString + " in " + color);
-        $('#LabelDisc').html("Label '" + text + "' on " + labelString + " in " + color);
+        jQuery('.lablab').html("Label '" + text + "' on " + labelString + " in " + color);
+        jQuery('#LabelDisc').html("Label '" + text + "' on " + labelString + " in " + color);
     }
 
 
 }
 
 function MonoClick(plac) {
-    if ($('#monogram li').eq(plac - 1).attr('class') == "" || $('#monogram li').eq(plac - 1).attr('class') == undefined) {
-        $('#monogram li').eq(plac - 1).addClass("CircleActive");
+    if (jQuery('#monogram li').eq(plac - 1).attr('class') == "" || jQuery('#monogram li').eq(plac - 1).attr('class') == undefined) {
+        jQuery('#monogram li').eq(plac - 1).addClass("CircleActive");
     }
     else {
-        $('#monogram li').eq(plac - 1).removeClass("CircleActive");
+        jQuery('#monogram li').eq(plac - 1).removeClass("CircleActive");
     }
 }
 
 function selectMonogramFont(val) {
-    $('#partMonogramFont li').removeClass('active');
-    $('#partMonogramFont li').eq(val).addClass('active');
+    jQuery('#partMonogramFont li').removeClass('active');
+    jQuery('#partMonogramFont li').eq(val).addClass('active');
 
-    $('#partMonogramFont li a').removeClass('item_selected');
+    jQuery('#partMonogramFont li a').removeClass('item_selected');
 
-    var el = $('#partMonogramFont li').eq(val);
-    $(el).find('a').addClass('item_selected');
+    var el = jQuery('#partMonogramFont li').eq(val);
+    jQuery(el).find('a').addClass('item_selected');
 }
 
 function ApplyMono() {
@@ -890,82 +1234,82 @@ function ApplyMono() {
 
     if (!window.undoflag) {
 
-        window.stack[window.indexUndo] = 'monolabel(&#39;' + $('#monotext').val() + '&#39;,&#39;'
-                                                      + $('#monocolor').val() + '&#39;,&#39;'
-                                                      + $('#cuffmono').val() + '&#39;,&#39;'
-                                                      + $('#pocketmono').val() + '&#39;,&#39;' + $('#collarmono').val() + '&#39;,&#39;'
-                                                      + $('#monogramfont').val() + '&#39;,' + true + ');';
+        window.stack[window.indexUndo] = 'monolabel(&#39;' + jQuery('#monotext').val() + '&#39;,&#39;'
+                                                      + jQuery('#monocolor').val() + '&#39;,&#39;'
+                                                      + jQuery('#cuffmono').val() + '&#39;,&#39;'
+                                                      + jQuery('#pocketmono').val() + '&#39;,&#39;' + jQuery('#collarmono').val() + '&#39;,&#39;'
+                                                      + jQuery('#monogramfont').val() + '&#39;,' + true + ');';
         window.indexUndo++;
         window.undoflag = false;
     }
 
-    if (($('#monotextT').val() != '') && ($('#monocolorT').val() != 'color')) {
+    if ((jQuery('#monotextT').val() != '') && (jQuery('#monocolorT').val() != 'color')) {
 
-        if ($('#monogram li').eq(0).attr('class') != "" && $('#monogram li').eq(0).attr('class') != undefined) {
+        if (jQuery('#monogram li').eq(0).attr('class') != "" && jQuery('#monogram li').eq(0).attr('class') != undefined) {
             string = " Cuff,";
             Cuff = 2;
             thereIs = true;
         }
-        if ($('#monogram li').eq(1).attr('class') != "" && $('#monogram li').eq(1).attr('class') != undefined) {
+        if (jQuery('#monogram li').eq(1).attr('class') != "" && jQuery('#monogram li').eq(1).attr('class') != undefined) {
             string = string + " Pocket,";
             Pocket = 2;
             thereIs = true;
         }
-        if ($('#monogram li').eq(2).attr('class') != "" && $('#monogram li').eq(2).attr('class') != undefined) {
+        if (jQuery('#monogram li').eq(2).attr('class') != "" && jQuery('#monogram li').eq(2).attr('class') != undefined) {
             string = string + " Collar,";
             Collar = 2;
             thereIs = true;
         }
     }
     if (thereIs) {
-        var text = $('#monotextT').val();
-        var color = $('#monocolorT').val();
-        $('.monolab')[0].innerHTML = "Monogram '" + text + "' on" + string + " in " + color;
-        $('.monolab')[1].innerHTML = "Monogram '" + text + "' on" + string + " in " + color;
-        $('#MonoDisc').html("Monogram '" + text + "' on" + string + " in " + color);
+        var text = jQuery('#monotextT').val();
+        var color = jQuery('#monocolorT').val();
+        jQuery('.monolab')[0].innerHTML = "Monogram '" + text + "' on" + string + " in " + color;
+        jQuery('.monolab')[1].innerHTML = "Monogram '" + text + "' on" + string + " in " + color;
+        jQuery('#MonoDisc').html("Monogram '" + text + "' on" + string + " in " + color);
 
-        $('#cuffmono').val(Cuff);
-        $('#pocketmono').val(Pocket);
-        $('#collarmono').val(Collar);
+        jQuery('#cuffmono').val(Cuff);
+        jQuery('#pocketmono').val(Pocket);
+        jQuery('#collarmono').val(Collar);
 
-        $('#monotext').val($('#monotextT').val());
-        $('#monocolor').val($('#monocolorT').val());
+        jQuery('#monotext').val(jQuery('#monotextT').val());
+        jQuery('#monocolor').val(jQuery('#monocolorT').val());
 
-        Font = $('#partMonogramFont li.active').index();
+        Font = jQuery('#partMonogramFont li.active').index();
 
-        $('#monogramfont').val(Font);
+        jQuery('#monogramfont').val(Font);
     }
     else {
-        $('#monotext').val('');
-        $('#monocolor').val('color');
-        $('#pocketmono').val(Pocket);
-        $('#collarmono').val(Collar);
-        $('#cuffmono').val(Cuff);
-        $('.monolab')[0].innerHTML = "No Monograms selected.";
-        $('.monolab')[1].innerHTML = "No Monograms selected.";
-        $('#MonoDisc').html("");
+        jQuery('#monotext').val('');
+        jQuery('#monocolor').val('color');
+        jQuery('#pocketmono').val(Pocket);
+        jQuery('#collarmono').val(Collar);
+        jQuery('#cuffmono').val(Cuff);
+        jQuery('.monolab')[0].innerHTML = "No Monograms selected.";
+        jQuery('.monolab')[1].innerHTML = "No Monograms selected.";
+        jQuery('#MonoDisc').html("");
 
-        $('#monogramfont').val(Font);
+        jQuery('#monogramfont').val(Font);
     }
 }
 
 function LabelClick(plac) {
-    if ($('#label li').eq(plac - 1).attr('class') == "" || $('#label li').eq(plac - 1).attr('class') == undefined) {
-        $('#label li').eq(plac - 1).addClass("CircleActive");
+    if (jQuery('#label li').eq(plac - 1).attr('class') == "" || jQuery('#label li').eq(plac - 1).attr('class') == undefined) {
+        jQuery('#label li').eq(plac - 1).addClass("CircleActive");
     }
     else {
-        $('#label li').eq(plac - 1).removeClass("CircleActive");
+        jQuery('#label li').eq(plac - 1).removeClass("CircleActive");
     }
 }
 
 function selectLabelFont(val) {
-    $('#partLabelFont li').removeClass('active');
-    $('#partLabelFont li').eq(val).addClass('active');
+    jQuery('#partLabelFont li').removeClass('active');
+    jQuery('#partLabelFont li').eq(val).addClass('active');
 
-    $('#partLabelFont li a').removeClass('item_selected');
+    jQuery('#partLabelFont li a').removeClass('item_selected');
 
-    var el = $('#partLabelFont li').eq(val);
-    $(el).find('a').addClass('item_selected');
+    var el = jQuery('#partLabelFont li').eq(val);
+    jQuery(el).find('a').addClass('item_selected');
 }
 
 function ApplyLabel() {
@@ -975,49 +1319,105 @@ function ApplyLabel() {
 
     if (!window.undoflag) {
 
-        window.stack[window.indexUndo] = 'monolabel(&#39;' + $('#labeltext').val() + '&#39;,&#39;'
-                                                      + $('#labelcolor').val() + '&#39;,&#39;'
-                                                      + $('#placketlabel').val() + '&#39;,&#39;'
-                                                      + $('#collarlabel').val() + '&#39;,'
-                                                      + false + ',&#39;' + $('#labelfont').val() + '&#39;,' + false + ');';
+        window.stack[window.indexUndo] = 'monolabel(&#39;' + jQuery('#labeltext').val() + '&#39;,&#39;'
+                                                      + jQuery('#labelcolor').val() + '&#39;,&#39;'
+                                                      + jQuery('#placketlabel').val() + '&#39;,&#39;'
+                                                      + jQuery('#collarlabel').val() + '&#39;,'
+                                                      + false + ',&#39;' + jQuery('#labelfont').val() + '&#39;,' + false + ');';
         window.indexUndo++;
         window.undoflag = false;
     }
 
-    if (($('#labeltextT').val() != '') && ($('#labelcolorT').val() != 'color')) {
-        if ($('#label li:first').attr('class') != "" && $('#label li:first').attr('class') != undefined) {
+    if ((jQuery('#labeltextT').val() != '') && (jQuery('#labelcolorT').val() != 'color')) {
+        if (jQuery('#label li:first').attr('class') != "" && jQuery('#label li:first').attr('class') != undefined) {
             string = " Placket,";
-            $('#placketlabel').val(2);
+            jQuery('#placketlabel').val(2);
             thereIs = true;
         }
-        if ($('#label li:last').attr('class') != "" && $('#label li:last').attr('class') != undefined) {
+        if (jQuery('#label li:last').attr('class') != "" && jQuery('#label li:last').attr('class') != undefined) {
             string = string + " Collar,";
-            $('#collarlabel').val(2);
+            jQuery('#collarlabel').val(2);
             thereIs = true;
         }
     }
     if (thereIs) {
-        var text = $('#labeltextT').val();
-        var color = $('#labelcolorT').val();
+        var text = jQuery('#labeltextT').val();
+        var color = jQuery('#labelcolorT').val();
 
-        $('#labeltext').val(text);
-        $('#labelcolor').val(color);
-        $('.lablab')[0].innerHTML = "Label '" + text + "' on " + string + " in " + color;
-        $('.lablab')[1].innerHTML = "Label '" + text + "' on " + string + " in " + color;
-        $('#LabelDisc').html("Label '" + text + "' on " + string + " in " + color);
+        jQuery('#labeltext').val(text);
+        jQuery('#labelcolor').val(color);
+        jQuery('.lablab')[0].innerHTML = "Label '" + text + "' on " + string + " in " + color;
+        jQuery('.lablab')[1].innerHTML = "Label '" + text + "' on " + string + " in " + color;
+        jQuery('#LabelDisc').html("Label '" + text + "' on " + string + " in " + color);
 
-        Font = $('#partLabelFont li.active').index();
-        $('#labelfont').val(Font);
+        Font = jQuery('#partLabelFont li.active').index();
+        jQuery('#labelfont').val(Font);
     }
     else {
-        $('#labeltext').val('');
-        $('#labelcolor').val('color');
-        $('#placketlabel').val(1);
-        $('#collarlabel').val(1);
-        $('.lablab')[0].innerHTML = "No Labels selected.";
-        $('.lablab')[1].innerHTML = "No Labels selected.";
-        $('#LabelDisc').html("");
-        $('#labelfont').val(Font);
+        jQuery('#labeltext').val('');
+        jQuery('#labelcolor').val('color');
+        jQuery('#placketlabel').val(1);
+        jQuery('#collarlabel').val(1);
+        jQuery('.lablab')[0].innerHTML = "No Labels selected.";
+        jQuery('.lablab')[1].innerHTML = "No Labels selected.";
+        jQuery('#LabelDisc').html("");
+        jQuery('#labelfont').val(Font);
     }
 }
 
+function monolabel(text, color, p1, p2, p3, font, isMono) {
+    if (isMono) {
+        jQuery('#monotextT').val(text);
+        jQuery('#monocolorT').val(color);
+        if (p1 == '2') {
+            jQuery('#monogram li').eq(0).attr('class', 'CircleActive');
+        }
+        else {
+            jQuery('#monogram li').eq(0).attr('class', '');
+        }
+        if (p2 == '2') {
+            jQuery('#monogram li').eq(1).attr('class', 'CircleActive');
+        }
+        else {
+            jQuery('#monogram li').eq(1).attr('class', '');
+        }
+        if (p3 == '2') {
+            jQuery('#monogram li').eq(2).attr('class', 'CircleActive');
+        }
+        else {
+            jQuery('#monogram li').eq(2).attr('class', '');
+        }
+
+        jQuery('#partMonogramFont li').removeClass('active');
+        jQuery('#partMonogramFont li a').removeClass('item_selected');
+        
+        jQuery('#partMonogramFont li').eq(font).addClass('active');
+        jQuery(jQuery('#partMonogramFont li').eq(font)).find('a').addClass('item_selected');
+
+        ApplyMono();
+    }
+    else {
+        jQuery('#labeltextT').val(text);
+        jQuery('#labelcolorT').val(color);
+        if (p1 == '2') {
+            jQuery('#label li').eq(0).attr('class', 'CircleActive');
+        }
+        else {
+            jQuery('#label li').eq(0).attr('class', '');
+        }
+        if (p2 == '2') {
+            jQuery('#label li').eq(1).attr('class', 'CircleActive');
+        }
+        else {
+            jQuery('#label li').eq(1).attr('class', '');
+        }
+
+        jQuery('#partLabelFont li').removeClass('active');
+        jQuery('#partLabelFont li a').removeClass('item_selected');
+
+        jQuery('#partLabelFont li').eq(font).addClass('active');
+        jQuery(jQuery('#partLabelFont li').eq(font)).find('a').addClass('item_selected');
+
+        ApplyLabel();
+    }
+}

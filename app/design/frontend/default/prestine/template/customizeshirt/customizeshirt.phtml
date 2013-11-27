@@ -11,35 +11,63 @@
 <div class="customize-container">
 <div class="left-cont">
 <div id="accordion">
-  <h3 class="fabric_tab">SELECT FABRIC</h3>
+  <h3 class="fabric_tab">1. SELECT FABRIC</h3>
   <div class="fabrics">
-  <ul class="items-list">
+  
     <?php
 		$category_id = '6';
-		$products = Mage::getModel('catalog/category')->load($category_id)
-		 ->getProductCollection()
-		 ->addAttributeToSelect('*')
-		 ->addAttributeToFilter('status', 1)
-		 ->addAttributeToFilter('visibility', 4)
-		 ->setOrder('price', 'ASC');
-		foreach($products as $product) { ?>
+		$children = Mage::getModel('catalog/category')->getCategories($category_id); 
+		echo $children; ?>
+		<ul class="tabs">
+		<?php $ii=1; foreach ($children as $category) { ?>
+			 <li class="plus1"><a href="#fabrictab<?php echo $ii; ?>"><?php echo $category->getName(); ?></a></li>
+			 <?php $ii++;
+			 $products = Mage::getModel('catalog/category')->load($category->getId())
+			 ->getProductCollection()
+			 ->addAttributeToSelect('*')
+			 ->addAttributeToFilter('status', 1)
+			 ->addAttributeToFilter('visibility', 4)
+			 ->setOrder('price', 'ASC'); 
+			} ?>
+		</ul>
+
+		<div class="tab_container">
+		<?php $fii=1; foreach ($children as $category) { 
+			$products = Mage::getModel('catalog/category')->load($category->getId())
+			->getProductCollection()
+			->addAttributeToSelect('*')
+			->addAttributeToFilter('status', 1)
+			->addAttributeToFilter('visibility', 4)
+			->setOrder('price', 'ASC'); ?>
+		<div id="fabrictab<?php echo $fii; ?>" class="tab_content shirt-sleeve-style">
+		<ul class="items-list">
+		<?php foreach($products as $product) { ?>
 		<li onclick="GetFabric('<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail'); ?>','<?php echo $product->getShortDescription(); ?>','<?php echo $product->getName(); ?>');">
 		<!--<span class="PriceShirt"><?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?></span>-->
 		<img width="75" height="75" onclick="fabricClick('<?php echo $product->getId(); ?>', '<?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?>','<?php echo $product->getName(); ?>','<?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?>','<?php echo $product->getShortDescription(); ?>');" style="cursor:pointer" alt="" src="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(75); ?>"/>
 		</li>
 		<?php } ?>
 		</ul>
+		
+		</div>
+		<?php $fii++; } ?>
 		<div id="fabricslideimg"></div>
+		</div>
+		
+		
 		<div style="clear:both;"></div>
   </div>
-  <h3  class="style_tab">SELECT STYLE</h3>
+  <h3  class="style_tab">2. SELECT STYLE</h3>
   <div class="shirt-style">
    <ul class="tabs">
-   	 <li class="plus1"><a href="#tab1">Sleeve</a></li>
-     <li class="plus1"><a href="#tab2">Collar</a></li>
-	 <li class="plus1"><a href="#tab3">Cuff</a></li>
-	 <li class="plus1"><a href="#tab4">Front</a></li>
-	 <li class="plus1"><a href="#tab5">Shoulder</a></li>
+   	 <li class="plus1" onclick="ViewChangeClick('front')"><a href="#tab1">Sleeve</a></li>
+     <li class="plus1" onclick="ViewChangeClick('front')"><a href="#tab2">Collar</a></li>
+	 <li class="plus1" onclick="ViewChangeClick('front')"><a href="#tab3">Cuff</a></li>
+	 <li class="plus1" onclick="ViewChangeClick('front')"><a href="#tab4">Front</a></li>
+	 <li class="plus1" onclick="ViewChangeClick('front')"><a href="#tab5">Pocket</a></li>
+	 <li class="plus1" onclick="ViewChangeClick('front')"><a href="#tab6">Shoulder</a></li>
+
+	 <li class="plus1" onclick="ViewChangeClick('back')"><a href="#tab8">Back</a></li>
    </ul>
   <div class="tab_container">
   	<div id="tab1" class="tab_content shirt-sleeve-style">
@@ -98,7 +126,30 @@
 	</ul>
 	<div id="frontslideimg"></div>
 	</div>
-	<div id="tab5" class="tab_content shirt-shoulder-style">
+	<div id="tab5" class="tab_content shirt-pocket-style">
+    <ul class="items-list pocket-style">
+    <?php $collection = Mage::getModel('customizeshirt/pocket')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('pocket_id', 'ASC');
+	foreach($collection as $pocket) { ?>
+		<li onclick="GetPocket('<?php echo $pocket->getPocketTitle(); ?>','<?php echo Mage::getBaseUrl('media').$pocket->getPocketImage(); ?>');" class="">
+		<a onclick="PocketClick(<?php echo $pocket->getSwitchno(); ?>)"><img width="80" alt="" src="<?php echo Mage::getBaseUrl('media').$pocket->getPocketImage(); ?>"><strong><?php echo $pocket->getPocketTitle(); ?></strong></a>
+		</li>
+	<?php } ?>
+	</ul>
+	<div id="pocketslideimg"></div>
+
+	<div class="noofpocket_cont" style="display:none;">
+		<select id="sel_noofpocket" class="sel_noofpocket" name="sel_noofpocket" onchange="NoofPocketClick(this.value);">
+		 <option value="1">1 Pocket</option>
+		 <option value="2">2 Pockets</option>
+		</select>
+		<input id="noofpocket" type="hidden" value="1" name="noofpocket">
+	</div>
+
+	</div>
+
+	<div id="tab6" class="tab_content shirt-shoulder-style">
     <ul class="items-list shoulder-style">
     <?php $collection = Mage::getModel('customizeshirt/shoulder')->getCollection()
 			->addFieldToFilter('status', 1)
@@ -112,19 +163,35 @@
 	<div id="shoulderslideimg"></div>
 	</div>
 	
+
+
+	<div id="tab8" class="tab_content shirt-back-style">
+    <ul class="items-list back-style">
+    <?php $collection = Mage::getModel('customizeshirt/back')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('back_id', 'ASC');
+	foreach($collection as $back) { ?>
+		<li onclick="GetBack('<?php echo $back->getBackTitle(); ?>','<?php echo Mage::getBaseUrl('media').$back->getBackImage(); ?>');" class="">
+		<a onclick="BackClick(<?php echo $back->getSwitchno(); ?>)"><img width="80" alt="" src="<?php echo Mage::getBaseUrl('media').$back->getBackImage(); ?>"><strong><?php echo $back->getBackTitle(); ?></strong></a>
+		</li>
+	<?php } ?>
+	</ul>
+	<div id="backslideimg"></div>
+	</div>
+
    </div>
 	
 	<div style="clear:both;"></div>
   </div>
-  <h3 class="contrast_tab">SELECT COLOR CONTRAST</h3>
+  <h3 class="contrast_tab">3. SELECT COLOR CONTRAST</h3>
   <div class="shirt-color-contrast">
 	<?php echo $this->getLayout()->createBlock('customizeshirt/customizeshirt')->setTemplate('customizeshirt/colorcontrast.phtml')->toHtml(); ?>
   </div>
-  <h3 class="monogram_tab">PERSONALIZE / MONOGRAM</h3>
+  <h3 class="monogram_tab">4. PERSONALIZE / MONOGRAM</h3>
   <div class="shirt-personalize">
    <?php echo $this->getLayout()->createBlock('customizeshirt/customizeshirt')->setTemplate('customizeshirt/personalize.phtml')->toHtml(); ?>
   </div>
-  <h3 class="measure_tab">MEASUREMENTS</h3>
+  <h3 class="measure_tab">5. MEASUREMENTS</h3>
   <div class="shirt-measurements">
     <?php echo $this->getLayout()->createBlock('customizeshirt/customizeshirt')->setTemplate('customizeshirt/measurements.phtml')->toHtml(); ?>
   </div>
@@ -137,10 +204,17 @@
     });
   });
   </script>
+
+  <div class="submit-cont">
+  <input id="submitt" class="addto" type="button" value="Add to Cart" onclick="capture();" />
+  <input id="qty" type="text" value="1" name="qty" maxlength="5"><label for="qty">Qty</label>
+  <input id="submitt" class="checko" type="button" value="Check Out" onclick="capture();" />
+  </div>
   
   </div>
  
 <div class="right-cont">
+<div id="shirt-container">
 <div id="shirt">
 <div id="sba5" style="position: absolute; top: 0px; right: 0px;">
 <img id="sba5img" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/StandardSleeve_WhiteLineIssueSolver.png" alt="">
@@ -213,20 +287,39 @@
 </div>-->
 </div>
 
-<a onclick="UndoFunction()" style="cursor:pointer">Undo</a>
+<div id="shirt-back" style="display:none;">
+<div id="bb" style="position: absolute; top: 0px; right: 0px;">
+<img id="bbimg" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/<?php echo $default_shirt; ?>_main_back_body.png" alt="">
+</div>
+<div id="bco" style="position: absolute; top: 0px; right: 0px;">
+<img id="bcoimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/<?php echo $default_shirt; ?>_main_back_collar.png">
+</div>
+<div id="bcu" style="position: absolute; top: 0px; right: 0px;">
+<img id="bcuimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/<?php echo $default_shirt; ?>_main_back_cuff.png">
+</div>
+<div id="bst" style="position: absolute; top: 0px; right: 0px;">
+<img id="bstimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/blank.png">
+</div>
+</div>
 
-<div class="col">
+</div>
+
+
+<div class="col" id="summary">
+<div class="opacity"></div>
 <h4>Shirt Summary</h4>
 <ul>
 <li>
 <span id="TitleFabric"></span>
 </li>
 <li id="CollarDisc"></li>
+<li id="SleeveDisc"></li>
 <li id="CuffDisc"></li>
 <li id="PlacketDisc"></li>
 <li id="PocketDisc"></li>
 <li id="ShoulderDisc"></li>
 <li id="ButtonsDisc"></li>
+<li id="BackDisc"></li>
 <li id="CollarcolorDisc"></li>
 <li id="CollarliningcolorDisc"></li>
 <li id="CuffinnercolorDisc"></li>
@@ -237,6 +330,20 @@
 <li id="MonoDisc"></li>
 <li id="LabelDisc"></li>
 </ul>
+</div>
+
+<div class="shirtviewundo" id="">
+<ul>
+<li class="viewfront" onclick="ViewChangeClick('front')">
+<strong>Front View</strong><br>
+<img width="45" src="<?php echo $this->getSkinurl('images/customshirt/frontview.png'); ?>" alt="" /></li>
+<li class="viewback" onclick="ViewChangeClick('back')">
+<strong>Back View</strong><br>
+<img width="45" src="<?php echo $this->getSkinurl('images/customshirt/backview.png'); ?>" alt="" /></li>
+</ul>
+
+<a onclick="UndoFunction()" class="undochanges">Undo</a>
+
 </div>
 
 </div>
@@ -306,7 +413,7 @@
 <input id="splittextcolor" type="hidden" value="" name="splittextcolor">
 <input id="strap" type="hidden" value="1" name="strap" data-val-number="The field strap must be a number." data-val="true">
 <input id="strapcolor" type="hidden" value="<?php echo $default_shirt; ?>" name="strapcolor">
-<input id="sleeve" type="hidden" value="" name="sleeve" data-val-number="The field strap must be a number." data-val="true">
+<input id="sleeve" type="hidden" value="1" name="sleeve" data-val-number="The field strap must be a number." data-val="true">
 <input id="sleeve_case" type="hidden" value="1" name="sleeve_case" data-val-number="The field strap must be a number." data-val="true">
 <input id="tuck" type="hidden" value="" name="tuck" data-val-number="The field tuck must be a number." data-val="true">
 <input id="weight" type="hidden" value="" name="weight" data-val-number="The field weight must be a number." data-val="true">
@@ -314,11 +421,12 @@
 <input id="labelfont" type="hidden" value="0" name="labelfont" data-val-required="The labelfont field is required." data-val-number="The field labelfont must be a number." data-val="true">
 
 <input type="hidden" name="img_val" id="img_val" value="" />
+<input id="back" type="hidden" value="1" name="back" data-val-number="The field strap must be a number." data-val="true">
 
 </fieldset>
 </form>
 
-  <input type="button" value="Add to cart" onclick="capture();" />
+  
   <script type="text/javascript">
 	   function capture() {
 			html2canvas(jQuery("#shirt"), {
@@ -337,7 +445,7 @@
   GetFabric('<?php echo Mage::helper('catalog/image')->init($def_product, 'thumbnail') ?>','<?php echo $def_product->getShortDescription(); ?>','<?php echo $def_product->getName(); ?>');
   });
   function GetFabric(url, discription, name) {
-        var data = "<div style='position: relative;'><div class='img'>" + "<img src='" + url + "' alt='' width='175' height='175' /></div><a href='#largefabric' class='zoomfabric'>zoom</a></div> <div style='display:none'><div id='largefabric'><img src='" + url + "' alt='' /></div></div>";
+        var data = "<div style='position: relative;'><div class='img'>" + "<img src='" + url + "' alt='' width='168' height='168' /></div><a href='#largefabric' class='zoomfabric'>zoom</a></div> <div style='display:none'><div id='largefabric'><img src='" + url + "' alt='' /></div></div>";
         jQuery('#fabricslideimg').html(data);
         jQuery('#fabricslideimg').show();
 			jQuery(".zoomfabric").fancybox({
@@ -349,6 +457,7 @@
 
     function GetSleeve(title, url)
     {
+    
     	var data = "<div style='position: relative;'><div class='img'>" + "<img src='" + url + "' alt='' /></div></div>";
         jQuery('#sleeveslideimg').html(data);
         jQuery('#sleeveslideimg').show();
@@ -373,6 +482,13 @@
 		//jQuery('.shirt-style .tab_content ul.items-list li').removeClass('active');
         //jQuery(this).addClass('active');
     }
+    function GetPocket(title, url) 
+	{
+        var data = "<div style='position: relative;'><div class='img'>" + "<img src='" + url + "' alt='' /></div></div>";
+        jQuery('#pocketslideimg').html(data);
+		//jQuery('.shirt-style .tab_content ul.items-list li').removeClass('active');
+        //jQuery(this).addClass('active');
+    }
 	function GetShoulder(title, url) 
 	{
         var data = "<div style='position: relative;'><div class='img'>" + "<img src='" + url + "' alt='' /></div></div>";
@@ -384,6 +500,16 @@
 	<script type="text/javascript">
 	jQuery(document).ready(function() {
 	//On hover Event
+	jQuery("h3.fabric_tab").hover(function() {
+	if(jQuery(".fabric_tab").hasClass("ui-corner-all")) {
+	//When accordion clicks...
+	jQuery(".fabrics .tab_content").hide(); //Hide all content
+	jQuery(".fabrics ul.tabs li").removeClass("active");
+	jQuery(".fabrics ul.tabs li:first").addClass("active").show(); //Activate first tab
+	jQuery(".fabrics .tab_content:first").show(); //Show first tab content
+	}
+	});
+
 	jQuery("h3.style_tab").hover(function() {
 	if(jQuery(".style_tab").hasClass("ui-corner-all")) {
 	//When accordion clicks...

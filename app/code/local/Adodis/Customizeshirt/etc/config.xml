@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Adodis_Customizeshirt>
-            <version>0.3.0</version>
+            <version>0.5.0</version>
         </Adodis_Customizeshirt>
     </modules>
     <frontend>
@@ -70,9 +70,24 @@
 						<sort_order>5</sort_order>
 						<action>customizeshirt/adminhtml_sleeve</action>
 					</managesleeve>
+					<managebutton module="customizeshirt">
+						<title>Manage Button</title>
+						<sort_order>6</sort_order>
+						<action>customizeshirt/adminhtml_button</action>
+					</managebutton>
+					<managepocket module="customizeshirt">
+						<title>Manage Pocket</title>
+						<sort_order>7</sort_order>
+						<action>customizeshirt/adminhtml_pocket</action>
+					</managepocket>
+					<manageback module="customizeshirt">
+						<title>Manage Back</title>
+						<sort_order>8</sort_order>
+						<action>customizeshirt/adminhtml_back</action>
+					</manageback>
 					<personalize module="customizeshirt">
 						<title>Personalize</title>
-						<sort_order>6</sort_order>
+						<sort_order>9</sort_order>
 						<children>
 							<managemonolabel module="customizeshirt">
 							<title>Manage Monogram / Label</title>
@@ -124,9 +139,23 @@
 								<title>Manage Shoulder</title>
 								<sort_order>40</sort_order>
 							</manageshoulder>
+							
+							<managebutton module="customizeshirt">
+								<title>Manage Button</title>
+								<sort_order>50</sort_order>
+							</managebutton>
+							<managepocket module="customizeshirt">
+								<title>Manage Pocket</title>
+								<sort_order>60</sort_order>
+							</managepocket>
+							<manageback module="customizeshirt">
+								<title>Manage Back</title>
+								<sort_order>70</sort_order>
+							</manageback>
+							
 							<personalize module="customizeshirt">
 								<title>Personalize</title>
-								<sort_order>50</sort_order>
+								<sort_order>80</sort_order>
 								<children>
 									<managemonolabel module="customizeshirt">
 									<title>Manage Monogram / Label</title>
@@ -153,6 +182,26 @@
 		</layout>
     </adminhtml>   
     <global>
+		<events>
+             <checkout_cart_product_add_after>
+                    <observers>
+                            <checkout_cart_observer>
+                                    <type>singleton</type>
+                                    <class>Adodis_Customizeshirt_Model_Observer</class>
+                                    <method>cartCustomAddition</method>
+                            </checkout_cart_observer>
+                     </observers>
+             </checkout_cart_product_add_after>
+			 <sales_order_place_after>
+                    <observers>
+                            <sales_order_observer>
+                                    <type>singleton</type>
+                                    <class>Adodis_Customizeshirt_Model_Observer</class>
+                                    <method>placeorderCustomAddition</method>
+                            </sales_order_observer>
+                     </observers>
+             </sales_order_place_after>
+        </events>
         <models>
             <customizeshirt>
                 <class>Adodis_Customizeshirt_Model</class>
@@ -179,6 +228,15 @@
                     <sleeve>
                     	<table>customizeshirt_sleeve</table>
                     </sleeve>
+					<button>
+                    	<table>customizeshirt_button</table>
+                    </button>
+					<pocket>
+                    	<table>customizeshirt_pocket</table>
+                    </pocket>
+					<back>
+                    	<table>customizeshirt_back</table>
+                    </back>
 					<monolabel>
                         <table>customizeshirt_monolabel</table>
                     </monolabel>

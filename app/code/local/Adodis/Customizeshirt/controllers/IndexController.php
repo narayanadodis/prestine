@@ -94,17 +94,23 @@ class Adodis_Customizeshirt_IndexController extends Mage_Core_Controller_Front_A
 	
 	public function pocketAction()
     {
-    	/*$switchno = $_GET['switchno'];
+    	$switchno = $_GET['switchno'];
 		//echo $switchno;
-		$collection = Mage::getModel('customizeshirt/front')->getCollection()
+		$collection = Mage::getModel('customizeshirt/pocket')->getCollection()
 			->addFieldToFilter('status', 1)
-			->setOrder('front_id', 'ASC');
+			->setOrder('pocket_id', 'ASC');
 		//print_r($collection);
-		foreach($collection as $front) { 
-		if($front->getSwitchno() == $switchno) {
-		echo $front->getFrontTitle().' Front';
+		foreach($collection as $pocket) { 
+		if($pocket->getSwitchno() == $switchno) {
+			if($switchno == '1') {
+			echo $pocket->getPocketTitle();
+			}
+			else
+			{
+			echo $pocket->getPocketTitle().' Pocket';
+			}
 		}
-		} */
+		}
     }
 	
 	public function shoulderAction()
@@ -121,6 +127,33 @@ class Adodis_Customizeshirt_IndexController extends Mage_Core_Controller_Front_A
 		}
 		} 
     }
+
+    public function sleeveAction()
+    {
+    	$switchno = $_GET['switchno'];
+		$collection = Mage::getModel('customizeshirt/sleeve')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('sleeve_id', 'ASC');
+		foreach($collection as $sleeve) { 
+		if($sleeve->getSwitchno() == $switchno) {
+		echo $sleeve->getSleeveTitle().'';
+		}
+		}
+    }
+    public function backAction()
+    {
+    	$switchno = $_GET['switchno'];
+
+    	$collection = Mage::getModel('customizeshirt/back')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('back_id', 'ASC');
+	foreach($collection as $back) {
+		if($back->getSwitchno() == $switchno) {
+		echo $back->getBackTitle().' Back';
+		}
+		}
+    }
+    
 	
 	public function collarcolorAction()
     {
@@ -215,6 +248,8 @@ class Adodis_Customizeshirt_IndexController extends Mage_Core_Controller_Front_A
 		$basefabricname = $product->getName();
 		$basefabricprice = $product->getFinalPrice();
 		
+		$img_val = $this->getRequest()->getParam('img_val');
+		
 		$collar_switchno = $this->getRequest()->getParam('collar');
 		$collarcollection = Mage::getModel('customizeshirt/collar')->getCollection()
 			->addFieldToFilter('status', 1)
@@ -252,6 +287,43 @@ class Adodis_Customizeshirt_IndexController extends Mage_Core_Controller_Front_A
 		foreach($shouldercollection as $shoulders) { 
 		if($shoulders->getSwitchno() == $shoulder_switchno) {
 		$shoulder = $shoulders->getShoulderTitle().' Shoulder';
+		}
+		}
+
+		$sleeve_switchno = $this->getRequest()->getParam('sleeve');
+		$sleevecollection = Mage::getModel('customizeshirt/sleeve')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('sleeve_id', 'ASC');
+		foreach($sleevecollection as $sleeves) { 
+		if($sleeves->getSwitchno() == $sleeve_switchno) {
+		$sleeve = $sleeves->getSleeveTitle();
+		}
+		}
+
+		$pocket_switchno = $this->getRequest()->getParam('pocket');
+		$pocketcollection = Mage::getModel('customizeshirt/pocket')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('pocket_id', 'ASC');
+		foreach($pocketcollection as $pockets) { 
+		if($pockets->getSwitchno() == $pocket_switchno) {
+			if($pocket_switchno == '1') {
+			$pocket = $pockets->getPocketTitle();
+			}
+			else
+			{
+			$pocket = $pockets->getPocketTitle().' Pocket';
+			}
+		}
+		}
+
+
+		$back_switchno = $this->getRequest()->getParam('back');
+		$backcollection = Mage::getModel('customizeshirt/back')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('back_id', 'ASC');
+		foreach($backcollection as $backs) { 
+		if($backs->getSwitchno() == $back_switchno) {
+			$back = $backs->getBackTitle().' Back';
 		}
 		}
 		
@@ -328,23 +400,16 @@ class Adodis_Customizeshirt_IndexController extends Mage_Core_Controller_Front_A
 		 $label = 'Label "'.$monotext.'" on '.$onfront.''.$oncollarlab.'in '.$labelcolor.' & Font Style:'.$labelfontstyle;
 		 }
 		
-		
+		$qtyyy = $this->getRequest()->getParam('qty');
+
 		$custmized_product = Mage::getModel('catalog/product')->load('9');
 		// set option value in product model?
 		
-		$specialPrice = $basefabricprice;
-
-		// Make sure we don't have a negative
-		if ($specialPrice > 0) {
-			$custmized_product->setCustomPrice($specialPrice);
-			$custmized_product->setOriginalCustomPrice($specialPrice);
-			$custmized_product->getProduct()->setIsSuperMode(true);
-		}
 	
 		$cart = Mage::helper('checkout/cart')->getCart();
 		$params = array(
 			'product' => $custmized_product->getId(), // This would be $custmized_product->getId()
-			'qty' => 1,
+			'qty' => $qtyyy,
 			'options' => array(
 				18 => $basefabricid,
 				17 => $basefabricname,
@@ -353,10 +418,10 @@ class Adodis_Customizeshirt_IndexController extends Mage_Core_Controller_Front_A
 				14 => $cuff,
 				13 => $front,
 				12 => $shoulder,
-				//11 => $sleeve,
-				//10 => $back,
+				11 => $sleeve,
+				10 => $back,
 				//9 => $button,
-				//8 => $pocket,
+				8 => $pocket,
 				7 => $collarcolor,
 				6 => $collarliningcolor,
 				5 => $cuffcolor,

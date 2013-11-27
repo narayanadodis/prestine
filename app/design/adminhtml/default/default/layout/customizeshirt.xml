@@ -1,5 +1,16 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
+
+    <default>
+    <reference name="head">
+    <action method="addJs"><file>customizeshirt/jquery-1.7.2.min.js</file></action>
+    <action method="addJs"><file>customizeshirt/noConflict.js</file></action>
+    <action method="addJs"><file>customizeshirt/colorpicker.js</file></action>
+    <action method="addItem"><type>skin_css</type><name>customizeshirt/colorpicker.css</name><params/></action>
+    </reference>
+    </default>
+    
+
     <customizeshirt_adminhtml_customizeshirt_index>
         <reference name="content">
             <block type="customizeshirt/adminhtml_customizeshirt" name="customizeshirt" />
@@ -30,6 +41,21 @@
             <block type="customizeshirt/adminhtml_sleeve" name="sleeve" />
         </reference>
     </customizeshirt_adminhtml_sleeve_index>
+	<customizeshirt_adminhtml_button_index>
+        <reference name="content">
+            <block type="customizeshirt/adminhtml_button" name="button" />
+        </reference>
+    </customizeshirt_adminhtml_button_index>
+	<customizeshirt_adminhtml_pocket_index>
+        <reference name="content">
+            <block type="customizeshirt/adminhtml_pocket" name="pocket" />
+        </reference>
+    </customizeshirt_adminhtml_pocket_index>
+	<customizeshirt_adminhtml_back_index>
+        <reference name="content">
+            <block type="customizeshirt/adminhtml_back" name="back" />
+        </reference>
+    </customizeshirt_adminhtml_back_index>
 	<customizeshirt_adminhtml_monolabel_index>
         <reference name="content">
             <block type="customizeshirt/adminhtml_monolabel" name="monolabel" />
@@ -40,5 +66,23 @@
             <block type="customizeshirt/adminhtml_embroidery" name="embroidery" />
         </reference>
     </customizeshirt_adminhtml_embroidery_index>
+	
+	<adminhtml_sales_order_view>
+		
+		<reference name="left">
+			<reference name="sales_order_tabs">
+				<reference name="order_tab_info">
+					<block type="adminhtml/sales_order_view_items" name="order_items" template="customizeshirt/sales/order/view/items.phtml">
+                        <action method="addItemRender"><type>default</type><block>adminhtml/sales_order_view_items_renderer_default</block><template>customizeshirt/sales/order/view/items/renderer/default.phtml</template></action>
+                        <action method="addColumnRender"><column>qty</column><block>adminhtml/sales_items_column_qty</block><template>sales/items/column/qty.phtml</template></action>
+                        <action method="addColumnRender"><column>name</column><block>adminhtml/sales_items_column_name</block><template>sales/items/column/name.phtml</template></action>
+                        <action method="addColumnRender"><column>name</column><block>adminhtml/sales_items_column_name_grouped</block><template>sales/items/column/name.phtml</template><type>grouped</type></action>
+                        <block type="core/text_list" name="order_item_extra_info" />
+                    </block>
+				</reference>
+			</reference>
+		</reference>
+		
+	</adminhtml_sales_order_view>
 	
 </layout>

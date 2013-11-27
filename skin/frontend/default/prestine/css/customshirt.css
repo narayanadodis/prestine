@@ -1,35 +1,71 @@
-.customize-container {width:100%;}
-.left-cont {float:left; width:48%;}
-#accordion h3 {cursor:pointer;  background: #3F3F3F; border-radius: 9px; margin: 0 0 2px; padding: 4px 10px;}
+.customize-container {width:100%; float:left; background:url("../images/customshirt/bg.png") repeat 0 0 ;}
+.customize-container h5, .customize-container h4 {color:#000;}
+.left-cont {float:left; width:44%; padding: 10px 0 0 10px;}
+
+#accordion h3 {cursor:pointer; margin: 0 0 2px; padding: 4px 10px 0; background:url("../images/customshirt/fullmenubg.png") no-repeat 0 0; height: 26px; width: 98%;}
+#accordion h3.ui-state-default span {background:url("../images/customshirt/arrowleft.png") no-repeat 0 10px; padding: 5px 8px;}
+#accordion h3.ui-state-active span {background:url("../images/customshirt/arrowdown.png") no-repeat 0 10px; padding: 5px 8px;}
+
 h3.ui-state-active {margin-bottom: 0 !important;}
-#accordion .ui-accordion-content {padding:5px 0;}
-.fabrics ul.items-list {height: 200px; width:270px; float: left;}
-.contrast-collar-outer-lining .fabrics ul.items-list, .contrast-cuff-outer-lining .fabrics ul.items-list {height: auto; width:auto; float: left;}
+#accordion .ui-accordion-content {padding:0 0 5px; background:#fff; margin-left: 5px;}
+.fabrics ul.items-list {height: 200px; width:250px; float: left;}
+.contrast-area .fabrics ul.items-list {height: auto; width:auto; float: left;}
 .fabrics ul.items-list li {margin:4px; float:left;}
-.right-cont {float:right; width:50%; min-height:600px;}
+.right-cont {background-color: rgba(255, 255, 255, 0.15); float:right; width:53%; min-height:500px; padding: 10px 0 0;}
 .right-cont #shirt {position:relative; float: right; height: 390px; width: 280px;}
+.right-cont #shirt-back {position:relative; float: right; height: 390px; width: 280px;}
+.right-cont #summary {float: left; width: 130px; color:#fff; background-color: rgba(0, 0, 0, 0.25); padding: 5px;  margin-left: 13px;}
+.right-cont #summary h4 {color:#fff;}
+.right-cont #summary .opacity {opacity:0.25; background:#000; }
+.right-cont .undochanges {text-decoration: none; cursor:pointer; background:url("../images/customshirt/undo.png") no-repeat center 0; font-size:18px; color:#fff;padding: 17px 0 0;float: left; width: 100%;}
+
+.right-cont .shirtviewundo {float: left; margin-left: 9px; text-align: center; width: 80px;}
+.right-cont .shirtviewundo li {background-color: rgba(0, 0, 0, 0.25); text-align: center; margin: 0 0 15px; padding: 5px 0; cursor: pointer;}
+.shirtviewundo .viewfront strong {color: #9A181A;}
+.shirtviewundo .viewback strong {color: #fff;}
+
+
 #accordion div#fabricslideimg {float: left;}
-#fabricslideimg .zoomfabric {bottom: 0; font-size: 14px; font-weight: bold; position: absolute; right: 0; text-decoration: none;}
-.shirt-style .tab_container ul { width: 270px; float:left;}
-.shirt-style .tab_container ul li {width:85px; float:left; min-height:98px;}
+#fabricslideimg .zoomfabric {background:url("../images/customshirt/zoom.png") no-repeat 0 6px; bottom: 0; font-size: 14px; font-weight: bold; position: absolute; right: 0; text-decoration: none; padding: 0 0 3px 20px; color:#fff;}
+.shirt-style .tab_container ul { width: 290px; float:left;}
+.shirt-style .tab_container ul li {margin: 2px; width:85px; float:left; min-height:98px; text-align:center; border: 1px solid #000000;}
+.shirt-style .tab_container .shirt-pocket-style ul li {min-height:120px;}
+.shirt-style .tab_container .shirt-back-style ul li {min-height: 142px;}
 .shirt-style .tab_container li a{cursor:pointer;}
 .shirt-style .shirt-sleeve-style #sleeveslideimg {float: left;}
 .shirt-style .shirt-collar-style #collarslideimg {float: left;}
 .shirt-style .shirt-cuff-style #cuffslideimg {float: left;}
 .shirt-style .shirt-front-style #frontslideimg {float: left;}
 .shirt-style .shirt-shoulder-style #shoulderslideimg {float: left;}
+.shirt-style .shirt-pocket-style #pocketslideimg {float: left;}
 
-.shirt-personalize .tab_container ul { width: 300px; float:left;}
-.shirt-personalize .tab_container ul li {width:100px; float:left; text-align:left;}
+.shirt-personalize .tab_container ul { width: 270px; float:left;}
+.shirt-personalize .tab_container ul li {width:87px; float:left; text-align:center;}
 .shirt-personalize .tab_container li a{cursor:pointer;}
 .shirt-personalize .personalize-right { float: right; text-align: left; width: 150px;}
-.shirt-personalize .personalize-left {float: left; width: 300px;}
+.shirt-personalize .personalize-left {float: left; width: 270px;}
 .shirt-personalize .personalize-right #monocolorT {width: 130px;}
 .shirt-personalize .personalize-right #labelcolorT {width: 130px;}
 .shirt-personalize .personalize-left .CircleActive a img {border: 2px solid #000 !important;}
 .shirt-personalize .personalize-left .active .item_selected img {border: 2px solid #000 !important;}
-
+.shirt-personalize h4.ttl01 {float:left;}
 
 #shirt div img {width:280px;}
+#shirt-back div img {width:280px;}
 .personalize-right .apply-box .btn01 {cursor: pointer; background: #7D0609; color: #fff; text-decoration: none; border-radius: 4px; font-size: 15px; font-weight: bold; padding: 5px 10px;}
+.tab_content .img > img {border: 1px solid #000000;}
+.tab_content.shirt-sleeve-style .img > img {width: 125px;}
 
+.shirt-measurements .tab_container .row_cont { float: left; width: 48%;}
+.shirt-measurements .tab_container .row { float: left; width: 100%;}
+.shirt-measurements .tab_container .input-box {float: left; width: 50px;}
+.shirt-measurements .input-box input {width: 45px;height: 20px;}
+.shirt-measurements .tab_container .video_container {float:left;}
+
+.left-cont .submit-cont #submitt {background:url("../images/customshirt/addcart.png") no-repeat 0 0; cursor:pointer;font-size: 16px; font-weight: bold; border: 0 none;color: #fff;}
+.left-cont .submit-cont { margin: 10px 0;}
+.left-cont .submit-cont .addto {padding: 4px 19px;margin: 0 45px 0 15px;}
+.left-cont .submit-cont .checko {padding: 4px 22px;}
+.left-cont .submit-cont #qty {width: 40px;font-size: 16px; font-weight: bold; padding: 3px 0;
+text-align: center; width: 40px;}
+.left-cont .submit-cont label {color:#fff;font-size: 16px;font-weight: bold; padding: 0 20px 0 5px;}
