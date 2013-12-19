@@ -7,8 +7,14 @@
 #accordion h3.ui-state-active span {background:url("../images/customshirt/arrowdown.png") no-repeat 0 10px; padding: 5px 8px;}
 
 h3.ui-state-active {margin-bottom: 0 !important;}
-#accordion .ui-accordion-content {padding:0 0 5px; background:#fff; margin-left: 5px;}
-.fabrics ul.items-list {height: 200px; width:250px; float: left;}
+#accordion .ui-accordion-content {
+    background: none repeat scroll 0 0 #FFFFFF;
+    height: 218px;
+    margin-left: 5px;
+    overflow: auto;
+    padding: 0 0 5px;
+}
+.fabrics ul.items-list {height: 190px; width:250px; float: left;}
 .contrast-area .fabrics ul.items-list {height: auto; width:auto; float: left;}
 .fabrics ul.items-list li {margin:4px; float:left;}
 .right-cont {background-color: rgba(255, 255, 255, 0.15); float:right; width:53%; min-height:500px; padding: 10px 0 0;}
@@ -60,7 +66,7 @@ h3.ui-state-active {margin-bottom: 0 !important;}
 .shirt-personalize .tab_container ul li {width:87px; float:left; text-align:center;}
 .shirt-personalize .tab_container li a{cursor:pointer;}
 .shirt-personalize .personalize-right { float: right; text-align: left; width: 150px;}
-.shirt-personalize .personalize-left {float: left; width: 270px;}
+.shirt-personalize .personalize-left {float: left; width: 258px;}
 .shirt-personalize .personalize-right #monocolorT {width: 130px;}
 .shirt-personalize .personalize-right #labelcolorT {width: 130px;}
 .shirt-personalize .personalize-left .CircleActive a img {border: 2px solid #9A181A !important;}
@@ -83,7 +89,13 @@ h3.ui-state-active {margin-bottom: 0 !important;}
 .shirt-measurements .tab_container .video_container {float:left;}
 
 .left-cont .submit-cont #submitt {background:url("../images/customshirt/addcart.png") no-repeat 0 0; cursor:pointer;font-size: 16px; font-weight: bold; border: 0 none;color: #fff;}
-.left-cont .submit-cont { margin: 10px 0;}
+.left-cont .submit-cont {
+    bottom: 11px;
+    margin: 10px 0;
+    position: absolute;
+}
+
+
 .left-cont .submit-cont .addto {padding: 4px 19px;margin: 0 45px 0 15px;}
 .left-cont .submit-cont .checko {padding: 4px 22px;}
 .left-cont .submit-cont #qty {width: 40px;font-size: 16px; font-weight: bold; padding: 3px 0;
