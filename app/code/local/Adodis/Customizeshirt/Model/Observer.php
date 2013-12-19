@@ -36,11 +36,28 @@ class Adodis_Customizeshirt_Model_Observer extends Varien_Object
 	//Save the image
 	$varimg = uniqid();
 	file_put_contents('media/customizeshirt/finalshirt/img_'.$varimg.'.png', $unencodedData);
+	
+	/*
+	$img_val_back = Mage::app()->getRequest()->getParam('img_val_back');
+	//Show the image
+	//echo '<img src="'.$img_val_back.'" />';
+	//Get the base-64 string from data
+	$filteredData1=substr($img_val_back, strpos($img_val_back, ",")+1);
+	//Decode the string
+	$unencodedData1=base64_decode($filteredData1);
+	//Save the image
+	$varimgback = uniqid();
+	file_put_contents('media/customizeshirt/finalshirt/img_'.$varimgback.'.png', $unencodedData1);
+	*/
 	// END Saving image to folder
+	
 	
 	//echo $item->getId();
 	$cust_img = 'customizeshirt/finalshirt/img_'.$varimg.'.png';
 	$item->setCustomizedShirtImage($cust_img);
+	
+	/*$cust_img_back = 'customizeshirt/finalshirt/img_'.$varimgback.'.png';
+	$item->setCustomizedShirtBackImage($cust_img_back);*/
 	//exit;
 	
 	$neck = Mage::app()->getRequest()->getParam('neck');
@@ -50,6 +67,8 @@ class Adodis_Customizeshirt_Model_Observer extends Varien_Object
 	$length = Mage::app()->getRequest()->getParam('length');
 	$shoulder = Mage::app()->getRequest()->getParam('shoulder');
 	$sleevelength = Mage::app()->getRequest()->getParam('sleevelength');
+	$stdmeasure = Mage::app()->getRequest()->getParam('stdsizes');
+
 	
 	$item->setNeck($neck);
 	$item->setChest($chest);
@@ -59,6 +78,7 @@ class Adodis_Customizeshirt_Model_Observer extends Varien_Object
 	$item->setLength($length);
 	$item->setShoulder($shoulder);
 	$item->setSleeve($sleevelength);
+	$item->setStdMeasure($stdmeasure);
 
 	}
 	}
@@ -83,7 +103,9 @@ class Adodis_Customizeshirt_Model_Observer extends Varien_Object
 		 $length[] = $item->getLength();
 		 $shoulder[] = $item->getShoulder();
 		 $sleevelength[] = $item->getSleeve();
+		 $stdmeasure[] = $item->getStdMeasure();
 		 $cust_img[] = $item->getCustomizedShirtImage();
+		 //$cust_img_back[] = $item->getCustomizedShirtBackImage();
 		}
 	}
 	
@@ -93,6 +115,7 @@ class Adodis_Customizeshirt_Model_Observer extends Varien_Object
 				 $product_id = $_item->getProductId();
 				if($product_id == '9') {
 					$_item->setCustomizedShirtImage($cust_img[$i]);
+					//$_item->setCustomizedShirtBackImage($cust_img_back[$i]);
 					$_item->setNeck($neck[$i]);
 					$_item->setChest($chest[$i]);
 					$_item->setWaist($waist[$i]);
@@ -101,6 +124,7 @@ class Adodis_Customizeshirt_Model_Observer extends Varien_Object
 					$_item->setLength($length[$i]);
 					$_item->setShoulder($shoulder[$i]);
 					$_item->setSleeve($sleevelength[$i]);
+					$_item->setStdMeasure($stdmeasure[$i]);
 					$i++;
 				}
             }

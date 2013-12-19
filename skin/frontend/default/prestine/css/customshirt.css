@@ -12,6 +12,12 @@ h3.ui-state-active {margin-bottom: 0 !important;}
 .contrast-area .fabrics ul.items-list {height: auto; width:auto; float: left;}
 .fabrics ul.items-list li {margin:4px; float:left;}
 .right-cont {background-color: rgba(255, 255, 255, 0.15); float:right; width:53%; min-height:500px; padding: 10px 0 0;}
+.right-cont .shirtnsummary {float:left; width:100%;}
+.right-cont .submenuoptions {float:left; width:100%;}
+.right-cont .submenuoptions ul {float:left; width:100%;}
+.right-cont .submenuoptions ul li.subactions{float:left;margin: 8px;text-align: center;}
+.right-cont .submenuoptions ul li.subactions strong { color: #FFFFFF;font-size: 14px;}
+
 .right-cont #shirt {position:relative; float: right; height: 390px; width: 280px;}
 .right-cont #shirt-back {position:relative; float: right; height: 390px; width: 280px;}
 .right-cont #summary {float: left; width: 130px; color:#fff; background-color: rgba(0, 0, 0, 0.25); padding: 5px;  margin-left: 13px;}
@@ -28,16 +34,27 @@ h3.ui-state-active {margin-bottom: 0 !important;}
 #accordion div#fabricslideimg {float: left;}
 #fabricslideimg .zoomfabric {background:url("../images/customshirt/zoom.png") no-repeat 0 6px; bottom: 0; font-size: 14px; font-weight: bold; position: absolute; right: 0; text-decoration: none; padding: 0 0 3px 20px; color:#fff;}
 .shirt-style .tab_container ul { width: 290px; float:left;}
+.shirt-style .tab_container ul.button-style {margin-top: 10px; min-height: 65px;width: 260px;}
 .shirt-style .tab_container ul li {margin: 2px; width:85px; float:left; min-height:98px; text-align:center; border: 1px solid #000000;}
 .shirt-style .tab_container .shirt-pocket-style ul li {min-height:120px;}
-.shirt-style .tab_container .shirt-back-style ul li {min-height: 142px;}
+.shirt-style .tab_container .shirt-back-style ul li {min-height: 139px;}
+.shirt-style .tab_container .shirt-button-style ul.button-style li {min-height: 30px; width: 30px;}
 .shirt-style .tab_container li a{cursor:pointer;}
+.shirt-style .tab_container .shirt-button-style .button-style li a {padding: 8px 15px; line-height: 30px;}
+.shirt-style .tab_container .shirt-button-style .buttonhole-style{margin-top: 10px;min-height: 65px;width: 260px;}
+.shirt-style .tab_container .shirt-button-style .buttonhole-style li {min-height: 0; width: 35px;}
+.shirt-pocket-style .noofpocket_cont {float: left; margin-top: 40px;}
+.shirt-pocket-style .noofpocket_cont label {font-weight: bold;}
+.shirt-pocket-style .noofpocket_cont .sel_noofpocket {margin-top: 3px; width: 110px;}
+
 .shirt-style .shirt-sleeve-style #sleeveslideimg {float: left;}
 .shirt-style .shirt-collar-style #collarslideimg {float: left;}
 .shirt-style .shirt-cuff-style #cuffslideimg {float: left;}
 .shirt-style .shirt-front-style #frontslideimg {float: left;}
 .shirt-style .shirt-shoulder-style #shoulderslideimg {float: left;}
 .shirt-style .shirt-pocket-style #pocketslideimg {float: left;}
+.shirt-style .shirt-button-style #buttonslideimg {margin: 0 10px 0 0;position: relative;}
+.shirt-style .shirt-back-style #backslideimg {float: left;}
 
 .shirt-personalize .tab_container ul { width: 270px; float:left;}
 .shirt-personalize .tab_container ul li {width:87px; float:left; text-align:center;}
@@ -46,8 +63,8 @@ h3.ui-state-active {margin-bottom: 0 !important;}
 .shirt-personalize .personalize-left {float: left; width: 270px;}
 .shirt-personalize .personalize-right #monocolorT {width: 130px;}
 .shirt-personalize .personalize-right #labelcolorT {width: 130px;}
-.shirt-personalize .personalize-left .CircleActive a img {border: 2px solid #000 !important;}
-.shirt-personalize .personalize-left .active .item_selected img {border: 2px solid #000 !important;}
+.shirt-personalize .personalize-left .CircleActive a img {border: 2px solid #9A181A !important;}
+.shirt-personalize .personalize-left .active .item_selected img {border: 2px solid #9A181A !important;}
 .shirt-personalize h4.ttl01 {float:left;}
 
 #shirt div img {width:280px;}
@@ -55,6 +72,9 @@ h3.ui-state-active {margin-bottom: 0 !important;}
 .personalize-right .apply-box .btn01 {cursor: pointer; background: #7D0609; color: #fff; text-decoration: none; border-radius: 4px; font-size: 15px; font-weight: bold; padding: 5px 10px;}
 .tab_content .img > img {border: 1px solid #000000;}
 .tab_content.shirt-sleeve-style .img > img {width: 125px;}
+.shirt-sleeve-style .items-list.sleeve-style img {height: 110px; width: 80px;}
+.shirt-back-style .items-list.back-style img { height: 120px; width: 80px;}
+.tab_content.shirt-back-style .img > img {width: 125px;}
 
 .shirt-measurements .tab_container .row_cont { float: left; width: 48%;}
 .shirt-measurements .tab_container .row { float: left; width: 100%;}
@@ -69,3 +89,12 @@ h3.ui-state-active {margin-bottom: 0 !important;}
 .left-cont .submit-cont #qty {width: 40px;font-size: 16px; font-weight: bold; padding: 3px 0;
 text-align: center; width: 40px;}
 .left-cont .submit-cont label {color:#fff;font-size: 16px;font-weight: bold; padding: 0 20px 0 5px;}
+
+.shirt-measurements .valid { height: 25px; width: 90px;}
+.shirt-measurements #measurements_tab2 > label {font-size: 15px; margin-right: 5px;}
+
+.suggest-ad-box {background: #fff; float: left; margin-top: 10px;width: 100%;}
+.suggest-ad-box .ad-box {float: left; margin: 0 10px 0 0;}
+.suggest-ad-box .suggestions-area ul li {float: left; margin: 0 25px;}
+.suggest-ad-box .suggestions-area h3 {color:#000;}
+.suggest-ad-box .suggest-box {float: left;}

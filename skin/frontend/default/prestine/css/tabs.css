@@ -13,8 +13,8 @@ ul.tabs li {
     font-weight: bold;
     height: 25px;
     line-height: 25px;
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 4px;
+    padding-right: 4px;
     cursor: pointer;float: left;margin-right: 5px; padding-top: 3px;
 }
 .tab_content{padding: 0; text-align: justify;}

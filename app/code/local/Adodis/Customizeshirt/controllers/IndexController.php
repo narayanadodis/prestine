@@ -52,7 +52,6 @@ class Adodis_Customizeshirt_IndexController extends Mage_Core_Controller_Front_A
 		//echo $switchno;
 		//$collection = Mage::getModel('customizeshirt/cuff')->getCollection();
 		$collection = Mage::getModel('customizeshirt/cuff')->getCollection()
-			->addFieldToFilter('status', 1)
 			->setOrder('cuff_id', 'ASC');
 		//print_r($collection);
 		foreach($collection as $cuff) { 
@@ -153,6 +152,19 @@ class Adodis_Customizeshirt_IndexController extends Mage_Core_Controller_Front_A
 		}
 		}
     }
+    public function buttonAction()
+    {
+    	$switchno = $_GET['switchno'];
+
+    	$collection = Mage::getModel('customizeshirt/button')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('button_id', 'ASC');
+	foreach($collection as $button) {
+		if($button->getSwitchno() == $switchno) {
+		echo $button->getButtonTitle().' Buttons';
+		}
+		}
+    }
     
 	
 	public function collarcolorAction()
@@ -249,6 +261,10 @@ class Adodis_Customizeshirt_IndexController extends Mage_Core_Controller_Front_A
 		$basefabricprice = $product->getFinalPrice();
 		
 		$img_val = $this->getRequest()->getParam('img_val');
+		$img_val_back = $this->getRequest()->getParam('img_val_back');
+
+		//echo '<img src="'.$img_val.'" />';
+		//exit;
 		
 		$collar_switchno = $this->getRequest()->getParam('collar');
 		$collarcollection = Mage::getModel('customizeshirt/collar')->getCollection()
@@ -324,6 +340,16 @@ class Adodis_Customizeshirt_IndexController extends Mage_Core_Controller_Front_A
 		foreach($backcollection as $backs) { 
 		if($backs->getSwitchno() == $back_switchno) {
 			$back = $backs->getBackTitle().' Back';
+		}
+		}
+
+		$button_switchno = $this->getRequest()->getParam('buttons');
+    	$buttoncollection = Mage::getModel('customizeshirt/button')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('button_id', 'ASC');
+		foreach($buttoncollection as $buttons) {
+		if($buttons->getSwitchno() == $button_switchno) {
+		$button = $buttons->getButtonTitle().' Color Buttons';
 		}
 		}
 		
@@ -420,7 +446,7 @@ class Adodis_Customizeshirt_IndexController extends Mage_Core_Controller_Front_A
 				12 => $shoulder,
 				11 => $sleeve,
 				10 => $back,
-				//9 => $button,
+				9 => $button,
 				8 => $pocket,
 				7 => $collarcolor,
 				6 => $collarliningcolor,

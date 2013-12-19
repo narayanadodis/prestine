@@ -82,6 +82,9 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
 		$length = $_item->getLength();
 		$shoulder = $_item->getShoulder();
 		$sleeve_length = $_item->getSleeve();
+		
+		$stdmeasure = $_item->getStdMeasure();
+		
 		if(($neck) || ($chest) || ($waist) || ($hip) || ($length) || ($shoulder) || ($sleeve_length)) { ?>
 		<p>Neck : <?php echo $neck; ?></p>
 		<p>Chest : <?php echo $chest; ?></p>
@@ -90,7 +93,15 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
 		<p>Length : <?php echo $length; ?></p>
 		<p>Shoulder : <?php echo $shoulder; ?></p>
 		<p>Sleeve : <?php echo $sleeve_length; ?></p>
-		<?php } else { ?>
+		<?php }
+		else { ?>
+		<p>No Measures Available.</p>
+		<?php } ?>
+		 
+		<?php if($stdmeasure) { ?>
+		<p>Standard measurement: <?php echo $stdmeasure; ?></p>
+		<?php }
+		else { ?>
 		<p>No Measures Available.</p>
 		<?php } ?>
     </td>

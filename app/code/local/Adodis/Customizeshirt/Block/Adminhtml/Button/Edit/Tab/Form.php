@@ -10,7 +10,7 @@ class Adodis_Customizeshirt_Block_Adminhtml_Button_Edit_Tab_Form extends Mage_Ad
       $fieldset = $form->addFieldset('customizeshirt_form', array('legend'=>Mage::helper('customizeshirt')->__('Item information')));
      
       $fieldset->addField('button_title', 'text', array(
-          'label'     => Mage::helper('customizeshirt')->__('Button Title'),
+          'label'     => Mage::helper('customizeshirt')->__('Button / Thread Title'),
           'class'     => 'required-entry',
           'required'  => true,
           'name'      => 'button_title',
@@ -24,7 +24,7 @@ class Adodis_Customizeshirt_Block_Adminhtml_Button_Edit_Tab_Form extends Mage_Ad
       ));
 
       $fieldset->addField('button_thread_color', 'text', array(
-          'label'     => Mage::helper('customizeshirt')->__('Threat Color'),
+          'label'     => Mage::helper('customizeshirt')->__('Thread Color'),
           'class'     => 'required-entry',
           'required'  => true,
           'name'      => 'button_thread_color',
@@ -82,7 +82,7 @@ class Adodis_Customizeshirt_Block_Adminhtml_Button_Edit_Tab_Form extends Mage_Ad
       ));  
 	  
 	  $fieldset->addField('switchno', 'text', array(
-          'label'     => Mage::helper('customizeshirt')->__('Button Switch_no'),
+          'label'     => Mage::helper('customizeshirt')->__('Button / Thread Switch_no'),
           'class'     => 'required-entry',
           'required'  => true,
           'name'      => 'switchno',

@@ -15,7 +15,7 @@
 			->setOrder('monolabel_id', 'ASC');
 	foreach($collection as $monogram) { ?>
 		<li class="">
-		<a onclick="MonoClick(<?php echo $monogram->getSwitchno(); ?>)"><img alt="" width="80" style="border:2px solid transparent" src="<?php echo Mage::getBaseUrl('media').$monogram->getMonolabelImage(); ?>"></a>
+		<a onclick="MonoClick(<?php echo $monogram->getSwitchno(); ?>)"><img alt="" width="80" style="border:1px solid #000" src="<?php echo Mage::getBaseUrl('media').$monogram->getMonolabelImage(); ?>"></a>
 		</li>
 	<?php } ?>
 	</ul>
@@ -27,7 +27,7 @@
 			->setOrder('embroidery_id', 'ASC');
 	foreach($collection as $embroidery) { ?>
 		<li class="">
-		<a onclick="selectMonogramFont(<?php echo $embroidery->getSwitchno(); ?>)"><img alt="" width="80" style="border:2px solid transparent" src="<?php echo Mage::getBaseUrl('media').$embroidery->getEmbroideryImage(); ?>"><strong><?php echo $embroidery->getEmbroideryTitle(); ?></strong></a>
+		<a onclick="selectMonogramFont(<?php echo $embroidery->getSwitchno(); ?>)"><img alt="" width="80" style="border:1px solid #000" src="<?php echo Mage::getBaseUrl('media').$embroidery->getEmbroideryImage(); ?>"><strong><?php echo $embroidery->getEmbroideryTitle(); ?></strong></a>
 		</li>
 	<?php } ?>
 	</ul>
@@ -49,13 +49,13 @@
 	</select>
 	</div>
 	
-	<div class="inp01" style="margin-left: 10px;">
+	<div class="inp01" style="margin: 10px 0 18px 12px;">
 	<label> MONOGRAM</label>
 	<input id="monotextT" class="valid" type="text" value="" placeholder="ABC" name="monotextT" maxlength="4">
 	</div>
 	
-	<div class="apply-box" style="padding: 0px; margin-left: 25px; margin-top: 3px;">
-	<p style="margin: 0px;"><a class="btn01" style="cursor: pointer" onclick="ApplyMono();">Apply</a></p>
+	<div class="apply-box" style="padding: 0px; margin: 3px 0px 11px 8px;">
+	<p style="margin: margin: 0px 0px 15px;"><a class="btn01" style="cursor: pointer" onclick="ApplyMono();">Apply</a></p>
 	<span class="arrow">
 	<span class="monolab">No Monograms selected.</span>
 	<br>
@@ -78,7 +78,7 @@
 			->setOrder('monolabel_id', 'ASC');
 	foreach($collection as $label) { ?>
 		<li class="">
-		<a onclick="LabelClick(<?php echo $label->getSwitchno(); ?>)"><img alt="" width="80" style="background: #fff; border:2px solid transparent" src="<?php echo Mage::getBaseUrl('media').$label->getMonolabelImage(); ?>"></a>
+		<a onclick="LabelClick(<?php echo $label->getSwitchno(); ?>)"><img alt="" width="80" style="background: #fff; border:1px solid #000;" src="<?php echo Mage::getBaseUrl('media').$label->getMonolabelImage(); ?>"></a>
 		</li>
 	<?php } ?>
 	</ul>
@@ -90,7 +90,7 @@
 			->setOrder('embroidery_id', 'ASC');
 	foreach($collection as $embroidery) { ?>
 		<li class="">
-		<a onclick="selectLabelFont(<?php echo $embroidery->getSwitchno(); ?>)"><img alt="" width="80" style="border:2px solid transparent" src="<?php echo Mage::getBaseUrl('media').$embroidery->getEmbroideryImage(); ?>"><strong><?php echo $embroidery->getEmbroideryTitle(); ?></strong></a>
+		<a onclick="selectLabelFont(<?php echo $embroidery->getSwitchno(); ?>)"><img alt="" width="80" style="border:1px solid #000" src="<?php echo Mage::getBaseUrl('media').$embroidery->getEmbroideryImage(); ?>"><strong><?php echo $embroidery->getEmbroideryTitle(); ?></strong></a>
 		</li>
 	<?php } ?>
 	</ul>
@@ -112,12 +112,12 @@
 	</select>
 	</div>
 	
-	<div class="inp01" style="margin-left: 10px;">
+	<div class="inp01" style="margin: 10px 0 18px 12px;">
 	<label> LABEL</label>
 	<input id="labeltextT" class="valid" type="text" value="" placeholder="ABC" name="labeltextT" maxlength="15">
 	</div>
 	
-	<div class="apply-box" style="padding: 0px; margin-left: 25px; margin-top: 3px;">
+	<div class="apply-box" style="padding: 0px; margin: 3px 0px 11px 8px;">
 	<p style="margin: 0px;"><a class="btn01" style="cursor: pointer" onclick="ApplyLabel();">Apply</a></p>
 	<span class="arrow">
 	<span class="monolab">No Monograms selected.</span>

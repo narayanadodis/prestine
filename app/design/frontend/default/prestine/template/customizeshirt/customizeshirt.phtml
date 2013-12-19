@@ -11,7 +11,7 @@
 <div class="customize-container">
 <div class="left-cont">
 <div id="accordion">
-  <h3 class="fabric_tab">1. SELECT FABRIC</h3>
+  <h3 class="fabric_tab" onclick="SubmenuoptClick('1'); ViewChangeClick('front');">1. SELECT FABRIC</h3>
   <div class="fabrics">
   
     <?php
@@ -57,16 +57,16 @@
 		
 		<div style="clear:both;"></div>
   </div>
-  <h3  class="style_tab">2. SELECT STYLE</h3>
+  <h3  class="style_tab" onclick="SubmenuoptClick('2'); ViewChangeClick('front');">2. SELECT STYLE</h3>
   <div class="shirt-style">
    <ul class="tabs">
    	 <li class="plus1" onclick="ViewChangeClick('front')"><a href="#tab1">Sleeve</a></li>
      <li class="plus1" onclick="ViewChangeClick('front')"><a href="#tab2">Collar</a></li>
-	 <li class="plus1" onclick="ViewChangeClick('front')"><a href="#tab3">Cuff</a></li>
+	 <li class="plus1" id="cufftab" onclick="ViewChangeClick('front')"><a href="#tab3">Cuff</a></li>
 	 <li class="plus1" onclick="ViewChangeClick('front')"><a href="#tab4">Front</a></li>
 	 <li class="plus1" onclick="ViewChangeClick('front')"><a href="#tab5">Pocket</a></li>
 	 <li class="plus1" onclick="ViewChangeClick('front')"><a href="#tab6">Shoulder</a></li>
-
+	 <li class="plus1" onclick="ViewChangeClick('front')"><a href="#tab7">Buttons</a></li>
 	 <li class="plus1" onclick="ViewChangeClick('back')"><a href="#tab8">Back</a></li>
    </ul>
   <div class="tab_container">
@@ -140,6 +140,7 @@
 	<div id="pocketslideimg"></div>
 
 	<div class="noofpocket_cont" style="display:none;">
+		<label>Number of Pocket: </label><br/>
 		<select id="sel_noofpocket" class="sel_noofpocket" name="sel_noofpocket" onchange="NoofPocketClick(this.value);">
 		 <option value="1">1 Pocket</option>
 		 <option value="2">2 Pockets</option>
@@ -163,7 +164,62 @@
 	<div id="shoulderslideimg"></div>
 	</div>
 	
+	<div id="tab7" class="tab_content shirt-button-style">
+    <ul class="items-list button-style">
+    <h5>1. Button Color</h5>
+    <?php $collection = Mage::getModel('customizeshirt/button')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('button_id', 'ASC');
+	foreach($collection as $button) { ?>
+		<li class="">
+		<a style="background:<?php echo $button->getButtonColor(); ?>" onclick="ButtonClick(<?php echo $button->getSwitchno(); ?>)"><!--<strong><?php echo $button->getButtonTitle(); ?></strong>--></a>
+		</li>
+	<?php } ?>
+	</ul>
 
+	<ul class="items-list button-style">
+	<h5>2. Button Thread Color</h5>
+    <?php $collection = Mage::getModel('customizeshirt/button')->getCollection()
+			->addFieldToFilter('status', 1)
+			->setOrder('button_id', 'ASC');
+	foreach($collection as $button) { ?>
+		<li class="">
+		<a style="background:<?php echo $button->getButtonThreadColor(); ?>" onclick="ButtonThreadClick(<?php echo $button->getSwitchno(); ?>)"></a>
+		</li>
+	<?php } ?>
+	</ul>
+	<input id="buttonthread" type="hidden" value="1" name="buttonthread" data-val-number="The field buttonthread must be a number." data-val="true">
+
+	<ul class="items-list buttonhole-style">
+		<h5>3. Button Hole Style</h5>
+		<li class="">
+		<a onclick="ButtonHoleClick(1)"><img src="<?php echo $this->getSkinurl('images/customshirt/vert.png'); ?>" alt="" /></a>
+		</li>
+		<li class="">
+		<a onclick="ButtonHoleClick(2)"><img src="<?php echo $this->getSkinurl('images/customshirt/hori.png'); ?>" alt="" /></a>
+		</li>
+		<li class="">
+		<a onclick="ButtonHoleClick(3)"><img src="<?php echo $this->getSkinurl('images/customshirt/slanted.png'); ?>" alt="" /></a>
+		</li>
+	</ul>
+	<input id="buttonhole" type="hidden" value="1" name="buttonhole" data-val-number="The field buttonhole must be a number." data-val="true">
+
+	<div id="buttonslideimg">
+	<div id="fab" style="position: absolute; top: 0px; right: 0px;">
+	<img id="fabimg" width="130" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/<?php echo $default_shirt; ?>.png" alt="">
+	</div>
+	<div id="hol" style="position: absolute; top: 0px; right: 0px;">
+	<img id="holimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/1_thread_vertical.png">
+	</div>
+	<div id="but" style="position: absolute; top: 0px; right: 0px;">
+	<img id="butimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/1_button.png">
+	</div>
+		<div id="crs" style="position: absolute; top: 0px; right: 0px;">
+	<img id="crsimg" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>customize/1_thread_cross.png">
+	</div>
+	</div>
+
+	</div>
 
 	<div id="tab8" class="tab_content shirt-back-style">
     <ul class="items-list back-style">
@@ -183,15 +239,15 @@
 	
 	<div style="clear:both;"></div>
   </div>
-  <h3 class="contrast_tab">3. SELECT COLOR CONTRAST</h3>
+  <h3 class="contrast_tab" onclick="SubmenuoptClick('3'); ViewChangeClick('front');">3. SELECT COLOR CONTRAST</h3>
   <div class="shirt-color-contrast">
 	<?php echo $this->getLayout()->createBlock('customizeshirt/customizeshirt')->setTemplate('customizeshirt/colorcontrast.phtml')->toHtml(); ?>
   </div>
-  <h3 class="monogram_tab">4. PERSONALIZE / MONOGRAM</h3>
+  <h3 class="monogram_tab" onclick="SubmenuoptClick('4'); ViewChangeClick('front');">4. PERSONALIZE / MONOGRAM</h3>
   <div class="shirt-personalize">
    <?php echo $this->getLayout()->createBlock('customizeshirt/customizeshirt')->setTemplate('customizeshirt/personalize.phtml')->toHtml(); ?>
   </div>
-  <h3 class="measure_tab">5. MEASUREMENTS</h3>
+  <h3 class="measure_tab" onclick="SubmenuoptClick('5'); ViewChangeClick('front');">5. MEASUREMENTS</h3>
   <div class="shirt-measurements">
     <?php echo $this->getLayout()->createBlock('customizeshirt/customizeshirt')->setTemplate('customizeshirt/measurements.phtml')->toHtml(); ?>
   </div>
@@ -206,14 +262,15 @@
   </script>
 
   <div class="submit-cont">
-  <input id="submitt" class="addto" type="button" value="Add to Cart" onclick="capture();" />
+  <input id="submitt" class="addto" type="button" value="Add to Cart" onclick="submitted();" />
   <input id="qty" type="text" value="1" name="qty" maxlength="5"><label for="qty">Qty</label>
-  <input id="submitt" class="checko" type="button" value="Check Out" onclick="capture();" />
+  <input id="submitt" class="checko" type="button" value="Check Out" onclick="submitted();" />
   </div>
   
   </div>
  
 <div class="right-cont">
+<div class="shirtnsummary">
 <div id="shirt-container">
 <div id="shirt">
 <div id="sba5" style="position: absolute; top: 0px; right: 0px;">
@@ -345,6 +402,87 @@
 <a onclick="UndoFunction()" class="undochanges">Undo</a>
 
 </div>
+</div>
+
+<div class="submenuoptions" id="submenuoptionsid">
+<div class="fab_tabsubmenu" id="fab_tabsubmenuid">
+<ul>
+<li class="subactions">
+<strong>Solid</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/solid.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Grid</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/grid.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Strips</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/strip.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Pattern</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/pattern.png'); ?>" alt="" />
+</li>
+</ul>
+</div>
+<div class="style_tabsubmenu" id="style_tabsubmenuid" style="display:none;">
+<ul>
+<li class="subactions">
+<strong>Sleeve</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/sleeve.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Collar</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/color.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Cuff</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/cuff.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Front</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/front.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Pocket</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/pocket.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Shoulder</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/shoulder.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Button</strong><br><img width="55" src="<?php echo $this->getSkinurl('images/customshirt/button.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Back</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/back.png'); ?>" alt="" />
+</li>
+</ul>
+</div>
+<div class="contrast_tabsubmenu" id="contrast_tabsubmenuid" style="display:none;">
+<ul>
+<li class="subactions">
+<strong>Collar</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/color.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Cuff</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/cuff.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Front</strong><br><img width="45" src="<?php echo $this->getSkinurl('images/customshirt/front.png'); ?>" alt="" />
+</li>
+</ul>
+</div>
+<div class="pers_tabsubmenu" id="pers_tabsubmenuid" style="display:none;">
+<ul>
+<li class="subactions">
+<strong>Monogram</strong><br><img width="70" src="<?php echo $this->getSkinurl('images/customshirt/monogram.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Label</strong><br><img width="62" src="<?php echo $this->getSkinurl('images/customshirt/label.png'); ?>" alt="" />
+</li>
+</ul>
+</div>
+<div class="measure_tabsubmenu" id="measure_tabsubmenuid" style="display:none;">
+<ul>
+<li class="subactions">
+<strong>Measurements</strong><br><img width="80" src="<?php echo $this->getSkinurl('images/customshirt/measure.png'); ?>" alt="" />
+</li>
+<li class="subactions">
+<strong>Standard measurements</strong><br><img width="100" src="<?php echo $this->getSkinurl('images/customshirt/stdmeasure.png'); ?>" alt="" />
+</li>
+</ul>
+</div>
+</div>
 
 </div>
 </div>
@@ -364,7 +502,7 @@
 <input id="SizeType" type="hidden" value="AskOurTailors" name="SizeType" data-val-required="The SizeType field is required." data-val="true">
 <input id="Id" type="hidden" value="-1" name="Id" data-val-required="The Id field is required." data-val-number="The field Id must be a number." data-val="true">
 <input id="SessionKey" type="hidden" value="00000000-0000-0000-0000-000000000000" name="SessionKey" data-val-required="The SessionKey field is required." data-val="true">
-<input id="back" type="hidden" value="" name="back" data-val-number="The field back must be a number." data-val="true">
+<input id="back" type="hidden" value="1" name="back" data-val-number="The field back must be a number." data-val="true">
 <input id="basecolor" type="hidden" value="<?php echo $default_shirt; ?>" name="basecolor">
 <input id="bodytype" type="hidden" value="" name="bodytype" data-val-number="The field bodytype must be a number." data-val="true">
 <input id="branding" type="hidden" value="" name="branding" data-val-number="The field branding must be a number." data-val="true">
@@ -421,14 +559,45 @@
 <input id="labelfont" type="hidden" value="0" name="labelfont" data-val-required="The labelfont field is required." data-val-number="The field labelfont must be a number." data-val="true">
 
 <input type="hidden" name="img_val" id="img_val" value="" />
+<input type="hidden" name="img_val_back" id="img_val_back" value="" />
 <input id="back" type="hidden" value="1" name="back" data-val-number="The field strap must be a number." data-val="true">
 
 </fieldset>
 </form>
 
+<div class="suggest-ad-box">
+	<div class="ad-box"><img src="<?php echo $this->getSkinurl('images/customshirt/ad-img.png'); ?>" alt="" /></div>
+    <div class="suggest-box"><?php echo $this->getLayout()->createBlock('customizeshirt/customizeshirt')->setTemplate('customizeshirt/suggestions.phtml')->toHtml(); ?></div>
+</div>
+
   
   <script type="text/javascript">
-	   function capture() {
+	   function submitted() {
+			if(!jQuery("#stdmeasure").hasClass("active"))
+			{
+				if((jQuery("#neck").val() == "") || (jQuery("#chest").val() == "") || (jQuery("#waist").val() == "") || (jQuery("#hip").val() == "") || (jQuery("#length").val() == "") || (jQuery("#shoulder").val() == "") || (jQuery("#sleevelength").val() == "")) 
+				{
+					alert('Please fill all the measurement fields');	
+				}	
+				else
+				{
+					capture();
+				}
+			}
+			else
+				{
+					if(jQuery("#stdsizes").val() == "")
+					{
+						alert('Please select measurement');
+					}
+					else
+					{
+						capture();
+					}
+				}
+		}
+
+		function capture() {
 			html2canvas(jQuery("#shirt"), {
 				onrendered: function (canvas) {
 					jQuery('#img_val').val(canvas.toDataURL("image/png"));
@@ -496,6 +665,13 @@
 		//jQuery('.shirt-style .tab_content ul.items-list li').removeClass('active');
         //jQuery(this).addClass('active');
     }
+    function GetBack(title, url) 
+	{
+        var data = "<div style='position: relative;'><div class='img'>" + "<img src='" + url + "' alt='' /></div></div>";
+        jQuery('#backslideimg').html(data);
+		//jQuery('.shirt-style .tab_content ul.items-list li').removeClass('active');
+        //jQuery(this).addClass('active');
+    }
 	</script>
 	<script type="text/javascript">
 	jQuery(document).ready(function() {
@@ -507,6 +683,9 @@
 	jQuery(".fabrics ul.tabs li").removeClass("active");
 	jQuery(".fabrics ul.tabs li:first").addClass("active").show(); //Activate first tab
 	jQuery(".fabrics .tab_content:first").show(); //Show first tab content
+	
+	jQuery(".fab_tabsubmenu ul li:first").addClass("active").show(); //Activate first tab
+	jQuery(".fab_tabsubmenu ul li").removeClass("active");
 	}
 	});
 
@@ -517,6 +696,9 @@
 	jQuery(".shirt-style ul.tabs li").removeClass("active");
 	jQuery(".shirt-style ul.tabs li:first").addClass("active").show(); //Activate first tab
 	jQuery(".shirt-style .tab_content:first").show(); //Show first tab content
+	
+	jQuery(".style_tabsubmenu ul li:first").addClass("active").show(); //Activate first tab
+	jQuery(".style_tabsubmenu ul li").removeClass("active");
 	}
 	});
 	
@@ -527,6 +709,9 @@
 	jQuery(".shirt-color-contrast ul.tabs li").removeClass("active");
 	jQuery(".shirt-color-contrast ul.tabs li:first").addClass("active").show(); //Activate first tab
 	jQuery(".shirt-color-contrast .tab_content:first").show(); //Show first tab content
+	
+	jQuery(".contrast_tabsubmenu ul li:first").addClass("active").show(); //Activate first tab
+	jQuery(".contrast_tabsubmenu ul li").removeClass("active");
 	}
 	});
 	
@@ -537,6 +722,9 @@
 	jQuery(".shirt-personalize ul.tabs li").removeClass("active");
 	jQuery(".shirt-personalize ul.tabs li:first").addClass("active").show(); //Activate first tab
 	jQuery(".shirt-personalize .tab_content:first").show(); //Show first tab content
+	
+	jQuery(".pers_tabsubmenu ul li:first").addClass("active").show(); //Activate first tab
+	jQuery(".pers_tabsubmenu ul li").removeClass("active");
 	}
 	});
 	
@@ -547,6 +735,9 @@
 	jQuery(".shirt-measurements ul.tabs li").removeClass("active");
 	jQuery(".shirt-measurements ul.tabs li:first").addClass("active").show(); //Activate first tab
 	jQuery(".shirt-measurements .tab_content:first").show(); //Show first tab content
+	
+	jQuery(".measure_tabsubmenu ul li:first").addClass("active").show(); //Activate first tab
+	jQuery(".measure_tabsubmenu ul li").removeClass("active");
 	}
 	});
 	});

@@ -39,6 +39,8 @@ function fabricClick(fid, price, name, tailorsprice, description) {
 
     jQuery('#sbaimg').attr('src', (server + fid + '_main_set2_0005.png'));
 
+    jQuery('#fabimg').attr('src', (server + fid + '.png'));
+
     jQuery('#basecolor').val(fid);
 
     jQuery('#fabric_title').text(name + ':');
@@ -81,6 +83,7 @@ function SleeveClick(plac)
                 jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_0001.png');
                 jQuery('#scuimg').attr('src', server + fid + '_main_set1_0005.png');
                 jQuery('#sba5img').attr('src', server + 'FrenchSleeve_WhiteLineIssueSolver.png');
+                jQuery('#cufftab').css('display', 'block');
                 break;
             }
             else if(jQuery('#cuff').val() == 1 || jQuery('#cuff').val() == 2)
@@ -88,6 +91,7 @@ function SleeveClick(plac)
                 jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_0000.png');
                 jQuery('#scuimg').attr('src', server + fid + '_main_set1_0006.png');
                 jQuery('#sba5img').attr('src', server + 'StandardSleeve_WhiteLineIssueSolver.png');
+                jQuery('#cufftab').css('display', 'block');
                 break;
             }
             else
@@ -95,6 +99,7 @@ function SleeveClick(plac)
                 jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_0000.png');
                 jQuery('#scuimg').attr('src', server + fid + '_main_set1_0006.png');
                 jQuery('#sba5img').attr('src', server + 'StandardSleeve_WhiteLineIssueSolver.png');
+                jQuery('#cufftab').css('display', 'block');
                 break;
             }
         }
@@ -106,6 +111,7 @@ function SleeveClick(plac)
                 jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_french_rolled.png');
                 jQuery('#scuimg').attr('src', server + fid + '_main_set1_0005_1.png');
                 jQuery('#sba5img').attr('src', '');
+                jQuery('#cufftab').css('display', 'block');
                 break;
             }
             else if(jQuery('#cuff').val() == 1 || jQuery('#cuff').val() == 2)
@@ -113,6 +119,7 @@ function SleeveClick(plac)
                 jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_rolled.png');
                 jQuery('#scuimg').attr('src', server + fid + '_main_set1_0006_1.png');
                 jQuery('#sba5img').attr('src', '');
+                jQuery('#cufftab').css('display', 'block');
                 break;
             }
             else
@@ -120,6 +127,7 @@ function SleeveClick(plac)
                 jQuery('#sslimg').attr('src', server + basecolor + '_main_set2_rolled.png');
                 jQuery('#scuimg').attr('src', server + fid + '_main_set1_0006_1.png');
                 jQuery('#sba5img').attr('src', '');
+                jQuery('#cufftab').css('display', 'block');
                 break;
             }
         }
@@ -141,6 +149,17 @@ function SleeveClick(plac)
                 jQuery('#cuffinnercolor').val(jQuery('#basecolor').val());
                 jQuery('#cuffinner').val(0);
                 jQuery('#CuffinnercolorDisc').html('');
+
+                jQuery('#cufftab').css('display', 'none');
+
+                jQuery.ajax({   
+                    url : base_url + 'customizeshirt/index/cuff',
+                    type : 'get',
+                    data : 'switchno=4',
+                    success : function(data) {
+                    jQuery('#CuffDisc').html(data);
+                    }
+                });
 
                 break;
             // jQuery('#cuff').val('4');
@@ -840,6 +859,166 @@ function BackClick(plac) {
         jQuery('#BackDisc').html(data);
         }
     });
+}
+
+function ButtonClick(plac) {
+    jQuery('#ButtonColor li').removeClass();
+    jQuery('#ButtonColor li').eq(plac - 1).addClass("active");
+    var server = prestine_url;
+    if (!window.undoflag) {
+        window.stack[window.indexUndo] = 'ButtonClick(' + jQuery('#buttons').val() + ');';
+        window.indexUndo++;
+        window.undoflag = false;
+    }
+    window.undoflag = true;
+    jQuery('#buttons').val(plac);
+    var collar = parseInt(jQuery('#collar').val());
+
+    CollarClick(collar);
+
+    var placket = parseInt(jQuery('#placket').val());
+    placketClick(placket);
+
+    var pocket = parseInt(jQuery('#pocket').val());
+    PocketClick(pocket)
+
+    jQuery('#scobimg').attr('src', server + (plac) + '_main_button_0002.png');
+    jQuery('#butimg').attr('src', server + (plac) + '_button.png');
+
+    /*jQuery.get('/Shirts/GetButtons/' + plac, function (data) {
+        jQuery('#ButtonsDisc').html(data);
+    });*/
+    jQuery.ajax({
+        url : base_url + 'customizeshirt/index/button',
+        type : 'get',
+        data : 'switchno=' + plac,
+        success : function(data) {
+        jQuery('#ButtonsDisc').html(data);
+        }
+    });
+
+    window.undoflag = false;
+}
+
+function ButtonThreadClick(plac) {
+    jQuery('#ButtonThreadColor li').removeClass();
+    jQuery('#ButtonThreadColor li').eq(plac - 1).addClass("active");
+    var server = prestine_url;
+    if (!window.undoflag) {
+        window.stack[window.indexUndo] = 'ButtonThreadClick(' + jQuery('#buttonthread').val() + ');';
+        window.indexUndo++;
+        window.undoflag = false;
+    }
+    window.undoflag = true;
+    jQuery('#buttonthread').val(plac);
+    
+    jQuery('#holimg').attr('src', server + (plac) + '_thread_vertical.png');
+    jQuery('#crsimg').attr('src', server + (plac) + '_thread_cross.png');
+
+    /*jQuery.get('/Shirts/GetButtons/' + plac, function (data) {
+        jQuery('#ButtonsDisc').html(data);
+    });
+    jQuery.ajax({
+        url : base_url + 'customizeshirt/index/button',
+        type : 'get',
+        data : 'switchno=' + plac,
+        success : function(data) {
+        jQuery('#ButtonsDisc').html(data);
+        }
+    });*/
+
+    window.undoflag = false;
+}
+
+function ButtonHoleClick(plac) {
+    jQuery('#ButtonHoleColor li').removeClass();
+    jQuery('#ButtonHoleColor li').eq(plac - 1).addClass("active");
+
+    var butcol = jQuery('#buttonthread').val();
+
+    var server = prestine_url;
+    if (!window.undoflag) {
+        window.stack[window.indexUndo] = 'ButtonHoleClick(' + jQuery('#buttonhole').val() + ');';
+        window.indexUndo++;
+        window.undoflag = false;
+    }
+
+    jQuery('#buttonhole').val(plac);
+
+    switch (plac) {
+        case 1:
+            {
+                jQuery('#holimg').attr('src', server + (butcol) + '_thread_vertical.png');
+                break;
+            }
+        case 2:
+            {
+                jQuery('#holimg').attr('src', server + (butcol) + '_thread_horizantal.png');
+                break;
+            }   
+        case 3:
+            {
+                jQuery('#holimg').attr('src', server + (butcol) + '_thread_slanted.png');
+                break;
+            }  
+        default:
+            {
+                jQuery('#holimg').attr('src', server + (butcol) + '_thread_vertical.png');
+                break;
+            }
+    }
+    
+    /*jQuery.get('/Shirts/GetButtons/' + plac, function (data) {
+        jQuery('#ButtonsDisc').html(data);
+    });
+    jQuery.ajax({
+        url : base_url + 'customizeshirt/index/button',
+        type : 'get',
+        data : 'switchno=' + plac,
+        success : function(data) {
+        jQuery('#ButtonsDisc').html(data);
+        }
+    });*/
+}
+
+function SubmenuoptClick(options) {
+    var options = parseInt(options);
+    switch (options) {
+        case 1:
+            {
+                jQuery('#submenuoptionsid div').css('display', 'none');
+                jQuery('#submenuoptionsid  #fab_tabsubmenuid').css('display', 'block');
+                break;
+            }
+        case 2:
+            {
+                jQuery('#submenuoptionsid div').css('display', 'none');
+                jQuery('#submenuoptionsid #style_tabsubmenuid').css('display', 'block');
+                break;
+            }   
+        case 3:
+            {
+                jQuery('#submenuoptionsid div').css('display', 'none');
+                jQuery('#submenuoptionsid #contrast_tabsubmenuid').css('display', 'block');
+                break;
+            } 
+        case 4:
+            {
+                jQuery('#submenuoptionsid div').css('display', 'none');
+                jQuery('#submenuoptionsid #pers_tabsubmenuid').css('display', 'block');
+                break;
+            }
+        case 5:
+            {
+                jQuery('#submenuoptionsid div').css('display', 'none');
+                jQuery('#submenuoptionsid #measure_tabsubmenuid').css('display', 'block');
+                break;
+            }
+         default:
+            {
+            }  
+    }
+
 }
 
 function ViewChangeClick(view) {
